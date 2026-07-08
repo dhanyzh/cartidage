@@ -107,7 +107,7 @@ export default function About() {
               Committed to engineering validation since 2012
             </h2>
             <p style={{ fontSize: '16px', color: '#64748B', lineHeight: 1.75, marginBottom: '20px' }}>
-              Genuine Toner Cartridges is Kuwait's leader in premium remanufactured toner and ink supplies. We build compatible mono, color, extended yield, and secure bank-grade MICR solutions matching strict OEM density and page yield specifications.
+              Genuine Digital Company is Kuwait's leader in premium remanufactured toner and ink supplies. We build compatible mono, color, extended yield, and secure bank-grade MICR solutions matching strict OEM density and page yield specifications.
             </p>
             <p style={{ fontSize: '16px', color: '#64748B', lineHeight: 1.75, marginBottom: '20px' }}>
               We employ circular economy principles to rebuild empty toner cartridges using brand new OPC drums, wiper blades, and premium color-matched chemical toners. This guarantees corporate users a flawless output that speaks of our commitment to excellence.
@@ -143,7 +143,7 @@ export default function About() {
             }}>
               <img
                 src="./images/img-office-interior.jpg"
-                alt="Genuine Toner Cartridges facility in Kuwait"
+                alt="Genuine Digital Company facility in Kuwait"
                 loading="lazy"
                 style={{ width: '100%', height: '100%', objectFit: 'cover' }}
               />

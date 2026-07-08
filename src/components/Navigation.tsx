@@ -71,7 +71,7 @@ export default function Navigation() {
         {/* Logo */}
         <Link
           to="/"
-          aria-label="Genuine Toner Cartridges — Home"
+          aria-label="Genuine Digital Company — Home"
           style={{
             display:        'flex',
             alignItems:     'center',
@@ -82,7 +82,7 @@ export default function Navigation() {
           {/* Logo Mark */}
           <img
             src="/logo.svg"
-            alt="Genuine Toner Cartridges Logo"
+            alt="Genuine Digital Company Logo"
             style={{
               width:      '36px',
               height:     '36px',
@@ -109,7 +109,7 @@ export default function Navigation() {
               display:       'block',
               textTransform: 'uppercase',
             }}>
-              Toner Cartridges
+              Digital Company
             </span>
           </div>
         </Link>

@@ -33,7 +33,7 @@ export default function Contact() {
 
       const subjectLine = formData.subject.trim() || 'Contact Inquiry';
       const emailSubject = `${subjectLine} - from ${formData.name}`;
-      const emailBody = `Genuine Cartridges Contact Form Submission:\n----------------------------------------\nName: ${formData.name}\nEmail: ${formData.email}\nPhone: ${formData.phone || 'N/A'}\nSubject: ${subjectLine}\n\nMessage:\n${formData.message}`;
+      const emailBody = `Genuine Digital Company Contact Form Submission:\n----------------------------------------\nName: ${formData.name}\nEmail: ${formData.email}\nPhone: ${formData.phone || 'N/A'}\nSubject: ${subjectLine}\n\nMessage:\n${formData.message}`;
 
       const whatsappText = `*NEW CONTACT MESSAGE*\n*Name:* ${formData.name}\n*Email:* ${formData.email}\n*Phone:* ${formData.phone || 'N/A'}\n*Subject:* ${subjectLine}\n\n*Message:*\n${formData.message}`;
 
@@ -110,7 +110,7 @@ export default function Contact() {
                 allowFullScreen
                 loading="lazy"
                 referrerPolicy="no-referrer-when-downgrade"
-                title="Genuine Toner Cartridges Location in Hawally, Kuwait"
+                title="Genuine Digital Company Location in Hawally, Kuwait"
               />
             </div>
 
@@ -233,7 +233,7 @@ export default function Contact() {
                   fontWeight: 600, color: '#191919',
                   lineHeight: 1.1, marginBottom: '24px', letterSpacing: '-0.02em',
                 }}>
-                  Genuine Toner Cartridges Est.
+                  Genuine Digital Company Est.
                 </h2>
                 <p style={{ fontSize: '17px', color: '#64748B', lineHeight: 1.75, marginBottom: '32px' }}>
                   We welcome you to visit our facility in Hawally, Kuwait. Meet our technical support team to discuss your printing fleet requirements.

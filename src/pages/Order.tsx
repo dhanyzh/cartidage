@@ -51,7 +51,7 @@ export default function Order() {
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
-  const handleSubmit = (e: FormEvent) => {
+  const handleSubmit = (method: 'whatsapp' | 'email') => (e: FormEvent) => {
     e.preventDefault();
     const errs = validateStep2();
     if (Object.keys(errs).length > 0) { setErrors(errs); return; }
@@ -61,18 +61,20 @@ export default function Order() {
       setLoading(false);
       setSubmitted(true);
 
-      const emailSubject = `Order Request from ${formData.name} - Genuine Cartridges`;
-      const emailBody = `Genuine Cartridges Order Details:\n----------------------------------------\nManufacturer: ${formData.manufacturer}\nModel/Series: ${formData.model}\nQuantity: ${formData.quantity}\nProduct Type: ${formData.productType || 'N/A'}\n\nCustomer Details:\n----------------------------------------\nName: ${formData.name}\nEmail: ${formData.email}\nPhone: ${formData.phone}\nCompany: ${formData.company || 'N/A'}\nAddress: ${formData.address || 'N/A'}\nComments: ${formData.comments || 'N/A'}`;
+      const emailSubject = `Order Request from ${formData.name} - Genuine Digital Company`;
+      const emailBody = `Genuine Digital Company Order Details:\n----------------------------------------\nManufacturer: ${formData.manufacturer}\nModel/Series: ${formData.model}\nQuantity: ${formData.quantity}\nProduct Type: ${formData.productType || 'N/A'}\n\nCustomer Details:\n----------------------------------------\nName: ${formData.name}\nEmail: ${formData.email}\nPhone: ${formData.phone}\nCompany: ${formData.company || 'N/A'}\nAddress: ${formData.address || 'N/A'}\nComments: ${formData.comments || 'N/A'}`;
 
-      const whatsappText = `*NEW ORDER REQUEST*\n*Manufacturer:* ${formData.manufacturer}\n*Model:* ${formData.model}\n*Quantity:* ${formData.quantity}\n*Product Type:* ${formData.productType || 'N/A'}\n\n*Customer Info:*\n*Name:* ${formData.name}\n*Email:* ${formData.email}\n*Phone:* ${formData.phone}\n*Company:* ${formData.company || 'N/A'}\n*Address:* ${formData.address || 'N/A'}\n*Comments:* ${formData.comments || 'N/A'}`;
+      const whatsappText = `*NEW ORDER REQUEST* (Genuine Digital Company)\n*Manufacturer:* ${formData.manufacturer}\n*Model:* ${formData.model}\n*Quantity:* ${formData.quantity}\n*Product Type:* ${formData.productType || 'N/A'}\n\n*Customer Info:*\n*Name:* ${formData.name}\n*Email:* ${formData.email}\n*Phone:* ${formData.phone}\n*Company:* ${formData.company || 'N/A'}\n*Address:* ${formData.address || 'N/A'}\n*Comments:* ${formData.comments || 'N/A'}`;
 
-      // Open WhatsApp in new tab
-      const whatsappUrl = `https://wa.me/96590942454?text=${encodeURIComponent(whatsappText)}`;
-      window.open(whatsappUrl, '_blank', 'noopener,noreferrer');
-
-      // Trigger mailto for email client
-      const mailtoUrl = `mailto:info@genuinecartridges.net?subject=${encodeURIComponent(emailSubject)}&body=${encodeURIComponent(emailBody)}`;
-      window.location.href = mailtoUrl;
+      if (method === 'whatsapp') {
+        // Open WhatsApp in new tab
+        const whatsappUrl = `https://wa.me/96590942454?text=${encodeURIComponent(whatsappText)}`;
+        window.open(whatsappUrl, '_blank', 'noopener,noreferrer');
+      } else {
+        // Trigger mailto for email client
+        const mailtoUrl = `mailto:info@genuinecartridges.net?subject=${encodeURIComponent(emailSubject)}&body=${encodeURIComponent(emailBody)}`;
+        window.location.href = mailtoUrl;
+      }
     }, 1500);
   };
 
@@ -317,7 +319,7 @@ export default function Order() {
                 </div>
               ) : (
                 /* ── Step 2: Contact Info ── */
-                <form onSubmit={handleSubmit} noValidate>
+                <form onSubmit={(e) => e.preventDefault()} noValidate>
                   <div style={{ display: 'flex', alignItems: 'center', gap: '12px', marginBottom: '28px' }}>
                     <button
                       type="button"
@@ -393,15 +395,76 @@ export default function Order() {
                     />
                   </div>
 
-                  <button type="submit" disabled={loading} className="btn-primary"
-                    style={{ width: '100%', justifyContent: 'center', padding: '16px', opacity: loading ? 0.8 : 1 }}>
-                    {loading ? (
-                      <>
+                  <div style={{ display: 'flex', flexDirection: 'column', gap: '12px', marginTop: '32px' }}>
+                    <button
+                      type="button"
+                      onClick={(e) => handleSubmit('whatsapp')(e)}
+                      disabled={loading}
+                      style={{
+                        width: '100%',
+                        justifyContent: 'center',
+                        padding: '16px',
+                        borderRadius: '100px',
+                        background: '#04AF44',
+                        color: '#FFFFFF',
+                        border: 'none',
+                        fontSize: '14px',
+                        fontWeight: 600,
+                        cursor: 'pointer',
+                        display: 'flex',
+                        alignItems: 'center',
+                        gap: '10px',
+                        transition: 'opacity 0.2s',
+                        opacity: loading ? 0.8 : 1,
+                      }}
+                      onMouseEnter={(e) => { e.currentTarget.style.opacity = '0.9'; }}
+                      onMouseLeave={(e) => { e.currentTarget.style.opacity = '1'; }}
+                    >
+                      {loading ? (
                         <span className="animate-spin" style={{ width: '16px', height: '16px', border: '2px solid rgba(255,255,255,0.3)', borderTopColor: '#FFFFFF', borderRadius: '50%', display: 'inline-block' }} />
-                        Submitting...
-                      </>
-                    ) : 'Submit Order'}
-                  </button>
+                      ) : (
+                        <>
+                          <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
+                          </svg>
+                          Send via WhatsApp (Primary)
+                        </>
+                      )}
+                    </button>
+                    <button
+                      type="button"
+                      onClick={(e) => handleSubmit('email')(e)}
+                      disabled={loading}
+                      style={{
+                        width: '100%',
+                        justifyContent: 'center',
+                        padding: '14px',
+                        borderRadius: '100px',
+                        background: '#FFFFFF',
+                        border: '1px solid #E2E8F0',
+                        color: '#64748B',
+                        fontSize: '13px',
+                        fontWeight: 500,
+                        cursor: 'pointer',
+                        display: 'flex',
+                        alignItems: 'center',
+                        gap: '8px',
+                        transition: 'all 0.25s',
+                        opacity: loading ? 0.8 : 1,
+                      }}
+                      onMouseEnter={(e) => { e.currentTarget.style.color = '#0057A8'; e.currentTarget.style.borderColor = '#0057A8'; }}
+                      onMouseLeave={(e) => { e.currentTarget.style.color = '#64748B'; e.currentTarget.style.borderColor = '#E2E8F0'; }}
+                    >
+                      {loading ? (
+                        <span className="animate-spin" style={{ width: '16px', height: '16px', border: '2px solid rgba(0,87,168,0.3)', borderTopColor: '#0057A8', borderRadius: '50%', display: 'inline-block' }} />
+                      ) : (
+                        <>
+                          <span style={{ fontSize: '16px' }}>✉️</span>
+                          Send via Email (Secondary)
+                        </>
+                      )}
+                    </button>
+                  </div>
                 </form>
               )}
             </div>

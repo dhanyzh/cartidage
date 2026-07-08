@@ -39,8 +39,8 @@ function Hero() {
       setLoading(false);
       setSubmitted(true);
 
-      const emailSubject = `Quote Request from ${formData.name} - Genuine Cartridges`;
-      const emailBody = `Genuine Cartridges Quote Request details:\n----------------------------------------\nName: ${formData.name}\nEmail: ${formData.email}\nPhone: ${formData.phone || 'N/A'}\nCompany: ${formData.company || 'N/A'}\n\nCartridges Needed:\n${formData.message}`;
+      const emailSubject = `Quote Request from ${formData.name} - Genuine Digital Company`;
+      const emailBody = `Genuine Digital Company Quote Request details:\n----------------------------------------\nName: ${formData.name}\nEmail: ${formData.email}\nPhone: ${formData.phone || 'N/A'}\nCompany: ${formData.company || 'N/A'}\n\nCartridges Needed:\n${formData.message}`;
 
       const whatsappText = `*NEW QUOTE REQUEST*\n*Name:* ${formData.name}\n*Email:* ${formData.email}\n*Phone:* ${formData.phone || 'N/A'}\n*Company:* ${formData.company || 'N/A'}\n\n*Cartridges Needed:*\n${formData.message}`;
 
@@ -383,7 +383,7 @@ function AboutPreview() {
           </h2>
 
           <p style={{ fontSize: '16px', color: '#64748B', lineHeight: 1.75, marginBottom: '20px' }}>
-            Genuine Toner Cartridges is the regional name in high-performance remanufactured cartridge distribution. We remanufacture mono, color, extended yield, and banking MICR supplies under strict quality control standards.
+            Genuine Digital Company is the regional name in high-performance remanufactured cartridge distribution. We remanufacture mono, color, extended yield, and banking MICR supplies under strict quality control standards.
           </p>
           <p style={{ fontSize: '16px', color: '#64748B', lineHeight: 1.75, marginBottom: '40px' }}>
             By employing circular manufacturing principles, we rebuild empty OEM cartridges with brand new drums and custom toner formulas. This guarantees print quality that matches or exceeds brand-new cartridges while preventing tons of plastic waste from entering Kuwait's environment.
@@ -421,7 +421,7 @@ function AboutPreview() {
           }}>
             <img
               src="./images/img-office-interior.jpg"
-              alt="Genuine Toner Cartridges production facility in Kuwait"
+              alt="Genuine Digital Company production facility in Kuwait"
               loading="lazy"
               style={{ width: '100%', height: '100%', objectFit: 'cover' }}
             />
@@ -1000,7 +1000,7 @@ function ValuesPreview() {
           }}>
             <img
               src="./images/img-quality-check.jpg"
-              alt="Quality check inspection at Genuine Toner Cartridges"
+              alt="Quality check inspection at Genuine Digital Company"
               loading="lazy"
               style={{ width: '100%', height: '100%', objectFit: 'cover' }}
             />
@@ -1088,7 +1088,7 @@ function Testimonials() {
 
   const testimonials = [
     {
-      quote: "Genuine Toner Cartridges has been our supplier for over 5 years. Their remanufactured cartridges deliver OEM-level crispness and yields at a fraction of the cost.",
+      quote: "Genuine Digital Company has been our supplier for over 5 years. Their remanufactured cartridges deliver OEM-level crispness and yields at a fraction of the cost.",
       name: "Ahmad Al-Rashidi",
       role: "IT Manager",
       company: "Kuwait Corporate Group",

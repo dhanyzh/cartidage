@@ -60,11 +60,11 @@ export default function Footer() {
             <Link
               to="/"
               style={{ display: 'flex', alignItems: 'center', gap: '10px', marginBottom: '24px', textDecoration: 'none' }}
-              aria-label="Genuine Toner Cartridges"
+              aria-label="Genuine Digital Company"
             >
               <img
                 src="/logo.svg"
-                alt="Genuine Toner Cartridges Logo"
+                alt="Genuine Digital Company Logo"
                 style={{
                   width:      '36px',
                   height:     '36px',
@@ -77,7 +77,7 @@ export default function Footer() {
                   GENUINE
                 </div>
                 <div style={{ fontSize: '9px', fontWeight: 400, color: '#64748B', letterSpacing: '0.14em', textTransform: 'uppercase' }}>
-                  Toner Cartridges
+                  Digital Company
                 </div>
               </div>
             </Link>
@@ -380,7 +380,7 @@ export default function Footer() {
           gap:        '16px',
         }}>
           <p style={{ fontSize: '13px', color: '#64748B' }}>
-            © {year} Genuine Toner Cartridges Est. All rights reserved.
+            © {year} Genuine Digital Company Est. All rights reserved.
           </p>
           <p style={{ fontSize: '13px', color: '#64748B' }}>
             Proudly made in{' '}
