@@ -107,7 +107,7 @@ export default function About() {
               Committed to engineering validation since 2012
             </h2>
             <p style={{ fontSize: '16px', color: '#64748B', lineHeight: 1.75, marginBottom: '20px' }}>
-              Genuine Digital Company is Kuwait's leader in premium remanufactured toner and ink supplies. We build compatible mono, color, extended yield, and secure bank-grade MICR solutions matching strict OEM density and page yield specifications.
+              Genuine Digital Company is Kuwait's leader in premium compatible toner and ink supplies. We build compatible mono, color, extended yield, and secure bank-grade MICR solutions matching strict OEM density and page yield specifications.
             </p>
             <p style={{ fontSize: '16px', color: '#64748B', lineHeight: 1.75, marginBottom: '20px' }}>
               We employ circular economy principles to rebuild empty toner cartridges using brand new OPC drums, wiper blades, and premium color-matched chemical toners. This guarantees corporate users a flawless output that speaks of our commitment to excellence.
@@ -200,7 +200,7 @@ export default function About() {
             maxWidth: '640px',
             margin: '0 auto',
           }}>
-            Every remanufactured cartridge is 100% unconditionally guaranteed to perform, meeting or exceeding OEM equivalents. We source high-grade parts and toners to eliminate defects and printer fleet issues.
+            Every compatible cartridge is 100% unconditionally guaranteed to perform, meeting or exceeding OEM equivalents. We source high-grade parts and toners to eliminate defects and printer fleet issues.
           </p>
         </div>
       </section>
@@ -223,15 +223,15 @@ export default function About() {
           <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '40px' }} className="story-grid">
             <div>
               <p style={{ fontSize: '16px', color: '#64748B', lineHeight: 1.75, marginBottom: '20px' }}>
-                We stand behind our products with a complete, stress-free warranty on all remanufactured toner and ink cartridges. The density, lines, and quantity of copies match OEM equivalents, giving you peace of mind.
+                We stand behind our products with a complete, stress-free warranty on all compatible toner and ink cartridges. The density, lines, and quantity of copies match OEM equivalents, giving you peace of mind.
               </p>
               <p style={{ fontSize: '16px', color: '#64748B', lineHeight: 1.75 }}>
-                Additionally, we often utilize extended-life drums and premium components in our formulas, meaning our remanufactured cartridges frequently provide <strong style={{ color: '#191919' }}>higher page yields than original OEM cartridges</strong>.
+                Additionally, we often utilize extended-life drums and premium components in our formulas, meaning our compatible cartridges frequently provide <strong style={{ color: '#191919' }}>higher page yields than original OEM cartridges</strong>.
               </p>
             </div>
             <div>
               <p style={{ fontSize: '16px', color: '#64748B', lineHeight: 1.75, marginBottom: '20px' }}>
-                We are proud to do our remanufacturing locally in Kuwait. Our in-house technical support team is always available to help configure printing parameters or resolve mechanical questions for your fleet.
+                We are proud to do our manufacturing locally in Kuwait. Our in-house technical support team is always available to help configure printing parameters or resolve mechanical questions for your fleet.
               </p>
               {/* Commitments panel */}
               <div style={{

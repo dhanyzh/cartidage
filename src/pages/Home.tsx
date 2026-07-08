@@ -121,7 +121,7 @@ function Hero() {
             maxWidth: '460px',
             marginBottom: '40px',
           }}>
-            Kuwait's trusted source for premium remanufactured toner and ink cartridges since 2012. Save up to 40% over OEM costs with our GreenCircle certified products.
+            Kuwait's trusted source for premium compatible toner and ink cartridges since 2012. Save up to 40% over OEM costs with our GreenCircle certified products.
           </p>
 
           <div style={{ display: 'flex', gap: '16px', flexWrap: 'wrap', marginBottom: '56px' }}>
@@ -367,7 +367,7 @@ function AboutPreview() {
         {/* Left */}
         <div ref={leftRef}>
           <div className="section-label" style={{ color: '#04AF44', marginBottom: '24px' }}>
-            Local Remanufacturer
+            Local Supplier
           </div>
           <div className="gold-line" style={{ marginBottom: '28px', background: '#0057A8' }} aria-hidden="true" />
 
@@ -383,7 +383,7 @@ function AboutPreview() {
           </h2>
 
           <p style={{ fontSize: '16px', color: '#64748B', lineHeight: 1.75, marginBottom: '20px' }}>
-            Genuine Digital Company is the regional name in high-performance remanufactured cartridge distribution. We remanufacture mono, color, extended yield, and banking MICR supplies under strict quality control standards.
+            Genuine Digital Company is the regional name in high-performance compatible cartridge distribution. We build mono, color, extended yield, and banking MICR supplies under strict quality control standards.
           </p>
           <p style={{ fontSize: '16px', color: '#64748B', lineHeight: 1.75, marginBottom: '40px' }}>
             By employing circular manufacturing principles, we rebuild empty OEM cartridges with brand new drums and custom toner formulas. This guarantees print quality that matches or exceeds brand-new cartridges while preventing tons of plastic waste from entering Kuwait's environment.
@@ -515,7 +515,7 @@ function Mission() {
           maxWidth: '660px',
           margin: '0 auto 40px',
         }}>
-          Every remanufactured cartridge is built with brand new critical components and matches standard OEM yields. We guarantee printer safety and output clarity under our 100% unconditional performance warranty.
+          Every compatible cartridge is built with brand new critical components and matches standard OEM yields. We guarantee printer safety and output clarity under our 100% unconditional performance warranty.
         </p>
 
         <div style={{ display: 'flex', gap: '16px', justifyContent: 'center', flexWrap: 'wrap' }}>
@@ -564,9 +564,9 @@ function ProductsPreview() {
           <circle cx="12" cy="12" r="2"/>
         </svg>
       ),
-      title: 'Remanufactured Ink & Toner',
-      body: "High-performance remanufactured cartridges matching standard OEM yields. Eco-friendly solution optimized for HP, Epson, Canon, Samsung, and Xerox fleets.",
-      image: '/images/remanufactured_toners.png',
+      title: 'Compatible Ink & Toner',
+      body: "High-performance compatible cartridges matching standard OEM yields. Eco-friendly solution optimized for HP, Epson, Canon, Samsung, and Xerox fleets.",
+      image: '/images/compatible_toners.png',
       features: ['Up to 40% cost reduction', 'Brand new drums & blades', '100% performance warranty'],
     },
     {
@@ -1104,7 +1104,7 @@ function Testimonials() {
       stars: 5,
     },
     {
-      quote: "Switching to their remanufactured cartridges cut printing costs by 40%. The collection recycling credits fit our environmental and corporate sustainability guidelines.",
+      quote: "Switching to their compatible cartridges cut printing costs by 40%. The collection recycling credits fit our environmental and corporate sustainability guidelines.",
       name: "Khalid Al-Sabah",
       role: "Procurement Lead",
       company: "Al-Sabah Ventures",
@@ -1233,20 +1233,20 @@ function FAQ() {
 
   const faqs = [
     {
-      q: "Are remanufactured cartridges as good as OEM cartridges?",
-      a: "Yes. Our remanufactured cartridges are built under strict quality guidelines to match or exceed OEM print density and page yields. Every cartridge goes through testing and is backed by our 100% performance warranty.",
+      q: "Are compatible cartridges as good as OEM cartridges?",
+      a: "Yes. Our compatible cartridges are built under strict quality guidelines to match or exceed OEM print density and page yields. Every cartridge goes through testing and is backed by our 100% performance warranty.",
     },
     {
-      q: "Will using remanufactured cartridges void my printer warranty?",
-      a: "No. Consumer protection laws prevent printer manufacturers from voiding your warranty for using remanufactured cartridges. Our cartridges are built using patent-safe processes, making them completely safe for print fleets.",
+      q: "Will using compatible cartridges void my printer warranty?",
+      a: "No. Consumer protection laws prevent printer manufacturers from voiding your warranty for using compatible cartridges. Our cartridges are built using patent-safe processes, making them completely safe for print fleets.",
     },
     {
-      q: "How do remanufactured cartridges support circular sustainability?",
-      a: "A Life Cycle Assessment (LCA) demonstrates that remanufactured cartridges reduce carbon footprint by up to 4.4x compared to new plastic cartridges. Our collection programs recover empty cartridges to completely avoid landfill waste.",
+      q: "How do compatible cartridges support circular sustainability?",
+      a: "A Life Cycle Assessment (LCA) demonstrates that compatible cartridges reduce carbon footprint by up to 4.4x compared to new plastic cartridges. Our collection programs recover empty cartridges to completely avoid landfill waste.",
     },
     {
       q: "What products and brands do you support?",
-      a: "We remanufacture mono/color laser toner, extended yield toner, ink, wide format supplies, and banking MICR supplies. We support HP, Canon, Brother, Epson, Xerox, Samsung, Lexmark, and Source Tech.",
+      a: "We build mono/color laser toner, extended yield toner, ink, wide format supplies, and banking MICR supplies. We support HP, Canon, Brother, Epson, Xerox, Samsung, Lexmark, and Source Tech.",
     },
     {
       q: "How do I return empty cartridges or place a bulk order?",
@@ -1415,7 +1415,7 @@ function ContactCTA() {
           maxWidth: '560px',
           margin: '0 auto 48px',
         }}>
-          Contact us today for a quote on remanufactured cartridges. Our Kuwait team handles delivery, technical support, and recycling empty cores.
+          Contact us today for a quote on compatible cartridges. Our Kuwait team handles delivery, technical support, and recycling empty cores.
         </p>
 
         <div style={{ display: 'flex', gap: '16px', justifyContent: 'center', flexWrap: 'wrap' }}>

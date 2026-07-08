@@ -89,7 +89,7 @@ export default function Footer() {
               maxWidth:   '280px',
               marginBottom: '28px',
             }}>
-              Kuwait's trusted supplier of premium remanufactured toner cartridges since 2012. Quality guaranteed, locally made.
+              Kuwait's trusted supplier of premium compatible toner cartridges since 2012. Quality guaranteed, locally made.
             </p>
 
             {/* Trust Badges */}

@@ -55,8 +55,8 @@ export default function Products() {
         </svg>
       ),
       title: 'Mono & Color Cartridges',
-      body: "Premium remanufactured toner and ink cartridges that equal or exceed OEM print yields. Rigorously tested for HP, Canon, Brother, Epson, Xerox, and Samsung printers.",
-      image: '/images/remanufactured_toners.png',
+      body: "Premium compatible toner and ink cartridges that equal or exceed OEM print yields. Rigorously tested for HP, Canon, Brother, Epson, Xerox, and Samsung printers.",
+      image: '/images/compatible_toners.png',
       features: [
         'Matches OEM density & yields',
         'Certified new components',
@@ -184,7 +184,7 @@ export default function Products() {
           letterSpacing: '-0.03em',
           marginBottom: '24px',
         }}>
-          Remanufactured<br />Imaging Supplies
+          Compatible<br />Imaging Supplies
         </h1>
         <p style={{
           fontSize: '18px',
@@ -440,7 +440,7 @@ export default function Products() {
                 Magnetized for automatic routing recognition. Banking entities and corporate accounting departments rely on premium Magnetic Ink Character Recognition (MICR) toner for secure check issuance.
               </p>
               <p style={{ fontSize: '16px', color: '#64748B', lineHeight: 1.75, marginBottom: '32px' }}>
-                MICR codes at the bottom of checks must meet absolute magnetization standards so check scanners can read the routing values without errors. Our remanufactured MICR cartridges are engineered for Lexmark, IBM, Source Tech, and Troy (HP-based) systems, ensuring complete security.
+                MICR codes at the bottom of checks must meet absolute magnetization standards so check scanners can read the routing values without errors. Our compatible MICR cartridges are engineered for Lexmark, IBM, Source Tech, and Troy (HP-based) systems, ensuring complete security.
               </p>
               <Link to="/order" className="btn-primary">
                 Request MICR Quote
@@ -451,7 +451,7 @@ export default function Products() {
               {[
                 { icon: '🏦', title: 'Source Tech Systems', desc: 'Compliant MICR cartridges built for Source Tech fleets.' },
                 { icon: '🖨️', title: 'Lexmark & IBM', desc: 'Secure, high-speed check characters printing.' },
-                { icon: '✅', title: 'Troy (HP-based) Printers', desc: 'Batch remanufactured cartridges matching Troy specifications.' },
+                { icon: '✅', title: 'Troy (HP-based) Printers', desc: 'Batch compatible cartridges matching Troy specifications.' },
                 { icon: '📋', title: 'ANSI & ABA Compliant', desc: 'Tested to clear banking scanner sorting lines.' },
               ].map((item) => (
                 <div key={item.title} style={{
@@ -510,7 +510,7 @@ export default function Products() {
               {
                 icon: '💰',
                 title: 'Fleet Savings',
-                desc: 'Our remanufactured cartridges reduce annual office printing supplies budgets by up to 40%.',
+                desc: 'Our compatible cartridges reduce annual office printing supplies budgets by up to 40%.',
               },
               {
                 icon: '♻️',
