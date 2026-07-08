@@ -98,7 +98,7 @@ function Hero() {
         {/* Left — Headline */}
         <div>
           <div className="section-label" style={{ marginBottom: '24px', animationDelay: '0s', color: '#04AF44' }}>
-            AVAILABLE NOW: HP 210A & BROTHER DR830
+            AVAILABLE NOW: HP 222A & HP 213A
           </div>
 
           <h1 style={{
@@ -139,7 +139,7 @@ function Hero() {
           {/* Trust badges */}
           <div style={{ display: 'flex', gap: '24px', flexWrap: 'wrap' }}>
             {[
-              { icon: '✓', text: '12+ Years Experience' },
+              { icon: '✓', text: '14+ Years Experience' },
               { icon: '✓', text: 'GreenCircle Certified' },
               { icon: '✓', text: 'Kuwait Made Supplies' },
             ].map((badge) => (
@@ -296,7 +296,7 @@ function StatsStrip() {
     return () => observer.disconnect();
   }, []);
 
-  const years = useCountUp(12, 1600, started);
+  const years = useCountUp(14, 1600, started);
   const reduction = useCountUp(40, 1500, started);
 
   return (
