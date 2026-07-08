@@ -121,7 +121,7 @@ function Hero() {
             maxWidth: '460px',
             marginBottom: '40px',
           }}>
-            Kuwait's trusted source for premium compatible toner and ink cartridges since 2012. Save up to 40% over OEM costs with our GreenCircle certified products.
+            Kuwait's trusted source for premium compatible toner and ink cartridges since 2011. Save up to 40% over OEM costs with our GreenCircle certified products.
           </p>
 
           <div style={{ display: 'flex', gap: '16px', flexWrap: 'wrap', marginBottom: '56px' }}>
@@ -437,7 +437,7 @@ function AboutPreview() {
               border: '1px solid rgba(0, 87, 168, 0.15)',
             }}>
               <div style={{ fontSize: '11px', textTransform: 'uppercase', letterSpacing: '0.1em', color: '#04AF44', marginBottom: '4px', fontWeight: 600 }}>Established</div>
-              <div style={{ fontSize: '24px', fontWeight: 700, color: '#191919', lineHeight: 1 }}>2012</div>
+              <div style={{ fontSize: '24px', fontWeight: 700, color: '#191919', lineHeight: 1 }}>2011</div>
               <div style={{ fontSize: '12px', color: '#64748B', marginTop: '4px' }}>Made in Kuwait 🇰🇼</div>
             </div>
           </div>

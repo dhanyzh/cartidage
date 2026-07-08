@@ -53,7 +53,7 @@ export default function About() {
           margin: '0 auto 40px',
           lineHeight: 1.7,
         }}>
-          Helping businesses in Kuwait reduce print costs and carbon footprints through circular economy manufacturing since 2012.
+          Helping businesses in Kuwait reduce print costs and carbon footprints through circular economy manufacturing since 2011.
         </p>
 
         {/* Key stats row */}
@@ -67,7 +67,7 @@ export default function About() {
           marginTop: '8px',
         }}>
           {[
-            { value: '12+', label: 'Years Exp' },
+            { value: '14+', label: 'Years Exp' },
             { value: '4.4x', label: 'Lower Carbon' },
             { value: '100%', label: 'Guaranteed' },
           ].map((stat, i) => (
@@ -104,7 +104,7 @@ export default function About() {
               marginBottom: '28px',
               letterSpacing: '-0.02em',
             }}>
-              Committed to engineering validation since 2012
+              Committed to engineering validation since 2011
             </h2>
             <p style={{ fontSize: '16px', color: '#64748B', lineHeight: 1.75, marginBottom: '20px' }}>
               Genuine Digital Company is Kuwait's leader in premium compatible toner and ink supplies. We build compatible mono, color, extended yield, and secure bank-grade MICR solutions matching strict OEM density and page yield specifications.

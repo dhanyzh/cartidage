@@ -89,12 +89,12 @@ export default function Footer() {
               maxWidth:   '280px',
               marginBottom: '28px',
             }}>
-              Kuwait's trusted supplier of premium compatible toner cartridges since 2012. Quality guaranteed, locally made.
+              Kuwait's trusted supplier of premium compatible toner cartridges since 2011. Quality guaranteed, locally made.
             </p>
 
             {/* Trust Badges */}
             <div style={{ display: 'flex', gap: '8px', flexWrap: 'wrap', marginBottom: '28px' }}>
-              {['Est. 2012', 'Kuwait Made', '100% Guaranteed'].map(badge => (
+              {['Est. 2011', 'Kuwait Made', '100% Guaranteed'].map(badge => (
                 <span key={badge} style={{
                   padding:       '5px 12px',
                   borderRadius:  '100px',

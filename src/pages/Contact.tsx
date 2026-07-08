@@ -233,7 +233,7 @@ export default function Contact() {
                   fontWeight: 600, color: '#191919',
                   lineHeight: 1.1, marginBottom: '24px', letterSpacing: '-0.02em',
                 }}>
-                  Genuine Digital Company Est.
+                  Genuine Digital Company
                 </h2>
                 <p style={{ fontSize: '17px', color: '#64748B', lineHeight: 1.75, marginBottom: '32px' }}>
                   We welcome you to visit our facility in Hawally, Kuwait. Meet our technical support team to discuss your printing fleet requirements.
