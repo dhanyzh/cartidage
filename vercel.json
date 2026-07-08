@@ -1,4 +1,7 @@
 {
   "buildCommand": "npm install --legacy-peer-deps --no-audit --no-fund && npm run build",
-  "installCommand": "npm install --legacy-peer-deps --no-audit --no-fund"
+  "installCommand": "npm install --legacy-peer-deps --no-audit --no-fund",
+  "rewrites": [
+    { "source": "/(.*)", "destination": "/index.html" }
+  ]
 }
