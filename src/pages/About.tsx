@@ -13,11 +13,12 @@ export default function About() {
 
       {/* ── Page Header ──────────────────────────────────── */}
       <section style={{
-        backgroundColor: '#0A0A0A',
+        backgroundColor: '#FFFFFF',
         padding: '160px 48px 100px',
         textAlign: 'center',
         position: 'relative',
         overflow: 'hidden',
+        borderBottom: '1px solid #E2E8F0',
       }}>
         {/* Decorative background */}
         <div style={{
@@ -27,62 +28,63 @@ export default function About() {
           transform: 'translate(-50%,-50%)',
           width: '800px',
           height: '400px',
-          background: 'radial-gradient(ellipse, rgba(200,164,92,0.04) 0%, transparent 70%)',
+          background: 'radial-gradient(ellipse, rgba(4,175,68,0.03) 0%, transparent 70%)',
           pointerEvents: 'none',
         }} aria-hidden="true" />
 
-        <div className="section-label" style={{ justifyContent: 'center', marginBottom: '24px' }}>
+        <div className="section-label" style={{ justifyContent: 'center', marginBottom: '24px', color: '#04AF44' }}>
           About Us
         </div>
         <h1 style={{
           fontSize: 'clamp(36px, 6vw, 80px)',
           fontWeight: 700,
-          color: '#F5F3EE',
+          color: '#191919',
           lineHeight: 1.0,
           letterSpacing: '-0.03em',
           maxWidth: '800px',
           margin: '0 auto 24px',
         }}>
-          Leading the way in remanufactured cartridge supplies
+          Leading the way in sustainable printing
         </h1>
         <p style={{
           fontSize: '18px',
-          color: '#8A8A8A',
-          maxWidth: '520px',
+          color: '#64748B',
+          maxWidth: '560px',
           margin: '0 auto 40px',
           lineHeight: 1.7,
         }}>
-          Proudly serving Kuwait's businesses with premium quality since 2012.
+          Helping businesses in Kuwait reduce print costs and carbon footprints through circular economy manufacturing since 2012.
         </p>
 
         {/* Key stats row */}
         <div style={{
           display: 'inline-flex',
           gap: '0',
-          border: '1px solid rgba(245,243,238,0.08)',
+          border: '1px solid #E2E8F0',
           borderRadius: '16px',
           overflow: 'hidden',
+          backgroundColor: '#F8FAFC',
           marginTop: '8px',
         }}>
           {[
-            { value: '12+', label: 'Years' },
-            { value: '5',   label: 'Brands' },
+            { value: '12+', label: 'Years Exp' },
+            { value: '4.4x', label: 'Lower Carbon' },
             { value: '100%', label: 'Guaranteed' },
           ].map((stat, i) => (
             <div key={i} style={{
               padding: '20px 36px',
-              borderRight: i < 2 ? '1px solid rgba(245,243,238,0.08)' : 'none',
+              borderRight: i < 2 ? '1px solid #E2E8F0' : 'none',
               textAlign: 'center',
             }}>
-              <div style={{ fontSize: '28px', fontWeight: 700, color: '#C8A45C', lineHeight: 1 }}>{stat.value}</div>
-              <div style={{ fontSize: '11px', textTransform: 'uppercase', letterSpacing: '0.1em', color: '#555', marginTop: '6px' }}>{stat.label}</div>
+              <div style={{ fontSize: '28px', fontWeight: 700, color: '#0057A8', lineHeight: 1 }}>{stat.value}</div>
+              <div style={{ fontSize: '11px', textTransform: 'uppercase', letterSpacing: '0.1em', color: '#64748B', marginTop: '6px' }}>{stat.label}</div>
             </div>
           ))}
         </div>
       </section>
 
       {/* ── Main About Content ────────────────────────────── */}
-      <section style={{ backgroundColor: '#F5F3EE', padding: '120px 48px' }}>
+      <section style={{ backgroundColor: '#FFFFFF', padding: '120px 48px' }}>
         <div style={{
           maxWidth: '1400px',
           margin: '0 auto',
@@ -93,25 +95,25 @@ export default function About() {
         }} className="about-page-grid">
 
           <div ref={leftRef}>
-            <div className="section-label" style={{ color: '#C8A45C', marginBottom: '20px' }}>Our Story</div>
+            <div className="section-label" style={{ color: '#04AF44', marginBottom: '20px' }}>Our Story</div>
             <h2 style={{
               fontSize: 'clamp(24px, 3vw, 44px)',
               fontWeight: 600,
-              color: '#0A0A0A',
+              color: '#191919',
               lineHeight: 1.1,
               marginBottom: '28px',
               letterSpacing: '-0.02em',
             }}>
-              Committed to quality since 2012
+              Committed to engineering validation since 2012
             </h2>
-            <p style={{ fontSize: '16px', color: '#555', lineHeight: 1.75, marginBottom: '20px' }}>
-              We are the name in the field of remanufactured cartridge supplies distribution in the region. Leading remanufacturer of HP, Epson, Canon, Samsung and Xerox supplies since 2012 — committed to what we are entrusted with.
+            <p style={{ fontSize: '16px', color: '#64748B', lineHeight: 1.75, marginBottom: '20px' }}>
+              Genuine Toner Cartridges is Kuwait's leader in premium remanufactured toner and ink supplies. We build compatible mono, color, extended yield, and secure bank-grade MICR solutions matching strict OEM density and page yield specifications.
             </p>
-            <p style={{ fontSize: '16px', color: '#555', lineHeight: 1.75, marginBottom: '20px' }}>
-              Our list of valuable clients whose satisfaction with our services speaks of what we have delivered. Emphasizing our commitment to distributing <strong style={{ color: '#0A0A0A' }}>ONLY QUALITY products</strong>, we are committed to what we say.
+            <p style={{ fontSize: '16px', color: '#64748B', lineHeight: 1.75, marginBottom: '20px' }}>
+              We employ circular economy principles to rebuild empty toner cartridges using brand new OPC drums, wiper blades, and premium color-matched chemical toners. This guarantees corporate users a flawless output that speaks of our commitment to excellence.
             </p>
-            <p style={{ fontSize: '16px', color: '#555', lineHeight: 1.75, marginBottom: '40px' }}>
-              Genuine Toner Cartridge prioritizes quality and customer satisfaction over low-cost cutbacks. Excellence dictates every movement in our organization — from streamlined logistics to world-class customer service.
+            <p style={{ fontSize: '16px', color: '#64748B', lineHeight: 1.75, marginBottom: '40px' }}>
+              Every cartridge is individually validated and print-tested in-house by our certified technical team before packaging, ensuring corporate buyers get high-quality cartridges without high-cost OEM markups.
             </p>
             <Link to="/contact" className="btn-primary">
               Get in Touch
@@ -128,14 +130,14 @@ export default function About() {
               right: '-16px',
               width: '100px',
               height: '100px',
-              border: '2px solid rgba(200,164,92,0.15)',
+              border: '2px solid rgba(0, 87, 168, 0.15)',
               borderRadius: '12px',
             }} aria-hidden="true" />
             <div style={{
               borderRadius: '16px',
               overflow: 'hidden',
               aspectRatio: '4/5',
-              boxShadow: '0 24px 80px rgba(0,0,0,0.10)',
+              boxShadow: '0 24px 64px rgba(0,0,0,0.06)',
               position: 'relative',
               zIndex: 1,
             }}>
@@ -156,14 +158,14 @@ export default function About() {
       </section>
 
       {/* ── Mission ───────────────────────────────────────── */}
-      <section style={{ backgroundColor: '#0A0A0A', padding: '120px 48px', overflow: 'hidden', position: 'relative' }}>
+      <section style={{ backgroundColor: '#F8FAFC', padding: '120px 48px', overflow: 'hidden', position: 'relative' }}>
         <div style={{
           position: 'absolute',
           top: '20px',
           left: '48px',
           fontSize: 'clamp(100px, 16vw, 200px)',
           fontWeight: 700,
-          color: 'rgba(200,164,92,0.04)',
+          color: 'rgba(0, 87, 168, 0.03)',
           lineHeight: 1,
           fontFamily: 'Georgia, serif',
           userSelect: 'none',
@@ -171,90 +173,90 @@ export default function About() {
         }} aria-hidden="true">"</div>
 
         <div ref={missionRef} style={{ maxWidth: '900px', margin: '0 auto', textAlign: 'center', position: 'relative', zIndex: 1 }}>
-          <div className="section-label" style={{ justifyContent: 'center', marginBottom: '32px' }}>Our Mission</div>
+          <div className="section-label" style={{ justifyContent: 'center', marginBottom: '32px', color: '#04AF44' }}>Our Mission</div>
 
           <blockquote style={{
             fontSize: 'clamp(22px, 3.5vw, 42px)',
             fontWeight: 500,
-            color: '#F5F3EE',
+            color: '#191919',
             lineHeight: 1.25,
             letterSpacing: '-0.015em',
             margin: '0 0 40px',
             fontStyle: 'normal',
           }}>
-            We are determined to provide the highest quality sales and service to every Genuine Toner Cartridges customer.
+            To provide the highest quality sustainable printing products and recovery services to corporate clients across Kuwait.
           </blockquote>
 
           <div style={{
             width: '60px', height: '2px',
-            background: 'linear-gradient(90deg, transparent, #C8A45C, transparent)',
+            background: 'linear-gradient(90deg, transparent, #04AF44, transparent)',
             margin: '0 auto 40px',
           }} aria-hidden="true" />
 
           <p style={{
             fontSize: '17px',
-            color: '#8A8A8A',
+            color: '#64748B',
             lineHeight: 1.75,
             maxWidth: '640px',
             margin: '0 auto',
           }}>
-            Every Genuine Toner cartridge is 100% unconditionally guaranteed to perform, meeting or exceeding its comparable OEM cartridge. Properly remanufactured toner cartridges will not damage your copy machine or printer.
+            Every remanufactured cartridge is 100% unconditionally guaranteed to perform, meeting or exceeding OEM equivalents. We source high-grade parts and toners to eliminate defects and printer fleet issues.
           </p>
         </div>
       </section>
 
-      {/* ── Our Story ────────────────────────────────────── */}
-      <section style={{ backgroundColor: '#F5F3EE', padding: '120px 48px' }}>
+      {/* ── Our Story / Kuwait Advantage ─────────────────── */}
+      <section style={{ backgroundColor: '#FFFFFF', padding: '120px 48px' }}>
         <div ref={storyRef} style={{ maxWidth: '900px', margin: '0 auto' }}>
-          <div className="section-label" style={{ color: '#C8A45C', marginBottom: '20px' }}>Kuwait Made</div>
+          <div className="section-label" style={{ color: '#04AF44', marginBottom: '20px' }}>Kuwait Made</div>
           <h2 style={{
             fontSize: 'clamp(24px, 3vw, 44px)',
             fontWeight: 600,
-            color: '#0A0A0A',
+            color: '#191919',
             lineHeight: 1.1,
             marginBottom: '32px',
             letterSpacing: '-0.02em',
           }}>
-            Made in Kuwait, trusted region-wide
+            Engineered locally for rapid delivery & quality control
           </h2>
 
           <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '40px' }} className="story-grid">
             <div>
-              <p style={{ fontSize: '16px', color: '#555', lineHeight: 1.75, marginBottom: '20px' }}>
-                We delight in happy, satisfied, and loyal clients. We stand by our products — providing warranty on all our remanufactured ink and toner cartridges. Quality and quantity of copies using a remanufactured cartridge will match or exceed that of an OEM cartridge.
+              <p style={{ fontSize: '16px', color: '#64748B', lineHeight: 1.75, marginBottom: '20px' }}>
+                We stand behind our products with a complete, stress-free warranty on all remanufactured toner and ink cartridges. The density, lines, and quantity of copies match OEM equivalents, giving you peace of mind.
               </p>
-              <p style={{ fontSize: '16px', color: '#555', lineHeight: 1.75 }}>
-                Frequently a remanufacturer will install a longer life drum. In this case, the remanufactured cartridge will provide <strong style={{ color: '#0A0A0A' }}>more copies than the OEM cartridge</strong>.
+              <p style={{ fontSize: '16px', color: '#64748B', lineHeight: 1.75 }}>
+                Additionally, we often utilize extended-life drums and premium components in our formulas, meaning our remanufactured cartridges frequently provide <strong style={{ color: '#191919' }}>higher page yields than original OEM cartridges</strong>.
               </p>
             </div>
             <div>
-              <p style={{ fontSize: '16px', color: '#555', lineHeight: 1.75, marginBottom: '20px' }}>
-                We are proud to say our remanufactured cartridges are <strong style={{ color: '#0A0A0A' }}>made in Kuwait</strong>. We have in-house technical experts to assist you in obtaining optimum output from your remanufactured ink and toner cartridge.
+              <p style={{ fontSize: '16px', color: '#64748B', lineHeight: 1.75, marginBottom: '20px' }}>
+                We are proud to do our remanufacturing locally in Kuwait. Our in-house technical support team is always available to help configure printing parameters or resolve mechanical questions for your fleet.
               </p>
-              {/* Certifications */}
+              {/* Commitments panel */}
               <div style={{
-                background: '#FFFFFF',
-                border: '1px solid #E0DDD6',
+                background: '#F8FAFC',
+                border: '1px solid #E2E8F0',
                 borderRadius: '16px',
                 padding: '24px',
               }}>
-                <div style={{ fontSize: '12px', textTransform: 'uppercase', letterSpacing: '0.08em', color: '#8A8A8A', marginBottom: '14px' }}>Our Commitments</div>
+                <div style={{ fontSize: '12px', textTransform: 'uppercase', letterSpacing: '0.08em', color: '#64748B', marginBottom: '14px', fontWeight: 600 }}>Our Commitments</div>
                 {[
-                  'No patent violations',
-                  'In-house technical expertise',
-                  'Full warranty on all products',
-                  'Eco-friendly recycling program',
+                  '100% patent-safe cartridge builds',
+                  'In-house expert technical support',
+                  'Full performance replacement warranty',
+                  'Zero-waste-to-landfill collections',
                 ].map((item) => (
                   <div key={item} style={{
                     display: 'flex',
                     alignItems: 'center',
                     gap: '10px',
                     padding: '8px 0',
-                    borderBottom: '1px solid #F0EDE6',
+                    borderBottom: '1px solid #E2E8F0',
                     fontSize: '14px',
-                    color: '#555',
+                    color: '#64748B',
                   }}>
-                    <span style={{ color: '#C8A45C', fontSize: '16px', fontWeight: 700 }}>✓</span>
+                    <span style={{ color: '#04AF44', fontSize: '16px', fontWeight: 700 }}>✓</span>
                     {item}
                   </div>
                 ))}
@@ -269,18 +271,18 @@ export default function About() {
       </section>
 
       {/* ── Values Grid ──────────────────────────────────── */}
-      <section style={{ backgroundColor: '#0A0A0A', padding: '120px 48px' }}>
+      <section style={{ backgroundColor: '#F8FAFC', padding: '120px 48px' }}>
         <div ref={valuesRef} style={{ maxWidth: '1400px', margin: '0 auto' }}>
           <div style={{ textAlign: 'center', marginBottom: '64px' }}>
-            <div className="section-label" style={{ justifyContent: 'center', marginBottom: '20px' }}>Core Values</div>
+            <div className="section-label" style={{ justifyContent: 'center', marginBottom: '20px', color: '#04AF44' }}>Core Values</div>
             <h2 style={{
               fontSize: 'clamp(24px, 3vw, 44px)',
               fontWeight: 600,
-              color: '#F5F3EE',
+              color: '#191919',
               lineHeight: 1.1,
               letterSpacing: '-0.02em',
             }}>
-              What drives us every day
+              Principles driving our circular design
             </h2>
           </div>
 
@@ -291,13 +293,13 @@ export default function About() {
           }} className="about-values-grid">
             {[
               { emoji: '🏆', title: 'Quality First', desc: 'Every cartridge meets or exceeds OEM standards — no exceptions.' },
-              { emoji: '🌿', title: 'Eco-Friendly', desc: 'Recycling program to reduce waste and carbon footprint.' },
-              { emoji: '💰', title: 'Fair Pricing', desc: 'Best products at fair prices without compromising quality.' },
-              { emoji: '🔒', title: 'Full Compliance', desc: 'No patent violations. Full legal and technical compliance.' },
+              { emoji: '🌿', title: 'Eco-Friendly', desc: 'LCA confirmed 4.4x carbon savings and empty cartridge collections.' },
+              { emoji: '💰', title: 'Fair Pricing', desc: 'Save up to 40% on printing overhead for corporate networks.' },
+              { emoji: '🔒', title: 'Full Compliance', desc: 'Zero patent violations. Completely safe and compliant.' },
             ].map((val) => (
               <div key={val.title} style={{
-                background: 'rgba(245,243,238,0.03)',
-                border: '1px solid rgba(245,243,238,0.07)',
+                background: '#FFFFFF',
+                border: '1px solid #E2E8F0',
                 borderRadius: '16px',
                 padding: '32px 24px',
                 textAlign: 'center',
@@ -305,19 +307,19 @@ export default function About() {
                 cursor: 'default',
               }}
                 onMouseEnter={(e) => {
-                  e.currentTarget.style.background = 'rgba(200,164,92,0.06)';
-                  e.currentTarget.style.borderColor = 'rgba(200,164,92,0.2)';
+                  e.currentTarget.style.borderColor = 'rgba(0, 87, 168, 0.25)';
                   e.currentTarget.style.transform = 'translateY(-4px)';
+                  e.currentTarget.style.boxShadow = '0 16px 48px rgba(0,0,0,0.04)';
                 }}
                 onMouseLeave={(e) => {
-                  e.currentTarget.style.background = 'rgba(245,243,238,0.03)';
-                  e.currentTarget.style.borderColor = 'rgba(245,243,238,0.07)';
+                  e.currentTarget.style.borderColor = '#E2E8F0';
                   e.currentTarget.style.transform = 'translateY(0)';
+                  e.currentTarget.style.boxShadow = 'none';
                 }}
               >
                 <div style={{ fontSize: '36px', marginBottom: '16px' }} aria-hidden="true">{val.emoji}</div>
-                <h3 style={{ fontSize: '15px', fontWeight: 600, color: '#F5F3EE', marginBottom: '8px' }}>{val.title}</h3>
-                <p style={{ fontSize: '13px', color: '#8A8A8A', lineHeight: 1.65 }}>{val.desc}</p>
+                <h3 style={{ fontSize: '15px', fontWeight: 600, color: '#191919', marginBottom: '8px' }}>{val.title}</h3>
+                <p style={{ fontSize: '13px', color: '#64748B', lineHeight: 1.65 }}>{val.desc}</p>
               </div>
             ))}
           </div>

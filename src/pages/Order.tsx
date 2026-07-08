@@ -57,16 +57,32 @@ export default function Order() {
     if (Object.keys(errs).length > 0) { setErrors(errs); return; }
     setErrors({});
     setLoading(true);
-    setTimeout(() => { setLoading(false); setSubmitted(true); }, 1500);
+    setTimeout(() => {
+      setLoading(false);
+      setSubmitted(true);
+
+      const emailSubject = `Order Request from ${formData.name} - Genuine Cartridges`;
+      const emailBody = `Genuine Cartridges Order Details:\n----------------------------------------\nManufacturer: ${formData.manufacturer}\nModel/Series: ${formData.model}\nQuantity: ${formData.quantity}\nProduct Type: ${formData.productType || 'N/A'}\n\nCustomer Details:\n----------------------------------------\nName: ${formData.name}\nEmail: ${formData.email}\nPhone: ${formData.phone}\nCompany: ${formData.company || 'N/A'}\nAddress: ${formData.address || 'N/A'}\nComments: ${formData.comments || 'N/A'}`;
+
+      const whatsappText = `*NEW ORDER REQUEST*\n*Manufacturer:* ${formData.manufacturer}\n*Model:* ${formData.model}\n*Quantity:* ${formData.quantity}\n*Product Type:* ${formData.productType || 'N/A'}\n\n*Customer Info:*\n*Name:* ${formData.name}\n*Email:* ${formData.email}\n*Phone:* ${formData.phone}\n*Company:* ${formData.company || 'N/A'}\n*Address:* ${formData.address || 'N/A'}\n*Comments:* ${formData.comments || 'N/A'}`;
+
+      // Open WhatsApp in new tab
+      const whatsappUrl = `https://wa.me/96590942454?text=${encodeURIComponent(whatsappText)}`;
+      window.open(whatsappUrl, '_blank', 'noopener,noreferrer');
+
+      // Trigger mailto for email client
+      const mailtoUrl = `mailto:info@genuinecartridges.net?subject=${encodeURIComponent(emailSubject)}&body=${encodeURIComponent(emailBody)}`;
+      window.location.href = mailtoUrl;
+    }, 1500);
   };
 
   const inputStyle: React.CSSProperties = {
     width: '100%',
     padding: '13px 16px',
-    background: 'rgba(245,243,238,0.05)',
-    border: '1px solid rgba(245,243,238,0.1)',
+    background: '#FFFFFF',
+    border: '1px solid #E2E8F0',
     borderRadius: '8px',
-    color: '#F5F3EE',
+    color: '#191919',
     fontSize: '14px',
     fontFamily: 'inherit',
     outline: 'none',
@@ -80,31 +96,32 @@ export default function Order() {
 
       {/* ── Page Header ──────────────────────────────────── */}
       <section style={{
-        backgroundColor: '#0A0A0A',
+        backgroundColor: '#FFFFFF',
         padding: '160px 48px 80px',
         textAlign: 'center',
         position: 'relative',
         overflow: 'hidden',
+        borderBottom: '1px solid #E2E8F0',
       }}>
         <div style={{
           position: 'absolute', top: '50%', left: '50%',
           transform: 'translate(-50%,-50%)',
           width: '600px', height: '300px',
-          background: 'radial-gradient(ellipse, rgba(200,164,92,0.05) 0%, transparent 70%)',
+          background: 'radial-gradient(ellipse, rgba(4,175,68,0.03) 0%, transparent 70%)',
           pointerEvents: 'none',
         }} aria-hidden="true" />
 
         <div ref={headerRef}>
-          <div className="section-label" style={{ justifyContent: 'center', marginBottom: '24px' }}>Place an Order</div>
+          <div className="section-label" style={{ justifyContent: 'center', marginBottom: '24px', color: '#04AF44' }}>Place an Order</div>
           <h1 style={{
             fontSize: 'clamp(36px, 6vw, 80px)',
-            fontWeight: 700, color: '#F5F3EE',
+            fontWeight: 700, color: '#191919',
             lineHeight: 1.0, letterSpacing: '-0.03em', marginBottom: '20px',
           }}>
             Order Form
           </h1>
-          <p style={{ fontSize: '17px', color: '#8A8A8A', maxWidth: '480px', margin: '0 auto 40px', lineHeight: 1.7 }}>
-            Fill in your details and our representative will follow up within 24 hours.
+          <p style={{ fontSize: '17px', color: '#64748B', maxWidth: '480px', margin: '0 auto 40px', lineHeight: 1.7 }}>
+            Submit your printer supplies details and our team will follow up with a proposal within 24 hours.
           </p>
 
           {/* Step Indicator */}
@@ -118,11 +135,11 @@ export default function Order() {
                     width: '36px', height: '36px', borderRadius: '50%',
                     display: 'flex', alignItems: 'center', justifyContent: 'center',
                     fontSize: '14px', fontWeight: 600,
-                    background: step >= s.num ? '#C8A45C' : 'rgba(245,243,238,0.07)',
-                    color: step >= s.num ? '#0A0A0A' : '#555',
-                    border: `2px solid ${step >= s.num ? '#C8A45C' : 'rgba(245,243,238,0.1)'}`,
+                    background: step >= s.num ? '#04AF44' : '#F1F5F9',
+                    color: step >= s.num ? '#FFFFFF' : '#64748B',
+                    border: `2px solid ${step >= s.num ? '#04AF44' : '#E2E8F0'}`,
                     transition: 'all 0.35s ease',
-                    boxShadow: step === s.num ? '0 0 20px rgba(200,164,92,0.4)' : 'none',
+                    boxShadow: step === s.num ? '0 0 20px rgba(4,175,68,0.25)' : 'none',
                   }}>
                     {step > s.num ? (
                       <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
@@ -130,14 +147,14 @@ export default function Order() {
                       </svg>
                     ) : s.num}
                   </div>
-                  <span style={{ fontSize: '11px', textTransform: 'uppercase', letterSpacing: '0.08em', color: step >= s.num ? '#C8A45C' : '#555' }}>
+                  <span style={{ fontSize: '11px', textTransform: 'uppercase', letterSpacing: '0.08em', color: step >= s.num ? '#04AF44' : '#64748B', fontWeight: step >= s.num ? 600 : 400 }}>
                     {s.label}
                   </span>
                 </div>
                 {i < STEPS.length - 1 && (
                   <div style={{
-                    width: '80px', height: '1px', margin: '0 12px',
-                    background: step > s.num ? '#C8A45C' : 'rgba(245,243,238,0.1)',
+                    width: '80px', height: '2px', margin: '0 12px',
+                    background: step > s.num ? '#04AF44' : '#E2E8F0',
                     transition: 'background 0.35s ease',
                     marginBottom: '20px',
                   }} aria-hidden="true" />
@@ -149,7 +166,7 @@ export default function Order() {
       </section>
 
       {/* ── Form Section ─────────────────────────────────── */}
-      <section style={{ backgroundColor: '#0A0A0A', padding: '60px 48px 120px' }}>
+      <section style={{ backgroundColor: '#FFFFFF', padding: '60px 48px 120px' }}>
         <div style={{
           maxWidth: '1200px',
           margin: '0 auto',
@@ -162,42 +179,47 @@ export default function Order() {
           {/* Main Form */}
           <div ref={formRef}>
             <div style={{
-              background: 'rgba(245,243,238,0.03)',
-              border: '1px solid rgba(245,243,238,0.08)',
+              background: '#FFFFFF',
+              border: '1px solid #E2E8F0',
               borderRadius: '20px',
               padding: '48px',
               position: 'relative',
               overflow: 'hidden',
+              boxShadow: '0 20px 40px rgba(0,0,0,0.02)',
             }}>
-              {/* Gold top line */}
+              {/* Blue/Green top line */}
               <div style={{
-                position: 'absolute', top: 0, left: 0, right: 0, height: '2px',
-                background: 'linear-gradient(90deg, #C8A45C, #E8D5A3, #C8A45C)',
+                position: 'absolute', top: 0, left: 0, right: 0, height: '3px',
+                background: 'linear-gradient(90deg, #0057A8, #04AF44, #0057A8)',
               }} aria-hidden="true" />
 
               {submitted ? (
                 <div style={{ textAlign: 'center', padding: '60px 0' }}>
                   <div style={{
                     width: '80px', height: '80px', borderRadius: '50%',
-                    background: 'linear-gradient(135deg, #C8A45C, #E8D5A3)',
+                    background: 'linear-gradient(135deg, #0057A8, #04AF44)',
                     display: 'flex', alignItems: 'center', justifyContent: 'center',
                     margin: '0 auto 24px',
-                    boxShadow: '0 16px 48px rgba(200,164,92,0.3)',
+                    boxShadow: '0 16px 48px rgba(4,175,68,0.25)',
                   }}>
-                    <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="#0A0A0A" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+                    <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
                       <path d="M20 6L9 17l-5-5" />
                     </svg>
                   </div>
-                  <h3 style={{ fontSize: '28px', fontWeight: 700, color: '#F5F3EE', marginBottom: '12px' }}>Order Submitted!</h3>
-                  <p style={{ color: '#8A8A8A', fontSize: '16px', lineHeight: 1.7, maxWidth: '400px', margin: '0 auto 32px' }}>
-                    Our representative will review your request and contact you within 24 hours with a quote.
+                  <h3 style={{ fontSize: '28px', fontWeight: 700, color: '#191919', marginBottom: '12px' }}>Order Submitted!</h3>
+                  <p style={{ color: '#64748B', fontSize: '16px', lineHeight: 1.7, maxWidth: '400px', margin: '0 auto 32px' }}>
+                    Our customer service representative will review your request and contact you within 24 hours with a formal proposal.
                   </p>
                   <div style={{ display: 'flex', gap: '12px', justifyContent: 'center', flexWrap: 'wrap' }}>
-                    <a href="tel:+96525471616" style={{
+                    <a href="tel:0096590942454" style={{
                       padding: '12px 28px', borderRadius: '100px',
-                      background: '#C8A45C', color: '#0A0A0A',
+                      background: '#04AF44', color: '#FFFFFF',
                       fontSize: '13px', fontWeight: 600, textDecoration: 'none',
-                    }}>
+                      transition: 'opacity 0.2s',
+                    }}
+                      onMouseEnter={(e) => { e.currentTarget.style.opacity = '0.9'; }}
+                      onMouseLeave={(e) => { e.currentTarget.style.opacity = '1'; }}
+                    >
                       Call Us Now
                     </a>
                     <button onClick={() => { setSubmitted(false); setStep(1); setFormData({
@@ -206,10 +228,14 @@ export default function Order() {
                     }); }}
                       style={{
                         padding: '12px 28px', borderRadius: '100px',
-                        background: 'transparent', color: '#F5F3EE',
-                        border: '1px solid rgba(245,243,238,0.2)',
+                        background: 'transparent', color: '#64748B',
+                        border: '1px solid #E2E8F0',
                         fontSize: '13px', fontWeight: 500, cursor: 'pointer',
-                      }}>
+                        transition: 'all 0.2s',
+                      }}
+                      onMouseEnter={(e) => { e.currentTarget.style.color = '#191919'; e.currentTarget.style.borderColor = '#64748B'; }}
+                      onMouseLeave={(e) => { e.currentTarget.style.color = '#64748B'; e.currentTarget.style.borderColor = '#E2E8F0'; }}
+                    >
                       New Order
                     </button>
                   </div>
@@ -217,8 +243,8 @@ export default function Order() {
               ) : step === 1 ? (
                 /* ── Step 1: Product Info ── */
                 <div>
-                  <h2 style={{ fontSize: '20px', fontWeight: 600, color: '#F5F3EE', marginBottom: '8px' }}>Product Information</h2>
-                  <p style={{ fontSize: '14px', color: '#8A8A8A', marginBottom: '32px' }}>Tell us what cartridge you need</p>
+                  <h2 style={{ fontSize: '20px', fontWeight: 600, color: '#191919', marginBottom: '8px' }}>Product Information</h2>
+                  <p style={{ fontSize: '14px', color: '#64748B', marginBottom: '32px' }}>Specify your printing fleet needs</p>
 
                   <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '16px', marginBottom: '16px' }} className="order-form-grid">
                     <div>
@@ -228,22 +254,22 @@ export default function Order() {
                         value={formData.manufacturer}
                         onChange={(e) => update('manufacturer', e.target.value)}
                         style={{ ...inputStyle, ...(errors.manufacturer ? errStyle : {}), cursor: 'pointer' }}
-                        onFocus={(e) => { e.currentTarget.style.borderColor = '#C8A45C'; }}
-                        onBlur={(e) => { e.currentTarget.style.borderColor = errors.manufacturer ? '#FC8181' : 'rgba(245,243,238,0.1)'; }}
+                        onFocus={(e) => { e.currentTarget.style.borderColor = '#0057A8'; }}
+                        onBlur={(e) => { e.currentTarget.style.borderColor = errors.manufacturer ? '#FC8181' : '#E2E8F0'; }}
                       >
-                        <option value="" style={{ background: '#1A1A1A' }}>Select Brand</option>
-                        {PRINTER_BRANDS.map(b => <option key={b} value={b} style={{ background: '#1A1A1A' }}>{b}</option>)}
+                        <option value="" style={{ background: '#FFFFFF' }}>Select Brand</option>
+                        {PRINTER_BRANDS.map(b => <option key={b} value={b} style={{ background: '#FFFFFF' }}>{b}</option>)}
                       </select>
                       {errors.manufacturer && <span style={{ fontSize: '12px', color: '#FC8181', marginTop: '4px', display: 'block' }}>{errors.manufacturer}</span>}
                     </div>
 
                     <div>
                       <label htmlFor="model" className="form-label">Printer Model / Cartridge Number *</label>
-                      <input id="model" type="text" placeholder="e.g. LaserJet Pro M404n"
+                      <input id="model" type="text" placeholder="e.g. HP CF289A / Brother TN830"
                         value={formData.model} onChange={(e) => update('model', e.target.value)}
                         style={{ ...inputStyle, ...(errors.model ? errStyle : {}) }}
-                        onFocus={(e) => { e.currentTarget.style.borderColor = '#C8A45C'; e.currentTarget.style.background = 'rgba(245,243,238,0.08)'; }}
-                        onBlur={(e) => { e.currentTarget.style.borderColor = errors.model ? '#FC8181' : 'rgba(245,243,238,0.1)'; e.currentTarget.style.background = 'rgba(245,243,238,0.05)'; }}
+                        onFocus={(e) => { e.currentTarget.style.borderColor = '#0057A8'; }}
+                        onBlur={(e) => { e.currentTarget.style.borderColor = errors.model ? '#FC8181' : '#E2E8F0'; }}
                       />
                       {errors.model && <span style={{ fontSize: '12px', color: '#FC8181', marginTop: '4px', display: 'block' }}>{errors.model}</span>}
                     </div>
@@ -253,32 +279,32 @@ export default function Order() {
                       <input id="quantity" type="number" min="1" placeholder="e.g. 10"
                         value={formData.quantity} onChange={(e) => update('quantity', e.target.value)}
                         style={{ ...inputStyle, ...(errors.quantity ? errStyle : {}) }}
-                        onFocus={(e) => { e.currentTarget.style.borderColor = '#C8A45C'; e.currentTarget.style.background = 'rgba(245,243,238,0.08)'; }}
-                        onBlur={(e) => { e.currentTarget.style.borderColor = errors.quantity ? '#FC8181' : 'rgba(245,243,238,0.1)'; e.currentTarget.style.background = 'rgba(245,243,238,0.05)'; }}
+                        onFocus={(e) => { e.currentTarget.style.borderColor = '#0057A8'; }}
+                        onBlur={(e) => { e.currentTarget.style.borderColor = errors.quantity ? '#FC8181' : '#E2E8F0'; }}
                       />
                       {errors.quantity && <span style={{ fontSize: '12px', color: '#FC8181', marginTop: '4px', display: 'block' }}>{errors.quantity}</span>}
                     </div>
 
                     <div>
-                      <label htmlFor="productType" className="form-label">Cartridge Type</label>
+                      <label htmlFor="productType" className="form-label">Cartridge Category</label>
                       <select id="productType" value={formData.productType} onChange={(e) => update('productType', e.target.value)}
                         style={{ ...inputStyle, cursor: 'pointer' }}
-                        onFocus={(e) => { e.currentTarget.style.borderColor = '#C8A45C'; }}
-                        onBlur={(e) => { e.currentTarget.style.borderColor = 'rgba(245,243,238,0.1)'; }}
+                        onFocus={(e) => { e.currentTarget.style.borderColor = '#0057A8'; }}
+                        onBlur={(e) => { e.currentTarget.style.borderColor = '#E2E8F0'; }}
                       >
-                        <option value="" style={{ background: '#1A1A1A' }}>Select Type</option>
-                        {['Laser Toner', 'MICR Toner', 'Ink Cartridge'].map(t => <option key={t} value={t} style={{ background: '#1A1A1A' }}>{t}</option>)}
+                        <option value="" style={{ background: '#FFFFFF' }}>Select Category</option>
+                        {['Mono & Color Toner', 'Extended Yield Toner', 'MICR Toner', 'Wide Format Ink', 'Empty Return / Collection Request'].map(t => <option key={t} value={t} style={{ background: '#FFFFFF' }}>{t}</option>)}
                       </select>
                     </div>
                   </div>
 
                   <div style={{ marginBottom: '32px' }}>
-                    <label htmlFor="comments-step1" className="form-label">Additional Notes</label>
-                    <textarea id="comments-step1" rows={3} placeholder="Any specific requirements or notes..."
-                      value={formData.comments} onChange={(e) => update('comments', e.target.value)}
-                      style={{ ...inputStyle, resize: 'vertical' }}
-                      onFocus={(e) => { e.currentTarget.style.borderColor = '#C8A45C'; e.currentTarget.style.background = 'rgba(245,243,238,0.08)'; }}
-                      onBlur={(e) => { e.currentTarget.style.borderColor = 'rgba(245,243,238,0.1)'; e.currentTarget.style.background = 'rgba(245,243,238,0.05)'; }}
+                    <label htmlFor="comments-step1" className="form-label">Special Specs / Notes</label>
+                    <textarea id="comments-step1" rows={3} placeholder="Please list any other cartridges or specific details..."
+                       value={formData.comments} onChange={(e) => update('comments', e.target.value)}
+                       style={{ ...inputStyle, resize: 'vertical' }}
+                       onFocus={(e) => { e.currentTarget.style.borderColor = '#0057A8'; }}
+                       onBlur={(e) => { e.currentTarget.style.borderColor = '#E2E8F0'; }}
                     />
                   </div>
 
@@ -297,12 +323,12 @@ export default function Order() {
                       type="button"
                       onClick={() => { setStep(1); setErrors({}); }}
                       style={{
-                        background: 'none', border: 'none', cursor: 'pointer', color: '#8A8A8A',
+                        background: 'none', border: 'none', cursor: 'pointer', color: '#64748B',
                         display: 'flex', alignItems: 'center', gap: '6px', fontSize: '13px',
                         transition: 'color 0.2s',
                       }}
-                      onMouseEnter={(e) => { e.currentTarget.style.color = '#F5F3EE'; }}
-                      onMouseLeave={(e) => { e.currentTarget.style.color = '#8A8A8A'; }}
+                      onMouseEnter={(e) => { e.currentTarget.style.color = '#191919'; }}
+                      onMouseLeave={(e) => { e.currentTarget.style.color = '#64748B'; }}
                     >
                       <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
                         <path d="M19 12H5M12 19l-7-7 7-7" />
@@ -310,8 +336,8 @@ export default function Order() {
                       Back
                     </button>
                     <div style={{ flex: 1 }}>
-                      <h2 style={{ fontSize: '20px', fontWeight: 600, color: '#F5F3EE', marginBottom: '4px' }}>Contact Information</h2>
-                      <p style={{ fontSize: '14px', color: '#8A8A8A' }}>How should we reach you?</p>
+                      <h2 style={{ fontSize: '20px', fontWeight: 600, color: '#191919', marginBottom: '4px' }}>Contact Information</h2>
+                      <p style={{ fontSize: '14px', color: '#64748B' }}>How should we reach you?</p>
                     </div>
                   </div>
 
@@ -321,8 +347,8 @@ export default function Order() {
                       <input id="order-name" type="text" required placeholder="Your name"
                         value={formData.name} onChange={(e) => update('name', e.target.value)}
                         style={{ ...inputStyle, ...(errors.name ? errStyle : {}) }}
-                        onFocus={(e) => { e.currentTarget.style.borderColor = '#C8A45C'; e.currentTarget.style.background = 'rgba(245,243,238,0.08)'; }}
-                        onBlur={(e) => { e.currentTarget.style.borderColor = errors.name ? '#FC8181' : 'rgba(245,243,238,0.1)'; e.currentTarget.style.background = 'rgba(245,243,238,0.05)'; }}
+                        onFocus={(e) => { e.currentTarget.style.borderColor = '#0057A8'; }}
+                        onBlur={(e) => { e.currentTarget.style.borderColor = errors.name ? '#FC8181' : '#E2E8F0'; }}
                       />
                       {errors.name && <span style={{ fontSize: '12px', color: '#FC8181', marginTop: '4px', display: 'block' }}>{errors.name}</span>}
                     </div>
@@ -331,8 +357,8 @@ export default function Order() {
                       <input id="order-email" type="email" required placeholder="you@company.com"
                         value={formData.email} onChange={(e) => update('email', e.target.value)}
                         style={{ ...inputStyle, ...(errors.email ? errStyle : {}) }}
-                        onFocus={(e) => { e.currentTarget.style.borderColor = '#C8A45C'; e.currentTarget.style.background = 'rgba(245,243,238,0.08)'; }}
-                        onBlur={(e) => { e.currentTarget.style.borderColor = errors.email ? '#FC8181' : 'rgba(245,243,238,0.1)'; e.currentTarget.style.background = 'rgba(245,243,238,0.05)'; }}
+                        onFocus={(e) => { e.currentTarget.style.borderColor = '#0057A8'; }}
+                        onBlur={(e) => { e.currentTarget.style.borderColor = errors.email ? '#FC8181' : '#E2E8F0'; }}
                       />
                       {errors.email && <span style={{ fontSize: '12px', color: '#FC8181', marginTop: '4px', display: 'block' }}>{errors.email}</span>}
                     </div>
@@ -341,8 +367,8 @@ export default function Order() {
                       <input id="order-phone" type="tel" required placeholder="+965 XXXX XXXX"
                         value={formData.phone} onChange={(e) => update('phone', e.target.value)}
                         style={{ ...inputStyle, ...(errors.phone ? errStyle : {}) }}
-                        onFocus={(e) => { e.currentTarget.style.borderColor = '#C8A45C'; e.currentTarget.style.background = 'rgba(245,243,238,0.08)'; }}
-                        onBlur={(e) => { e.currentTarget.style.borderColor = errors.phone ? '#FC8181' : 'rgba(245,243,238,0.1)'; e.currentTarget.style.background = 'rgba(245,243,238,0.05)'; }}
+                        onFocus={(e) => { e.currentTarget.style.borderColor = '#0057A8'; }}
+                        onBlur={(e) => { e.currentTarget.style.borderColor = errors.phone ? '#FC8181' : '#E2E8F0'; }}
                       />
                       {errors.phone && <span style={{ fontSize: '12px', color: '#FC8181', marginTop: '4px', display: 'block' }}>{errors.phone}</span>}
                     </div>
@@ -351,19 +377,19 @@ export default function Order() {
                       <input id="order-company" type="text" placeholder="Your company"
                         value={formData.company} onChange={(e) => update('company', e.target.value)}
                         style={inputStyle}
-                        onFocus={(e) => { e.currentTarget.style.borderColor = '#C8A45C'; e.currentTarget.style.background = 'rgba(245,243,238,0.08)'; }}
-                        onBlur={(e) => { e.currentTarget.style.borderColor = 'rgba(245,243,238,0.1)'; e.currentTarget.style.background = 'rgba(245,243,238,0.05)'; }}
+                        onFocus={(e) => { e.currentTarget.style.borderColor = '#0057A8'; }}
+                        onBlur={(e) => { e.currentTarget.style.borderColor = '#E2E8F0'; }}
                       />
                     </div>
                   </div>
 
                   <div style={{ marginBottom: '28px' }}>
                     <label htmlFor="order-address" className="form-label">Delivery Address</label>
-                    <input id="order-address" type="text" placeholder="Street, area, building..."
+                    <input id="order-address" type="text" placeholder="Street, area, building details..."
                       value={formData.address} onChange={(e) => update('address', e.target.value)}
                       style={inputStyle}
-                      onFocus={(e) => { e.currentTarget.style.borderColor = '#C8A45C'; e.currentTarget.style.background = 'rgba(245,243,238,0.08)'; }}
-                      onBlur={(e) => { e.currentTarget.style.borderColor = 'rgba(245,243,238,0.1)'; e.currentTarget.style.background = 'rgba(245,243,238,0.05)'; }}
+                      onFocus={(e) => { e.currentTarget.style.borderColor = '#0057A8'; }}
+                      onBlur={(e) => { e.currentTarget.style.borderColor = '#E2E8F0'; }}
                     />
                   </div>
 
@@ -371,7 +397,7 @@ export default function Order() {
                     style={{ width: '100%', justifyContent: 'center', padding: '16px', opacity: loading ? 0.8 : 1 }}>
                     {loading ? (
                       <>
-                        <span className="animate-spin" style={{ width: '16px', height: '16px', border: '2px solid rgba(10,10,10,0.3)', borderTopColor: '#0A0A0A', borderRadius: '50%', display: 'inline-block' }} />
+                        <span className="animate-spin" style={{ width: '16px', height: '16px', border: '2px solid rgba(255,255,255,0.3)', borderTopColor: '#FFFFFF', borderRadius: '50%', display: 'inline-block' }} />
                         Submitting...
                       </>
                     ) : 'Submit Order'}
@@ -385,30 +411,30 @@ export default function Order() {
           <div ref={infoRef} style={{ display: 'flex', flexDirection: 'column', gap: '20px' }}>
             {/* How to Order */}
             <div style={{
-              background: 'rgba(245,243,238,0.03)',
-              border: '1px solid rgba(245,243,238,0.08)',
+              background: '#F8FAFC',
+              border: '1px solid #E2E8F0',
               borderRadius: '16px',
               padding: '32px',
             }}>
-              <h3 style={{ fontSize: '16px', fontWeight: 600, color: '#F5F3EE', marginBottom: '20px' }}>How it Works</h3>
+              <h3 style={{ fontSize: '16px', fontWeight: 600, color: '#191919', marginBottom: '20px' }}>How it Works</h3>
               <ol style={{ padding: 0, margin: 0, listStyle: 'none', display: 'flex', flexDirection: 'column', gap: '16px' }}>
                 {[
-                  'Fill out the order form with your printer details',
-                  'Provide your contact information',
-                  'Submit — our team reviews your order',
-                  'We contact you within 24 hours with a quote',
+                  'Fill out the order form with printer cartridge specs',
+                  'Provide your company contact info',
+                  'Submit the details — our engineers review it',
+                  'We contact you within 24 hours with custom pricing',
                 ].map((step, i) => (
                   <li key={i} style={{ display: 'flex', gap: '12px', alignItems: 'flex-start' }}>
                     <span style={{
                       width: '24px', height: '24px', borderRadius: '50%',
-                      background: 'rgba(200,164,92,0.1)',
-                      border: '1px solid rgba(200,164,92,0.2)',
+                      background: 'rgba(0, 87, 168, 0.08)',
+                      border: '1px solid rgba(0, 87, 168, 0.15)',
                       display: 'flex', alignItems: 'center', justifyContent: 'center',
-                      fontSize: '12px', fontWeight: 600, color: '#C8A45C', flexShrink: 0,
+                      fontSize: '12px', fontWeight: 600, color: '#0057A8', flexShrink: 0,
                     }}>
                       {i + 1}
                     </span>
-                    <span style={{ fontSize: '14px', color: '#8A8A8A', lineHeight: 1.6, paddingTop: '2px' }}>{step}</span>
+                    <span style={{ fontSize: '14px', color: '#64748B', lineHeight: 1.6, paddingTop: '2px' }}>{step}</span>
                   </li>
                 ))}
               </ol>
@@ -416,57 +442,57 @@ export default function Order() {
 
             {/* Need Help */}
             <div style={{
-              background: 'rgba(200,164,92,0.05)',
-              border: '1px solid rgba(200,164,92,0.12)',
+              background: '#E6F5EC',
+              border: '1px solid rgba(4,175,68,0.2)',
               borderRadius: '16px',
               padding: '32px',
             }}>
-              <h3 style={{ fontSize: '16px', fontWeight: 600, color: '#F5F3EE', marginBottom: '12px' }}>Need Help?</h3>
-              <p style={{ fontSize: '14px', color: '#8A8A8A', lineHeight: 1.6, marginBottom: '20px' }}>
-                Not sure which cartridge you need? Our team is here to help you find the right product.
+              <h3 style={{ fontSize: '16px', fontWeight: 600, color: '#191919', marginBottom: '12px' }}>Need Help?</h3>
+              <p style={{ fontSize: '14px', color: '#64748B', lineHeight: 1.6, marginBottom: '20px' }}>
+                Not sure of the cartridge number or printer compatibility? Get in touch with our team.
               </p>
               <div style={{ display: 'flex', flexDirection: 'column', gap: '12px' }}>
-                <a href="tel:+96525471616" style={{
+                <a href="tel:+96590942454" style={{
                   display: 'flex', alignItems: 'center', gap: '10px',
                   padding: '12px 16px', borderRadius: '10px',
-                  background: 'rgba(245,243,238,0.05)',
-                  border: '1px solid rgba(245,243,238,0.1)',
-                  color: '#F5F3EE', textDecoration: 'none', fontSize: '14px', fontWeight: 500,
+                  background: '#FFFFFF',
+                  border: '1px solid #E2E8F0',
+                  color: '#191919', textDecoration: 'none', fontSize: '14px', fontWeight: 500,
                   transition: 'all 0.25s',
                 }}
-                  onMouseEnter={(e) => { e.currentTarget.style.borderColor = 'rgba(200,164,92,0.3)'; }}
-                  onMouseLeave={(e) => { e.currentTarget.style.borderColor = 'rgba(245,243,238,0.1)'; }}
+                  onMouseEnter={(e) => { e.currentTarget.style.borderColor = '#04AF44'; }}
+                  onMouseLeave={(e) => { e.currentTarget.style.borderColor = '#E2E8F0'; }}
                 >
                   <span style={{ fontSize: '18px' }} aria-hidden="true">📞</span>
-                  +965 2547 1616
+                  +965 9094 2454
                 </a>
                 <a href="mailto:info@genuinecartridges.net" style={{
                   display: 'flex', alignItems: 'center', gap: '10px',
                   padding: '12px 16px', borderRadius: '10px',
-                  background: 'rgba(245,243,238,0.05)',
-                  border: '1px solid rgba(245,243,238,0.1)',
-                  color: '#C8A45C', textDecoration: 'none', fontSize: '13px',
+                  background: '#FFFFFF',
+                  border: '1px solid #E2E8F0',
+                  color: '#0057A8', textDecoration: 'none', fontSize: '13px',
                   transition: 'all 0.25s', wordBreak: 'break-all',
                 }}
-                  onMouseEnter={(e) => { e.currentTarget.style.borderColor = 'rgba(200,164,92,0.3)'; }}
-                  onMouseLeave={(e) => { e.currentTarget.style.borderColor = 'rgba(245,243,238,0.1)'; }}
+                  onMouseEnter={(e) => { e.currentTarget.style.borderColor = '#0057A8'; }}
+                  onMouseLeave={(e) => { e.currentTarget.style.borderColor = '#E2E8F0'; }}
                 >
                   <span style={{ fontSize: '18px', flexShrink: 0 }} aria-hidden="true">✉️</span>
                   info@genuinecartridges.net
                 </a>
-                <a href="https://wa.me/96525471616" target="_blank" rel="noopener noreferrer" style={{
+                <a href="https://wa.me/96590942454" target="_blank" rel="noopener noreferrer" style={{
                   display: 'flex', alignItems: 'center', gap: '10px',
                   padding: '12px 16px', borderRadius: '10px',
-                  background: 'rgba(37,211,102,0.06)',
+                  background: '#25D366',
                   border: '1px solid rgba(37,211,102,0.15)',
-                  color: '#25D366', textDecoration: 'none', fontSize: '14px', fontWeight: 500,
-                  transition: 'all 0.25s',
+                  color: '#FFFFFF', textDecoration: 'none', fontSize: '14px', fontWeight: 500,
+                  transition: 'opacity 0.2s',
                 }}
-                  onMouseEnter={(e) => { e.currentTarget.style.borderColor = 'rgba(37,211,102,0.35)'; }}
-                  onMouseLeave={(e) => { e.currentTarget.style.borderColor = 'rgba(37,211,102,0.15)'; }}
+                  onMouseEnter={(e) => { e.currentTarget.style.opacity = '0.9'; }}
+                  onMouseLeave={(e) => { e.currentTarget.style.opacity = '1'; }}
                 >
                   <span style={{ fontSize: '18px' }} aria-hidden="true">💬</span>
-                  WhatsApp
+                  WhatsApp Chat
                 </a>
               </div>
             </div>
@@ -476,12 +502,12 @@ export default function Order() {
               display: 'flex', gap: '12px', alignItems: 'flex-start',
               padding: '16px',
               borderRadius: '12px',
-              background: 'rgba(245,243,238,0.02)',
-              border: '1px solid rgba(245,243,238,0.06)',
+              background: '#F8FAFC',
+              border: '1px solid #E2E8F0',
             }}>
               <span style={{ fontSize: '20px', flexShrink: 0 }} aria-hidden="true">🛡️</span>
-              <p style={{ fontSize: '13px', color: '#8A8A8A', lineHeight: 1.65 }}>
-                All orders come with our <strong style={{ color: '#F5F3EE' }}>100% satisfaction guarantee</strong>. If any cartridge doesn't perform, we'll replace it.
+              <p style={{ fontSize: '13px', color: '#64748B', lineHeight: 1.65 }}>
+                All orders are covered by our <strong style={{ color: '#191919' }}>100% satisfaction guarantee</strong>. Defective cartridges will be replaced promptly.
               </p>
             </div>
           </div>

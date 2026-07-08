@@ -42,22 +42,22 @@ export default function BackToTop() {
         width:        '52px',
         height:       '52px',
         borderRadius: '50%',
-        background:   '#C8A45C',
+        background:   '#04AF44',
         border:       'none',
         cursor:       'pointer',
         display:      'flex',
         alignItems:   'center',
         justifyContent: 'center',
-        boxShadow:    '0 4px 20px rgba(200,164,92,0.35)',
+        boxShadow:    '0 4px 20px rgba(4,175,68,0.35)',
         padding:      0,
       }}
       onMouseEnter={(e) => {
         e.currentTarget.style.transform = 'translateY(-3px) scale(1.05)';
-        e.currentTarget.style.boxShadow = '0 10px 30px rgba(200,164,92,0.5)';
+        e.currentTarget.style.boxShadow = '0 10px 30px rgba(4,175,68,0.5)';
       }}
       onMouseLeave={(e) => {
         e.currentTarget.style.transform = visible ? 'translateY(0) scale(1)' : 'translateY(20px) scale(0.9)';
-        e.currentTarget.style.boxShadow = '0 4px 20px rgba(200,164,92,0.35)';
+        e.currentTarget.style.boxShadow = '0 4px 20px rgba(4,175,68,0.35)';
       }}
     >
       {/* Progress ring */}
@@ -71,13 +71,13 @@ export default function BackToTop() {
         <circle
           cx="26" cy="26" r={RADIUS}
           fill="none"
-          stroke="rgba(10,10,10,0.15)"
+          stroke="rgba(0,87,168,0.1)"
           strokeWidth="2"
         />
         <circle
           cx="26" cy="26" r={RADIUS}
           fill="none"
-          stroke="rgba(10,10,10,0.5)"
+          stroke="rgba(0,87,168,0.5)"
           strokeWidth="2"
           strokeDasharray={CIRCUM}
           strokeDashoffset={dashoffset}
@@ -86,7 +86,7 @@ export default function BackToTop() {
         />
       </svg>
       {/* Arrow icon */}
-      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#0A0A0A" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
         <path d="M5 15l7-7 7 7" />
       </svg>
     </button>

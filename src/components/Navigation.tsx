@@ -62,10 +62,10 @@ export default function Navigation() {
           alignItems:      'center',
           justifyContent:  'space-between',
           transition:      'background-color 0.4s ease, backdrop-filter 0.4s ease, border-color 0.4s ease',
-          backgroundColor: scrolled ? 'rgba(10, 10, 10, 0.94)' : 'transparent',
+          backgroundColor: scrolled ? 'rgba(255, 255, 255, 0.95)' : 'transparent',
           backdropFilter:  scrolled ? 'blur(20px)' : 'none',
           WebkitBackdropFilter: scrolled ? 'blur(20px)' : 'none',
-          borderBottom:    scrolled ? '1px solid rgba(245,243,238,0.07)' : '1px solid transparent',
+          borderBottom:    scrolled ? '1px solid rgba(0, 0, 0, 0.08)' : '1px solid transparent',
         }}
       >
         {/* Logo */}
@@ -80,28 +80,22 @@ export default function Navigation() {
           }}
         >
           {/* Logo Mark */}
-          <div style={{
-            width:           '32px',
-            height:          '32px',
-            borderRadius:    '8px',
-            background:      'linear-gradient(135deg, #C8A45C 0%, #E8D5A3 100%)',
-            display:         'flex',
-            alignItems:      'center',
-            justifyContent:  'center',
-            flexShrink:      0,
-          }}>
-            <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
-              <rect x="2" y="5" width="12" height="8" rx="1.5" fill="#0A0A0A" opacity="0.8"/>
-              <rect x="5" y="2" width="6" height="5" rx="1" fill="#0A0A0A" opacity="0.6"/>
-              <circle cx="8" cy="9" r="2" fill="#C8A45C"/>
-            </svg>
-          </div>
+          <img
+            src="/logo.svg"
+            alt="Genuine Toner Cartridges Logo"
+            style={{
+              width:      '36px',
+              height:     '36px',
+              objectFit:  'contain',
+              flexShrink: 0,
+            }}
+          />
           <div>
             <span style={{
               fontSize:      '14px',
               fontWeight:    600,
               letterSpacing: '0.04em',
-              color:         '#F5F3EE',
+              color:         '#191919',
               display:       'block',
               lineHeight:    1.1,
             }}>
@@ -111,7 +105,7 @@ export default function Navigation() {
               fontSize:      '9px',
               fontWeight:    400,
               letterSpacing: '0.14em',
-              color:         '#8A8A8A',
+              color:         '#64748B',
               display:       'block',
               textTransform: 'uppercase',
             }}>
@@ -136,23 +130,23 @@ export default function Navigation() {
                   fontSize:       '13px',
                   fontWeight:     isActive ? 500 : 400,
                   letterSpacing:  '0.04em',
-                  color:          isActive ? '#C8A45C' : '#F5F3EE',
+                  color:          isActive ? '#0057A8' : '#191919',
                   textDecoration: 'none',
                   padding:        '8px 14px',
                   borderRadius:   '8px',
                   transition:     'color 0.25s ease, background 0.25s ease',
                   position:       'relative',
-                  background:     isActive ? 'rgba(200,164,92,0.08)' : 'transparent',
+                  background:     isActive ? 'rgba(0, 87, 168, 0.06)' : 'transparent',
                 }}
                 onMouseEnter={(e) => {
                   if (!isActive) {
-                    e.currentTarget.style.color = '#C8A45C';
-                    e.currentTarget.style.background = 'rgba(200,164,92,0.06)';
+                    e.currentTarget.style.color = '#0057A8';
+                    e.currentTarget.style.background = 'rgba(0, 87, 168, 0.04)';
                   }
                 }}
                 onMouseLeave={(e) => {
                   if (!isActive) {
-                    e.currentTarget.style.color = '#F5F3EE';
+                    e.currentTarget.style.color = '#191919';
                     e.currentTarget.style.background = 'transparent';
                   }
                 }}
@@ -201,7 +195,7 @@ export default function Navigation() {
               display:         'block',
               width:           '22px',
               height:          '1.5px',
-              backgroundColor: '#F5F3EE',
+              backgroundColor: '#191919',
               transition:      'transform 0.3s ease, opacity 0.3s ease',
               transform:       mobileOpen ? 'rotate(45deg) translate(4.5px, 4.5px)' : 'none',
             }} />
@@ -209,7 +203,7 @@ export default function Navigation() {
               display:         'block',
               width:           '22px',
               height:          '1.5px',
-              backgroundColor: '#F5F3EE',
+              backgroundColor: '#191919',
               transition:      'opacity 0.3s ease',
               opacity:         mobileOpen ? 0 : 1,
             }} />
@@ -217,7 +211,7 @@ export default function Navigation() {
               display:         'block',
               width:           '22px',
               height:          '1.5px',
-              backgroundColor: '#F5F3EE',
+              backgroundColor: '#191919',
               transition:      'transform 0.3s ease, opacity 0.3s ease',
               transform:       mobileOpen ? 'rotate(-45deg) translate(4.5px, -4.5px)' : 'none',
             }} />
@@ -235,7 +229,7 @@ export default function Navigation() {
           position:        'fixed',
           inset:           0,
           zIndex:          99,
-          backgroundColor: 'rgba(10, 10, 10, 0.98)',
+          backgroundColor: 'rgba(255, 255, 255, 0.98)',
           backdropFilter:  'blur(24px)',
           WebkitBackdropFilter: 'blur(24px)',
           display:         'flex',
@@ -259,7 +253,7 @@ export default function Navigation() {
                 fontSize:       '28px',
                 fontWeight:     300,
                 letterSpacing:  '-0.01em',
-                color:          isActive ? '#C8A45C' : '#F5F3EE',
+                color:          isActive ? '#0057A8' : '#191919',
                 textDecoration: 'none',
                 padding:        '12px 48px',
                 borderRadius:   '12px',
@@ -269,10 +263,10 @@ export default function Navigation() {
                 transform:      mobileOpen ? 'translateY(0)' : 'translateY(20px)',
               }}
               onMouseEnter={(e) => {
-                if (!isActive) e.currentTarget.style.color = '#C8A45C';
+                if (!isActive) e.currentTarget.style.color = '#0057A8';
               }}
               onMouseLeave={(e) => {
-                if (!isActive) e.currentTarget.style.color = '#F5F3EE';
+                if (!isActive) e.currentTarget.style.color = '#191919';
               }}
             >
               {link.label}
@@ -287,9 +281,9 @@ export default function Navigation() {
           Get a Quote
         </Link>
         <div style={{ marginTop: '48px', display: 'flex', gap: '24px' }}>
-          <a href="tel:+96525471616" style={{ color: '#8A8A8A', fontSize: '14px' }}>+965 2547 1616</a>
-          <span style={{ color: '#333' }}>|</span>
-          <a href="mailto:info@genuinecartridges.net" style={{ color: '#C8A45C', fontSize: '14px' }}>info@genuinecartridges.net</a>
+          <a href="tel:+96590942454" style={{ color: '#64748B', fontSize: '14px' }}>+965 9094 2454</a>
+          <span style={{ color: '#E2E8F0' }}>|</span>
+          <a href="mailto:info@genuinecartridges.net" style={{ color: '#0057A8', fontSize: '14px' }}>info@genuinecartridges.net</a>
         </div>
       </div>
 

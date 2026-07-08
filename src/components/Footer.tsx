@@ -9,12 +9,12 @@ const QUICK_LINKS = [
 ];
 
 const PRODUCTS = [
-  'Laser Toner Cartridges',
+  'Mono Cartridges',
+  'Color Cartridges',
+  'Extended Yield Cartridges',
   'MICR Toner Cartridges',
-  'Recycling Program',
-  'HP Cartridges',
-  'Canon Cartridges',
-  'Epson Cartridges',
+  'Wide Format Ink Cartridges',
+  'Mailing & Addressing Solutions',
 ];
 
 export default function Footer() {
@@ -24,21 +24,21 @@ export default function Footer() {
     <footer
       role="contentinfo"
       style={{
-        backgroundColor: '#040404',
-        borderTop:       '1px solid rgba(245,243,238,0.07)',
+        backgroundColor: '#F8FAFC',
+        borderTop:       '1px solid #E2E8F0',
         position:        'relative',
         overflow:        'hidden',
       }}
     >
-      {/* Gold accent line */}
+      {/* Blue/Green accent line */}
       <div style={{
         position:   'absolute',
         top:        0,
         left:       0,
         right:      0,
-        height:     '1px',
-        background: 'linear-gradient(90deg, transparent, #C8A45C 30%, #E8D5A3 50%, #C8A45C 70%, transparent)',
-        opacity:    0.4,
+        height:     '2px',
+        background: 'linear-gradient(90deg, transparent, #0057A8 30%, #04AF44 50%, #0057A8 70%, transparent)',
+        opacity:    0.8,
       }} />
 
       {/* Main Footer Content */}
@@ -62,27 +62,21 @@ export default function Footer() {
               style={{ display: 'flex', alignItems: 'center', gap: '10px', marginBottom: '24px', textDecoration: 'none' }}
               aria-label="Genuine Toner Cartridges"
             >
-              <div style={{
-                width:          '36px',
-                height:         '36px',
-                borderRadius:   '9px',
-                background:     'linear-gradient(135deg, #C8A45C 0%, #E8D5A3 100%)',
-                display:        'flex',
-                alignItems:     'center',
-                justifyContent: 'center',
-                flexShrink:     0,
-              }}>
-                <svg width="18" height="18" viewBox="0 0 16 16" fill="none" aria-hidden="true">
-                  <rect x="2" y="5" width="12" height="8" rx="1.5" fill="#0A0A0A" opacity="0.8"/>
-                  <rect x="5" y="2" width="6" height="5" rx="1" fill="#0A0A0A" opacity="0.6"/>
-                  <circle cx="8" cy="9" r="2" fill="#C8A45C"/>
-                </svg>
-              </div>
+              <img
+                src="/logo.svg"
+                alt="Genuine Toner Cartridges Logo"
+                style={{
+                  width:      '36px',
+                  height:     '36px',
+                  objectFit:  'contain',
+                  flexShrink: 0,
+                }}
+              />
               <div>
-                <div style={{ fontSize: '14px', fontWeight: 600, color: '#F5F3EE', letterSpacing: '0.04em', lineHeight: 1.1 }}>
+                <div style={{ fontSize: '14px', fontWeight: 600, color: '#191919', letterSpacing: '0.04em', lineHeight: 1.1 }}>
                   GENUINE
                 </div>
-                <div style={{ fontSize: '9px', fontWeight: 400, color: '#8A8A8A', letterSpacing: '0.14em', textTransform: 'uppercase' }}>
+                <div style={{ fontSize: '9px', fontWeight: 400, color: '#64748B', letterSpacing: '0.14em', textTransform: 'uppercase' }}>
                   Toner Cartridges
                 </div>
               </div>
@@ -90,7 +84,7 @@ export default function Footer() {
 
             <p style={{
               fontSize:   '14px',
-              color:      '#8A8A8A',
+              color:      '#64748B',
               lineHeight: 1.7,
               maxWidth:   '280px',
               marginBottom: '28px',
@@ -104,8 +98,8 @@ export default function Footer() {
                 <span key={badge} style={{
                   padding:       '5px 12px',
                   borderRadius:  '100px',
-                  border:        '1px solid rgba(200,164,92,0.2)',
-                  color:         '#C8A45C',
+                  border:        '1px solid rgba(4,175,68,0.2)',
+                  color:         '#04AF44',
                   fontSize:      '11px',
                   fontWeight:    500,
                   letterSpacing: '0.04em',
@@ -119,7 +113,7 @@ export default function Footer() {
             <div style={{ display: 'flex', gap: '12px', alignItems: 'center' }}>
               {/* WhatsApp */}
               <a
-                href="https://wa.me/96525471616"
+                href="https://wa.me/96590942454"
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label="Contact us on WhatsApp"
@@ -127,11 +121,11 @@ export default function Footer() {
                   width:          '38px',
                   height:         '38px',
                   borderRadius:   '50%',
-                  border:         '1px solid rgba(245,243,238,0.1)',
+                  border:         '1px solid rgba(25,25,25,0.1)',
                   display:        'flex',
                   alignItems:     'center',
                   justifyContent: 'center',
-                  color:          '#8A8A8A',
+                  color:          '#64748B',
                   transition:     'border-color 0.25s, color 0.25s, background 0.25s',
                 }}
                 onMouseEnter={(e) => {
@@ -140,8 +134,8 @@ export default function Footer() {
                   e.currentTarget.style.background = 'rgba(37,211,102,0.05)';
                 }}
                 onMouseLeave={(e) => {
-                  e.currentTarget.style.borderColor = 'rgba(245,243,238,0.1)';
-                  e.currentTarget.style.color = '#8A8A8A';
+                  e.currentTarget.style.borderColor = 'rgba(25,25,25,0.1)';
+                  e.currentTarget.style.color = '#64748B';
                   e.currentTarget.style.background = 'transparent';
                 }}
               >
@@ -157,11 +151,11 @@ export default function Footer() {
                   width:          '38px',
                   height:         '38px',
                   borderRadius:   '50%',
-                  border:         '1px solid rgba(245,243,238,0.1)',
+                  border:         '1px solid rgba(25,25,25,0.1)',
                   display:        'flex',
                   alignItems:     'center',
                   justifyContent: 'center',
-                  color:          '#8A8A8A',
+                  color:          '#64748B',
                   transition:     'border-color 0.25s, color 0.25s, background 0.25s',
                 }}
                 onMouseEnter={(e) => {
@@ -170,8 +164,8 @@ export default function Footer() {
                   e.currentTarget.style.background = 'rgba(24,119,242,0.05)';
                 }}
                 onMouseLeave={(e) => {
-                  e.currentTarget.style.borderColor = 'rgba(245,243,238,0.1)';
-                  e.currentTarget.style.color = '#8A8A8A';
+                  e.currentTarget.style.borderColor = 'rgba(25,25,25,0.1)';
+                  e.currentTarget.style.color = '#64748B';
                   e.currentTarget.style.background = 'transparent';
                 }}
               >
@@ -187,11 +181,11 @@ export default function Footer() {
                   width:          '38px',
                   height:         '38px',
                   borderRadius:   '50%',
-                  border:         '1px solid rgba(245,243,238,0.1)',
+                  border:         '1px solid rgba(25,25,25,0.1)',
                   display:        'flex',
                   alignItems:     'center',
                   justifyContent: 'center',
-                  color:          '#8A8A8A',
+                  color:          '#64748B',
                   transition:     'border-color 0.25s, color 0.25s, background 0.25s',
                 }}
                 onMouseEnter={(e) => {
@@ -200,8 +194,8 @@ export default function Footer() {
                   e.currentTarget.style.background = 'rgba(225,48,108,0.05)';
                 }}
                 onMouseLeave={(e) => {
-                  e.currentTarget.style.borderColor = 'rgba(245,243,238,0.1)';
-                  e.currentTarget.style.color = '#8A8A8A';
+                  e.currentTarget.style.borderColor = 'rgba(25,25,25,0.1)';
+                  e.currentTarget.style.color = '#64748B';
                   e.currentTarget.style.background = 'transparent';
                 }}
               >
@@ -219,7 +213,7 @@ export default function Footer() {
               fontWeight:    600,
               textTransform: 'uppercase',
               letterSpacing: '0.1em',
-              color:         '#F5F3EE',
+              color:         '#191919',
               marginBottom:  '24px',
             }}>
               Quick Links
@@ -232,17 +226,17 @@ export default function Footer() {
                       to={link.path}
                       style={{
                         fontSize:   '14px',
-                        color:      '#8A8A8A',
+                        color:      '#64748B',
                         transition: 'color 0.2s ease, padding-left 0.2s ease',
                         display:    'block',
                         paddingLeft: '0',
                       }}
                       onMouseEnter={(e) => {
-                        e.currentTarget.style.color = '#C8A45C';
+                        e.currentTarget.style.color = '#0057A8';
                         e.currentTarget.style.paddingLeft = '6px';
                       }}
                       onMouseLeave={(e) => {
-                        e.currentTarget.style.color = '#8A8A8A';
+                        e.currentTarget.style.color = '#64748B';
                         e.currentTarget.style.paddingLeft = '0';
                       }}
                     >
@@ -261,7 +255,7 @@ export default function Footer() {
               fontWeight:    600,
               textTransform: 'uppercase',
               letterSpacing: '0.1em',
-              color:         '#F5F3EE',
+              color:         '#191919',
               marginBottom:  '24px',
             }}>
               Our Products
@@ -273,16 +267,16 @@ export default function Footer() {
                     to="/products"
                     style={{
                       fontSize:   '14px',
-                      color:      '#8A8A8A',
+                      color:      '#64748B',
                       transition: 'color 0.2s ease, padding-left 0.2s ease',
                       display:    'block',
                     }}
                     onMouseEnter={(e) => {
-                      e.currentTarget.style.color = '#C8A45C';
+                      e.currentTarget.style.color = '#0057A8';
                       e.currentTarget.style.paddingLeft = '6px';
                     }}
                     onMouseLeave={(e) => {
-                      e.currentTarget.style.color = '#8A8A8A';
+                      e.currentTarget.style.color = '#64748B';
                       e.currentTarget.style.paddingLeft = '0';
                     }}
                   >
@@ -300,46 +294,46 @@ export default function Footer() {
               fontWeight:    600,
               textTransform: 'uppercase',
               letterSpacing: '0.1em',
-              color:         '#F5F3EE',
+              color:         '#191919',
               marginBottom:  '24px',
             }}>
               Contact Us
             </h3>
             <div style={{ display: 'flex', flexDirection: 'column', gap: '20px' }}>
               <div>
-                <div style={{ fontSize: '11px', fontWeight: 500, textTransform: 'uppercase', letterSpacing: '0.08em', color: '#555', marginBottom: '6px' }}>Address</div>
-                <address style={{ fontStyle: 'normal', fontSize: '14px', color: '#8A8A8A', lineHeight: 1.7 }}>
-                  Street No. 15, Building No. 402<br />
-                  1st Floor, Behind Lulu Hypermarket<br />
-                  Qurain, <strong style={{ color: '#F5F3EE', fontWeight: 500 }}>Kuwait</strong>
+                <div style={{ fontSize: '11px', fontWeight: 500, textTransform: 'uppercase', letterSpacing: '0.08em', color: '#64748B', marginBottom: '6px' }}>Address</div>
+                <address style={{ fontStyle: 'normal', fontSize: '14px', color: '#64748B', lineHeight: 1.7 }}>
+                  Block 1, Bin Khaldoun Street,<br />
+                  Building No 21856, 3rd floor, office No 6,<br />
+                  Faiha Complex, <strong style={{ color: '#191919', fontWeight: 500 }}>Hawally, Kuwait</strong>
                 </address>
               </div>
               <div>
-                <div style={{ fontSize: '11px', fontWeight: 500, textTransform: 'uppercase', letterSpacing: '0.08em', color: '#555', marginBottom: '6px' }}>Phone</div>
-                <a href="tel:+96525471616" style={{ fontSize: '15px', color: '#F5F3EE', fontWeight: 500, transition: 'color 0.2s' }}
-                  onMouseEnter={(e) => { e.currentTarget.style.color = '#C8A45C'; }}
-                  onMouseLeave={(e) => { e.currentTarget.style.color = '#F5F3EE'; }}>
-                  +965 2547 1616
+                <div style={{ fontSize: '11px', fontWeight: 500, textTransform: 'uppercase', letterSpacing: '0.08em', color: '#64748B', marginBottom: '6px' }}>Phone</div>
+                <a href="tel:0096590942454" style={{ fontSize: '15px', color: '#191919', fontWeight: 500, transition: 'color 0.2s' }}
+                  onMouseEnter={(e) => { e.currentTarget.style.color = '#0057A8'; }}
+                  onMouseLeave={(e) => { e.currentTarget.style.color = '#191919'; }}>
+                  +965 9094 2454
                 </a>
               </div>
               <div>
-                <div style={{ fontSize: '11px', fontWeight: 500, textTransform: 'uppercase', letterSpacing: '0.08em', color: '#555', marginBottom: '6px' }}>Email</div>
-                <a href="mailto:info@genuinecartridges.net" style={{ fontSize: '14px', color: '#C8A45C', transition: 'opacity 0.2s' }}
+                <div style={{ fontSize: '11px', fontWeight: 500, textTransform: 'uppercase', letterSpacing: '0.08em', color: '#64748B', marginBottom: '6px' }}>Email</div>
+                <a href="mailto:info@genuinecartridges.net" style={{ fontSize: '14px', color: '#0057A8', transition: 'opacity 0.2s' }}
                   onMouseEnter={(e) => { e.currentTarget.style.opacity = '0.7'; }}
                   onMouseLeave={(e) => { e.currentTarget.style.opacity = '1'; }}>
                   info@genuinecartridges.net
                 </a>
               </div>
               <div>
-                <div style={{ fontSize: '11px', fontWeight: 500, textTransform: 'uppercase', letterSpacing: '0.08em', color: '#555', marginBottom: '6px' }}>Business Hours</div>
-                <div style={{ fontSize: '14px', color: '#8A8A8A', lineHeight: 1.7 }}>
+                <div style={{ fontSize: '11px', fontWeight: 500, textTransform: 'uppercase', letterSpacing: '0.08em', color: '#64748B', marginBottom: '6px' }}>Business Hours</div>
+                <div style={{ fontSize: '14px', color: '#64748B', lineHeight: 1.7 }}>
                   Sun – Thu: 8:00 AM – 5:00 PM<br />
                   Fri – Sat: Closed
                 </div>
               </div>
               {/* WhatsApp CTA */}
               <a
-                href="https://wa.me/96525471616?text=Hello%2C%20I%20would%20like%20to%20inquire%20about%20toner%20cartridges."
+                href="https://wa.me/96590942454?text=Hello%2C%20I%20would%20like%20to%20inquire%20about%20toner%20cartridges."
                 target="_blank"
                 rel="noopener noreferrer"
                 style={{
@@ -377,7 +371,7 @@ export default function Footer() {
         {/* Divider */}
         <div style={{
           marginTop:  '60px',
-          borderTop:  '1px solid rgba(245,243,238,0.07)',
+          borderTop:  '1px solid #E2E8F0',
           paddingTop: '28px',
           display:    'flex',
           justifyContent: 'space-between',
@@ -385,22 +379,22 @@ export default function Footer() {
           flexWrap:   'wrap',
           gap:        '16px',
         }}>
-          <p style={{ fontSize: '13px', color: '#555' }}>
+          <p style={{ fontSize: '13px', color: '#64748B' }}>
             © {year} Genuine Toner Cartridges Est. All rights reserved.
           </p>
-          <p style={{ fontSize: '13px', color: '#555' }}>
+          <p style={{ fontSize: '13px', color: '#64748B' }}>
             Proudly made in{' '}
-            <span style={{ color: '#C8A45C', fontWeight: 500 }}>Kuwait 🇰🇼</span>
+            <span style={{ color: '#04AF44', fontWeight: 500 }}>Kuwait 🇰🇼</span>
           </p>
           <div style={{ display: 'flex', gap: '24px' }}>
-            <a href="/contact" style={{ fontSize: '13px', color: '#555', transition: 'color 0.2s' }}
-              onMouseEnter={(e) => { e.currentTarget.style.color = '#F5F3EE'; }}
-              onMouseLeave={(e) => { e.currentTarget.style.color = '#555'; }}>
+            <a href="/contact" style={{ fontSize: '13px', color: '#64748B', transition: 'color 0.2s' }}
+              onMouseEnter={(e) => { e.currentTarget.style.color = '#191919'; }}
+              onMouseLeave={(e) => { e.currentTarget.style.color = '#64748B'; }}>
               Privacy Policy
             </a>
-            <a href="/contact" style={{ fontSize: '13px', color: '#555', transition: 'color 0.2s' }}
-              onMouseEnter={(e) => { e.currentTarget.style.color = '#F5F3EE'; }}
-              onMouseLeave={(e) => { e.currentTarget.style.color = '#555'; }}>
+            <a href="/contact" style={{ fontSize: '13px', color: '#64748B', transition: 'color 0.2s' }}
+              onMouseEnter={(e) => { e.currentTarget.style.color = '#191919'; }}
+              onMouseLeave={(e) => { e.currentTarget.style.color = '#64748B'; }}>
               Terms of Service
             </a>
           </div>

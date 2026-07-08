@@ -27,7 +27,24 @@ export default function Contact() {
     if (Object.keys(newErrors).length > 0) { setErrors(newErrors); return; }
     setErrors({});
     setLoading(true);
-    setTimeout(() => { setLoading(false); setSubmitted(true); }, 1200);
+    setTimeout(() => {
+      setLoading(false);
+      setSubmitted(true);
+
+      const subjectLine = formData.subject.trim() || 'Contact Inquiry';
+      const emailSubject = `${subjectLine} - from ${formData.name}`;
+      const emailBody = `Genuine Cartridges Contact Form Submission:\n----------------------------------------\nName: ${formData.name}\nEmail: ${formData.email}\nPhone: ${formData.phone || 'N/A'}\nSubject: ${subjectLine}\n\nMessage:\n${formData.message}`;
+
+      const whatsappText = `*NEW CONTACT MESSAGE*\n*Name:* ${formData.name}\n*Email:* ${formData.email}\n*Phone:* ${formData.phone || 'N/A'}\n*Subject:* ${subjectLine}\n\n*Message:*\n${formData.message}`;
+
+      // Open WhatsApp in new tab
+      const whatsappUrl = `https://wa.me/96590942454?text=${encodeURIComponent(whatsappText)}`;
+      window.open(whatsappUrl, '_blank', 'noopener,noreferrer');
+
+      // Trigger mailto for email client
+      const mailtoUrl = `mailto:info@genuinecartridges.net?subject=${encodeURIComponent(emailSubject)}&body=${encodeURIComponent(emailBody)}`;
+      window.location.href = mailtoUrl;
+    }, 1200);
     setTimeout(() => setSubmitted(false), 5000);
   };
 
@@ -36,35 +53,36 @@ export default function Contact() {
 
       {/* ── Page Header ──────────────────────────────────── */}
       <section style={{
-        backgroundColor: '#0A0A0A',
+        backgroundColor: '#FFFFFF',
         padding: '160px 48px 80px',
         textAlign: 'center',
         position: 'relative',
         overflow: 'hidden',
+        borderBottom: '1px solid #E2E8F0',
       }}>
         <div style={{
           position: 'absolute',
           top: '50%', left: '50%',
           transform: 'translate(-50%,-50%)',
           width: '600px', height: '300px',
-          background: 'radial-gradient(ellipse, rgba(200,164,92,0.05) 0%, transparent 70%)',
+          background: 'radial-gradient(ellipse, rgba(4,175,68,0.03) 0%, transparent 70%)',
           pointerEvents: 'none',
         }} aria-hidden="true" />
-        <div className="section-label" style={{ justifyContent: 'center', marginBottom: '24px' }}>Contact Us</div>
+        <div className="section-label" style={{ justifyContent: 'center', marginBottom: '24px', color: '#04AF44' }}>Contact Us</div>
         <h1 style={{
           fontSize: 'clamp(36px, 6vw, 80px)',
-          fontWeight: 700, color: '#F5F3EE',
+          fontWeight: 700, color: '#191919',
           lineHeight: 1.0, letterSpacing: '-0.03em', marginBottom: '20px',
         }}>
           Let's work together
         </h1>
-        <p style={{ fontSize: '18px', color: '#8A8A8A', maxWidth: '440px', margin: '0 auto', lineHeight: 1.7 }}>
-          Our team is ready to help. Reach out via any of the channels below.
+        <p style={{ fontSize: '18px', color: '#64748B', maxWidth: '440px', margin: '0 auto', lineHeight: 1.7 }}>
+          Our team is ready to assist your business. Reach out via any of the channels below.
         </p>
       </section>
 
       {/* ── Contact Info + Map ────────────────────────────── */}
-      <section style={{ backgroundColor: '#0A0A0A', padding: '60px 48px 100px' }}>
+      <section style={{ backgroundColor: '#FFFFFF', padding: '60px 48px 100px' }}>
         <div style={{
           maxWidth: '1400px',
           margin: '0 auto',
@@ -75,24 +93,24 @@ export default function Contact() {
 
           {/* Left — Map + Details */}
           <div ref={leftRef}>
-            <div className="section-label" style={{ marginBottom: '32px' }}>Find Us</div>
+            <div className="section-label" style={{ marginBottom: '32px', color: '#04AF44' }}>Find Us</div>
 
             {/* Google Map */}
             <div style={{
               borderRadius: '16px',
               overflow: 'hidden',
-              border: '1px solid rgba(245,243,238,0.08)',
+              border: '1px solid #E2E8F0',
               marginBottom: '32px',
             }}>
               <iframe
-                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3479.0!2d48.0734!3d29.2526!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMjnCsDE1JzA5LjQiTiA0OMKwMDQnMjQuMiJF!5e0!3m2!1sen!2skw!4v1600000000000!5m2!1sen!2skw"
+                src="https://maps.google.com/maps?q=29.33844566345215%2C48.004669189453125&z=17&hl=en&output=embed"
                 width="100%"
                 height="280"
-                style={{ border: 0, filter: 'grayscale(80%) invert(90%) brightness(0.8)' }}
+                style={{ border: 0 }}
                 allowFullScreen
                 loading="lazy"
                 referrerPolicy="no-referrer-when-downgrade"
-                title="Genuine Toner Cartridges Location in Qurain, Kuwait"
+                title="Genuine Toner Cartridges Location in Hawally, Kuwait"
               />
             </div>
 
@@ -100,44 +118,45 @@ export default function Contact() {
             <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '20px' }}>
               {/* Address */}
               <div style={{
-                background: 'rgba(245,243,238,0.03)',
-                border: '1px solid rgba(245,243,238,0.07)',
+                background: '#F8FAFC',
+                border: '1px solid #E2E8F0',
                 borderRadius: '12px',
                 padding: '20px',
               }}>
-                <div style={{ fontSize: '11px', fontWeight: 500, textTransform: 'uppercase', letterSpacing: '0.1em', color: '#C8A45C', marginBottom: '8px' }}>Address</div>
-                <address style={{ fontStyle: 'normal', fontSize: '14px', color: '#F5F3EE', lineHeight: 1.7 }}>
-                  Street No. 15, Building No. 402<br />
-                  1st Floor, Behind Lulu Hypermarket<br />
-                  Qurain, Kuwait
+                <div style={{ fontSize: '11px', fontWeight: 600, textTransform: 'uppercase', letterSpacing: '0.1em', color: '#04AF44', marginBottom: '8px' }}>Address</div>
+                <address style={{ fontStyle: 'normal', fontSize: '14px', color: '#64748B', lineHeight: 1.7 }}>
+                  Block 1, Bin Khaldoun Street,<br />
+                  Building No 21856, 3rd floor, office No 6,<br />
+                  Faiha Complex, <strong style={{ color: '#191919', fontWeight: 500 }}>Hawally, Kuwait</strong>
                 </address>
               </div>
 
               {/* Phone */}
               <div style={{
-                background: 'rgba(245,243,238,0.03)',
-                border: '1px solid rgba(245,243,238,0.07)',
+                background: '#F8FAFC',
+                border: '1px solid #E2E8F0',
                 borderRadius: '12px',
                 padding: '20px',
               }}>
-                <div style={{ fontSize: '11px', fontWeight: 500, textTransform: 'uppercase', letterSpacing: '0.1em', color: '#C8A45C', marginBottom: '8px' }}>Phone & Fax</div>
-                <a href="tel:+96525471616" style={{ display: 'block', fontSize: '15px', color: '#F5F3EE', fontWeight: 500, marginBottom: '6px', transition: 'color 0.2s' }}
-                  onMouseEnter={(e) => { e.currentTarget.style.color = '#C8A45C'; }}
-                  onMouseLeave={(e) => { e.currentTarget.style.color = '#F5F3EE'; }}>
-                  +965 2547 1616
+                <div style={{ fontSize: '11px', fontWeight: 600, textTransform: 'uppercase', letterSpacing: '0.1em', color: '#04AF44', marginBottom: '8px' }}>Phone & Fax</div>
+                <a href="tel:0096590942454" style={{ display: 'block', fontSize: '15px', color: '#191919', fontWeight: 500, marginBottom: '6px', transition: 'color 0.2s', textDecoration: 'none' }}
+                  onMouseEnter={(e) => { e.currentTarget.style.color = '#0057A8'; }}
+                  onMouseLeave={(e) => { e.currentTarget.style.color = '#191919'; }}>
+                  +965 9094 2454
                 </a>
-                <span style={{ display: 'block', fontSize: '14px', color: '#8A8A8A' }}>Fax: +965 2547 1818</span>
+                <span style={{ display: 'block', fontSize: '13px', color: '#64748B' }}>Fax 1: +965 2547 1616</span>
+                <span style={{ display: 'block', fontSize: '13px', color: '#64748B', marginTop: '2px' }}>Fax 2: +965 2547 1818</span>
               </div>
 
               {/* Email */}
               <div style={{
-                background: 'rgba(245,243,238,0.03)',
-                border: '1px solid rgba(245,243,238,0.07)',
+                background: '#F8FAFC',
+                border: '1px solid #E2E8F0',
                 borderRadius: '12px',
                 padding: '20px',
               }}>
-                <div style={{ fontSize: '11px', fontWeight: 500, textTransform: 'uppercase', letterSpacing: '0.1em', color: '#C8A45C', marginBottom: '8px' }}>Email</div>
-                <a href="mailto:info@genuinecartridges.net" style={{ fontSize: '14px', color: '#C8A45C', wordBreak: 'break-all', transition: 'opacity 0.2s' }}
+                <div style={{ fontSize: '11px', fontWeight: 600, textTransform: 'uppercase', letterSpacing: '0.1em', color: '#04AF44', marginBottom: '8px' }}>Email</div>
+                <a href="mailto:info@genuinecartridges.net" style={{ fontSize: '14px', color: '#0057A8', wordBreak: 'break-all', transition: 'opacity 0.2s', textDecoration: 'none' }}
                   onMouseEnter={(e) => { e.currentTarget.style.opacity = '0.7'; }}
                   onMouseLeave={(e) => { e.currentTarget.style.opacity = '1'; }}>
                   info@genuinecartridges.net
@@ -146,22 +165,22 @@ export default function Contact() {
 
               {/* Hours */}
               <div style={{
-                background: 'rgba(245,243,238,0.03)',
-                border: '1px solid rgba(245,243,238,0.07)',
+                background: '#F8FAFC',
+                border: '1px solid #E2E8F0',
                 borderRadius: '12px',
                 padding: '20px',
               }}>
-                <div style={{ fontSize: '11px', fontWeight: 500, textTransform: 'uppercase', letterSpacing: '0.1em', color: '#C8A45C', marginBottom: '8px' }}>Business Hours</div>
-                <div style={{ fontSize: '14px', color: '#F5F3EE', lineHeight: 1.7 }}>
+                <div style={{ fontSize: '11px', fontWeight: 600, textTransform: 'uppercase', letterSpacing: '0.1em', color: '#04AF44', marginBottom: '8px' }}>Business Hours</div>
+                <div style={{ fontSize: '14px', color: '#64748B', lineHeight: 1.7 }}>
                   Sun – Thu: 8am – 5pm
                 </div>
-                <div style={{ fontSize: '13px', color: '#8A8A8A' }}>Fri – Sat: Closed</div>
+                <div style={{ fontSize: '13px', color: '#64748B' }}>Fri – Sat: Closed</div>
               </div>
             </div>
 
             {/* WhatsApp CTA */}
             <a
-              href="https://wa.me/96525471616?text=Hello%2C%20I%20would%20like%20to%20inquire%20about%20toner%20cartridges."
+              href="https://wa.me/96590942454?text=Hello%2C%20I%20would%20like%20to%20inquire%20about%20toner%20cartridges."
               target="_blank"
               rel="noopener noreferrer"
               style={{
@@ -198,8 +217,8 @@ export default function Contact() {
           {/* Right — Visit card */}
           <div ref={rightRef}>
             <div style={{
-              background: 'rgba(245,243,238,0.03)',
-              border: '1px solid rgba(245,243,238,0.08)',
+              background: '#F8FAFC',
+              border: '1px solid #E2E8F0',
               borderRadius: '20px',
               padding: '48px',
               height: '100%',
@@ -208,22 +227,22 @@ export default function Contact() {
               justifyContent: 'space-between',
             }}>
               <div>
-                <div className="section-label" style={{ marginBottom: '24px' }}>Visit Our Office</div>
+                <div className="section-label" style={{ marginBottom: '24px', color: '#04AF44' }}>Visit Our Office</div>
                 <h2 style={{
                   fontSize: 'clamp(28px, 3.5vw, 48px)',
-                  fontWeight: 600, color: '#F5F3EE',
+                  fontWeight: 600, color: '#191919',
                   lineHeight: 1.1, marginBottom: '24px', letterSpacing: '-0.02em',
                 }}>
                   Genuine Toner Cartridges Est.
                 </h2>
-                <p style={{ fontSize: '17px', color: '#8A8A8A', lineHeight: 1.75, marginBottom: '32px' }}>
-                  We welcome you to visit our facility in Qurain, Kuwait. See our remanufacturing process in action and meet our technical team.
+                <p style={{ fontSize: '17px', color: '#64748B', lineHeight: 1.75, marginBottom: '32px' }}>
+                  We welcome you to visit our facility in Hawally, Kuwait. Meet our technical support team to discuss your printing fleet requirements.
                 </p>
 
                 {/* Address visual */}
                 <div style={{
-                  background: 'rgba(200,164,92,0.06)',
-                  border: '1px solid rgba(200,164,92,0.12)',
+                  background: 'rgba(0, 87, 168, 0.05)',
+                  border: '1px solid rgba(0, 87, 168, 0.15)',
                   borderRadius: '12px',
                   padding: '24px',
                   marginBottom: '32px',
@@ -231,9 +250,9 @@ export default function Contact() {
                   <div style={{ display: 'flex', gap: '12px', alignItems: 'flex-start' }}>
                     <span style={{ fontSize: '24px', flexShrink: 0 }} aria-hidden="true">📍</span>
                     <div>
-                      <div style={{ fontSize: '15px', fontWeight: 500, color: '#F5F3EE', marginBottom: '4px' }}>Qurain, Behind Lulu Hypermarket</div>
-                      <div style={{ fontSize: '14px', color: '#8A8A8A' }}>Street No. 15, Building No. 402, 1st Floor</div>
-                      <div style={{ fontSize: '14px', fontWeight: 500, color: '#C8A45C', marginTop: '4px' }}>🇰🇼 Kuwait</div>
+                      <div style={{ fontSize: '15px', fontWeight: 500, color: '#191919', marginBottom: '4px' }}>Faiha Complex, Hawally</div>
+                      <div style={{ fontSize: '14px', color: '#64748B' }}>Block 1, Bin Khaldoun Street, Building No 21856, 3rd floor</div>
+                      <div style={{ fontSize: '14px', fontWeight: 500, color: '#04AF44', marginTop: '4px' }}>🇰🇼 Kuwait</div>
                     </div>
                   </div>
                 </div>
@@ -244,7 +263,7 @@ export default function Contact() {
                   Order Now
                 </Link>
                 <a
-                  href="tel:+96525471616"
+                  href="tel:0096590942454"
                   style={{
                     flex: 1,
                     display: 'inline-flex',
@@ -253,16 +272,17 @@ export default function Contact() {
                     gap: '8px',
                     padding: '15px 20px',
                     borderRadius: '100px',
-                    border: '1px solid rgba(245,243,238,0.15)',
-                    color: '#F5F3EE',
+                    border: '1px solid #E2E8F0',
+                    color: '#191919',
                     fontSize: '13px',
                     fontWeight: 500,
                     transition: 'all 0.25s',
                     textDecoration: 'none',
                     minWidth: '140px',
+                    backgroundColor: '#FFFFFF',
                   }}
-                  onMouseEnter={(e) => { e.currentTarget.style.borderColor = 'rgba(245,243,238,0.35)'; e.currentTarget.style.background = 'rgba(245,243,238,0.05)'; }}
-                  onMouseLeave={(e) => { e.currentTarget.style.borderColor = 'rgba(245,243,238,0.15)'; e.currentTarget.style.background = 'transparent'; }}
+                  onMouseEnter={(e) => { e.currentTarget.style.borderColor = '#64748B'; e.currentTarget.style.background = '#F8FAFC'; }}
+                  onMouseLeave={(e) => { e.currentTarget.style.borderColor = '#E2E8F0'; e.currentTarget.style.background = '#FFFFFF'; }}
                 >
                   Call Us
                 </a>
@@ -277,13 +297,13 @@ export default function Contact() {
       </section>
 
       {/* ── Contact Form ──────────────────────────────────── */}
-      <section style={{ backgroundColor: '#F5F3EE', padding: '100px 48px' }}>
+      <section style={{ backgroundColor: '#F8FAFC', padding: '100px 48px' }}>
         <div ref={formRef} style={{ maxWidth: '760px', margin: '0 auto' }}>
           <div style={{ textAlign: 'center', marginBottom: '56px' }}>
-            <div className="section-label" style={{ justifyContent: 'center', color: '#C8A45C', marginBottom: '20px' }}>Send a Message</div>
+            <div className="section-label" style={{ justifyContent: 'center', color: '#04AF44', marginBottom: '20px' }}>Send a Message</div>
             <h2 style={{
               fontSize: 'clamp(24px, 3vw, 44px)',
-              fontWeight: 600, color: '#0A0A0A',
+              fontWeight: 600, color: '#191919',
               lineHeight: 1.1, letterSpacing: '-0.02em',
             }}>
               Have a question? Write to us.
@@ -294,18 +314,18 @@ export default function Contact() {
             <div style={{ textAlign: 'center', padding: '60px 0' }}>
               <div style={{
                 width: '72px', height: '72px', borderRadius: '50%',
-                background: 'linear-gradient(135deg, #C8A45C, #E8D5A3)',
+                background: 'linear-gradient(135deg, #0057A8, #04AF44)',
                 display: 'flex', alignItems: 'center', justifyContent: 'center',
                 margin: '0 auto 24px',
-                boxShadow: '0 12px 32px rgba(200,164,92,0.3)',
+                boxShadow: '0 12px 32px rgba(4,175,68,0.25)',
               }}>
-                <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#0A0A0A" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+                <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
                   <path d="M20 6L9 17l-5-5" />
                 </svg>
               </div>
-              <h3 style={{ fontSize: '26px', fontWeight: 600, color: '#0A0A0A', marginBottom: '12px' }}>Message Sent!</h3>
-              <p style={{ color: '#8A8A8A', fontSize: '16px', lineHeight: 1.7 }}>
-                Thank you! We'll get back to you within 24 hours.
+              <h3 style={{ fontSize: '26px', fontWeight: 600, color: '#191919', marginBottom: '12px' }}>Message Sent!</h3>
+              <p style={{ color: '#64748B', fontSize: '16px', lineHeight: 1.7 }}>
+                Thank you! We will get back to you within 24 hours.
               </p>
             </div>
           ) : (
@@ -316,7 +336,7 @@ export default function Contact() {
                   <input id="contact-name" type="text" required placeholder="Your full name"
                     value={formData.name} onChange={(e) => setFormData({ ...formData, name: e.target.value })}
                     className="form-input-light"
-                    style={errors.name ? { borderColor: '#E53E3E' } : {}}
+                    style={{ background: '#FFFFFF', borderColor: errors.name ? '#E53E3E' : '#E2E8F0', color: '#191919' }}
                   />
                   {errors.name && <span style={{ fontSize: '12px', color: '#E53E3E', marginTop: '4px', display: 'block' }}>{errors.name}</span>}
                 </div>
@@ -325,7 +345,7 @@ export default function Contact() {
                   <input id="contact-email" type="email" required placeholder="you@company.com"
                     value={formData.email} onChange={(e) => setFormData({ ...formData, email: e.target.value })}
                     className="form-input-light"
-                    style={errors.email ? { borderColor: '#E53E3E' } : {}}
+                    style={{ background: '#FFFFFF', borderColor: errors.email ? '#E53E3E' : '#E2E8F0', color: '#191919' }}
                   />
                   {errors.email && <span style={{ fontSize: '12px', color: '#E53E3E', marginTop: '4px', display: 'block' }}>{errors.email}</span>}
                 </div>
@@ -337,6 +357,7 @@ export default function Contact() {
                   <input id="contact-phone" type="tel" placeholder="+965 XXXX XXXX"
                     value={formData.phone} onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
                     className="form-input-light"
+                    style={{ background: '#FFFFFF', borderColor: '#E2E8F0', color: '#191919' }}
                   />
                 </div>
                 <div>
@@ -344,6 +365,7 @@ export default function Contact() {
                   <input id="contact-subject" type="text" placeholder="How can we help?"
                     value={formData.subject} onChange={(e) => setFormData({ ...formData, subject: e.target.value })}
                     className="form-input-light"
+                    style={{ background: '#FFFFFF', borderColor: '#E2E8F0', color: '#191919' }}
                   />
                 </div>
               </div>
@@ -353,7 +375,7 @@ export default function Contact() {
                 <textarea id="contact-message" rows={5} required placeholder="Tell us about your needs..."
                   value={formData.message} onChange={(e) => setFormData({ ...formData, message: e.target.value })}
                   className="form-input-light"
-                  style={{ resize: 'vertical', fontFamily: 'inherit', ...(errors.message ? { borderColor: '#E53E3E' } : {}) }}
+                  style={{ background: '#FFFFFF', resize: 'vertical', fontFamily: 'inherit', color: '#191919', borderColor: errors.message ? '#E53E3E' : '#E2E8F0' }}
                 />
                 {errors.message && <span style={{ fontSize: '12px', color: '#E53E3E', marginTop: '4px', display: 'block' }}>{errors.message}</span>}
               </div>
@@ -370,14 +392,14 @@ export default function Contact() {
               >
                 {loading ? (
                   <>
-                    <span className="animate-spin" style={{ width: '16px', height: '16px', border: '2px solid rgba(10,10,10,0.3)', borderTopColor: '#0A0A0A', borderRadius: '50%', display: 'inline-block' }} />
+                    <span className="animate-spin" style={{ width: '16px', height: '16px', border: '2px solid rgba(255,255,255,0.3)', borderTopColor: '#FFFFFF', borderRadius: '50%', display: 'inline-block' }} />
                     Sending...
                   </>
                 ) : 'Send Message'}
               </button>
 
-              <p style={{ textAlign: 'center', fontSize: '13px', color: '#8A8A8A', marginTop: '16px' }}>
-                We respond within 24 hours · Your info is never shared
+              <p style={{ textAlign: 'center', fontSize: '13px', color: '#64748B', marginTop: '16px' }}>
+                We respond within 24 hours · Your details are always private
               </p>
             </form>
           )}

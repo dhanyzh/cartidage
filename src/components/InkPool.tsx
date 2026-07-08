@@ -356,9 +356,9 @@ export default function InkPool() {
       gl.uniform1i(displayLocs.u_state, 0);
       gl.uniform2f(displayLocs.u_texelSize, 1.0 / SIM_SIZE, 1.0 / SIM_SIZE);
       gl.uniform1f(displayLocs.u_ditherScale, 1.0);
-      gl.uniform3f(displayLocs.u_colorDark, 0.02, 0.02, 0.02);
-      gl.uniform3f(displayLocs.u_colorMid, 0.08, 0.08, 0.08);
-      gl.uniform3f(displayLocs.u_colorLight, 0.18, 0.16, 0.12);
+      gl.uniform3f(displayLocs.u_colorDark, 1.0, 1.0, 1.0);
+      gl.uniform3f(displayLocs.u_colorMid, 0.94, 0.98, 0.96);
+      gl.uniform3f(displayLocs.u_colorLight, 0.90, 0.94, 0.98);
       gl.drawArrays(gl.TRIANGLE_STRIP, 0, 4);
     };
 

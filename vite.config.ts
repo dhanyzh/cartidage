@@ -10,12 +10,13 @@ export default defineConfig({
     // Stub out Node-only deps pulled in by react-router v7's SSR chunk
     {
       name: 'stub-server-only',
+      enforce: 'pre',
       resolveId(id) {
-        if (id === 'set-cookie-parser') return id;
+        if (id === 'set-cookie-parser') return '\0set-cookie-parser';
         return null;
       },
       load(id) {
-        if (id === 'set-cookie-parser') {
+        if (id === '\0set-cookie-parser') {
           return 'export function splitCookiesString() { return []; }';
         }
         return null;
@@ -31,6 +32,7 @@ export default defineConfig({
     },
   },
   optimizeDeps: {
+    exclude: ["set-cookie-parser"],
     esbuildOptions: {
       plugins: [
         {

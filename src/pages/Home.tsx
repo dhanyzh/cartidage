@@ -29,8 +29,29 @@ function Hero() {
 
   const handleSubmit = (e: FormEvent) => {
     e.preventDefault();
+    // Validate required fields since hero has simple inputs
+    if (!formData.name.trim() || !formData.email.trim()) {
+      alert('Please fill out Name and Email fields.');
+      return;
+    }
     setLoading(true);
-    setTimeout(() => { setLoading(false); setSubmitted(true); }, 1200);
+    setTimeout(() => {
+      setLoading(false);
+      setSubmitted(true);
+
+      const emailSubject = `Quote Request from ${formData.name} - Genuine Cartridges`;
+      const emailBody = `Genuine Cartridges Quote Request details:\n----------------------------------------\nName: ${formData.name}\nEmail: ${formData.email}\nPhone: ${formData.phone || 'N/A'}\nCompany: ${formData.company || 'N/A'}\n\nCartridges Needed:\n${formData.message}`;
+
+      const whatsappText = `*NEW QUOTE REQUEST*\n*Name:* ${formData.name}\n*Email:* ${formData.email}\n*Phone:* ${formData.phone || 'N/A'}\n*Company:* ${formData.company || 'N/A'}\n\n*Cartridges Needed:*\n${formData.message}`;
+
+      // Open WhatsApp in new tab
+      const whatsappUrl = `https://wa.me/96590942454?text=${encodeURIComponent(whatsappText)}`;
+      window.open(whatsappUrl, '_blank', 'noopener,noreferrer');
+
+      // Trigger mailto for email client
+      const mailtoUrl = `mailto:info@genuinecartridges.net?subject=${encodeURIComponent(emailSubject)}&body=${encodeURIComponent(emailBody)}`;
+      window.location.href = mailtoUrl;
+    }, 1200);
     setTimeout(() => setSubmitted(false), 4000);
   };
 
@@ -49,14 +70,14 @@ function Hero() {
         padding: '130px 48px 90px',
       }}
     >
-      {/* Floating particles */}
+      {/* Floating particles (Clover Green) */}
       {[...Array(6)].map((_, i) => (
         <div key={i} style={{
           position: 'absolute',
           width: `${4 + i * 2}px`,
           height: `${4 + i * 2}px`,
           borderRadius: '50%',
-          background: `rgba(200,164,92,${0.15 + i * 0.05})`,
+          background: `rgba(4,175,68,${0.1 + i * 0.04})`,
           top: `${15 + i * 12}%`,
           left: `${10 + i * 14}%`,
           animation: `float ${3 + i * 0.7}s ease-in-out infinite`,
@@ -76,42 +97,42 @@ function Hero() {
 
         {/* Left — Headline */}
         <div>
-          <div className="section-label" style={{ marginBottom: '24px', animationDelay: '0s' }}>
-            Remanufactured Toner Cartridges
+          <div className="section-label" style={{ marginBottom: '24px', animationDelay: '0s', color: '#04AF44' }}>
+            AVAILABLE NOW: HP 210A & BROTHER DR830
           </div>
 
           <h1 style={{
-            fontSize: 'clamp(48px, 6vw, 88px)',
+            fontSize: 'clamp(44px, 5.5vw, 80px)',
             fontWeight: 700,
-            color: '#F5F3EE',
-            lineHeight: 0.92,
+            color: '#191919',
+            lineHeight: 0.95,
             letterSpacing: '-0.03em',
             marginBottom: '28px',
           }}>
-            <span style={{ display: 'block' }}>GENUINE</span>
-            <span style={{ display: 'block', color: '#C8A45C' }}>TONER</span>
-            <span style={{ display: 'block' }}>CARTRIDGES</span>
+            <span style={{ display: 'block' }}>SUSTAINABLE</span>
+            <span style={{ display: 'block', color: '#04AF44' }}>PRINTING</span>
+            <span style={{ display: 'block' }}>SOLUTIONS</span>
           </h1>
 
           <p style={{
             fontSize: '17px',
-            color: '#8A8A8A',
+            color: '#64748B',
             lineHeight: 1.7,
-            maxWidth: '420px',
+            maxWidth: '460px',
             marginBottom: '40px',
           }}>
-            Kuwait's trusted source for quality remanufactured cartridges since 2012. Equal or exceed OEM performance — guaranteed.
+            Kuwait's trusted source for premium remanufactured toner and ink cartridges since 2012. Save up to 40% over OEM costs with our GreenCircle certified products.
           </p>
 
           <div style={{ display: 'flex', gap: '16px', flexWrap: 'wrap', marginBottom: '56px' }}>
             <Link to="/order" className="btn-primary" aria-label="Place an order">
-              Order Now
+              Order Today
               <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
                 <path d="M5 12h14M12 5l7 7-7 7" />
               </svg>
             </Link>
             <Link to="/products" className="btn-outline">
-              View Products
+              Explore Products
             </Link>
           </div>
 
@@ -119,36 +140,35 @@ function Hero() {
           <div style={{ display: 'flex', gap: '24px', flexWrap: 'wrap' }}>
             {[
               { icon: '✓', text: '12+ Years Experience' },
-              { icon: '✓', text: '100% Quality Guaranteed' },
-              { icon: '✓', text: 'Kuwait-Made' },
+              { icon: '✓', text: 'GreenCircle Certified' },
+              { icon: '✓', text: 'Kuwait Made Supplies' },
             ].map((badge) => (
               <div key={badge.text} style={{
                 display: 'flex',
                 alignItems: 'center',
                 gap: '7px',
                 fontSize: '13px',
-                color: '#8A8A8A',
+                color: '#64748B',
               }}>
-                <span style={{ color: '#C8A45C', fontWeight: 700 }}>{badge.icon}</span>
+                <span style={{ color: '#04AF44', fontWeight: 700 }}>{badge.icon}</span>
                 {badge.text}
               </div>
             ))}
           </div>
         </div>
 
-        {/* Right — Contact Form */}
+        {/* Right — Contact Form Card */}
         <div style={{
-          backgroundColor: 'rgba(10, 10, 10, 0.75)',
-          backdropFilter: 'blur(24px)',
-          WebkitBackdropFilter: 'blur(24px)',
-          border: '1px solid rgba(245, 243, 238, 0.08)',
+          backgroundColor: '#FFFFFF',
+          border: '1px solid #E2E8F0',
           borderRadius: '20px',
           padding: '44px',
+          boxShadow: '0 20px 40px rgba(0,0,0,0.04)',
         }}>
-          {/* Gold top accent */}
+          {/* Top blue-green accent bar */}
           <div style={{
             height: '2px',
-            background: 'linear-gradient(90deg, #C8A45C, #E8D5A3, #C8A45C)',
+            background: 'linear-gradient(90deg, #0057A8, #04AF44, #0057A8)',
             borderRadius: '2px',
             marginBottom: '32px',
           }} aria-hidden="true" />
@@ -156,30 +176,30 @@ function Hero() {
           <h2 style={{
             fontSize: '22px',
             fontWeight: 600,
-            color: '#F5F3EE',
+            color: '#191919',
             marginBottom: '8px',
             letterSpacing: '-0.01em',
           }}>
             Request a Quote
           </h2>
-          <p style={{ fontSize: '14px', color: '#8A8A8A', marginBottom: '28px', lineHeight: 1.6 }}>
-            Our team will respond within 24 hours.
+          <p style={{ fontSize: '14px', color: '#64748B', marginBottom: '28px', lineHeight: 1.6 }}>
+            Our team will respond with a custom pricing proposal within 24 hours.
           </p>
 
           {submitted ? (
             <div style={{ textAlign: 'center', padding: '40px 0' }}>
               <div style={{
                 width: '64px', height: '64px', borderRadius: '50%',
-                background: 'linear-gradient(135deg, #C8A45C, #E8D5A3)',
+                background: 'linear-gradient(135deg, #0057A8, #04AF44)',
                 display: 'flex', alignItems: 'center', justifyContent: 'center',
                 margin: '0 auto 20px',
               }}>
-                <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#0A0A0A" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+                <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
                   <path d="M20 6L9 17l-5-5" />
                 </svg>
               </div>
-              <h3 style={{ fontSize: '20px', fontWeight: 600, color: '#F5F3EE', marginBottom: '8px' }}>Request Sent!</h3>
-              <p style={{ fontSize: '14px', color: '#8A8A8A' }}>We'll contact you within 24 hours.</p>
+              <h3 style={{ fontSize: '20px', fontWeight: 600, color: '#191919', marginBottom: '8px' }}>Request Sent!</h3>
+              <p style={{ fontSize: '14px', color: '#64748B' }}>We'll contact you within 24 hours.</p>
             </div>
           ) : (
             <form onSubmit={handleSubmit} noValidate>
@@ -210,8 +230,8 @@ function Hero() {
                   className="form-input" />
               </div>
               <div style={{ marginBottom: '20px' }}>
-                <label htmlFor="hero-message" className="form-label">What do you need?</label>
-                <textarea id="hero-message" rows={3} placeholder="Tell us about your requirements..."
+                <label htmlFor="hero-message" className="form-label">Tell us what cartridges you need</label>
+                <textarea id="hero-message" rows={3} placeholder="e.g., HP CF289A (qty 5), Canon CRG-057 (qty 10)..."
                   value={formData.message}
                   onChange={(e) => setFormData({ ...formData, message: e.target.value })}
                   className="form-input" style={{ resize: 'vertical', fontFamily: 'inherit' }} />
@@ -223,7 +243,7 @@ function Hero() {
                 style={{ width: '100%', justifyContent: 'center', padding: '15px', fontSize: '13px' }}
               >
                 {loading ? (
-                  <span className="animate-spin" style={{ width: '16px', height: '16px', border: '2px solid rgba(10,10,10,0.3)', borderTopColor: '#0A0A0A', borderRadius: '50%', display: 'inline-block' }} />
+                  <span className="animate-spin" style={{ width: '16px', height: '16px', border: '2px solid rgba(255,255,255,0.3)', borderTopColor: '#FFFFFF', borderRadius: '50%', display: 'inline-block' }} />
                 ) : 'Submit Request'}
               </button>
             </form>
@@ -231,7 +251,7 @@ function Hero() {
         </div>
       </div>
 
-      {/* Scroll indicator */}
+      {/* Scroll indicator (Green) */}
       <div style={{
         position: 'absolute',
         bottom: '32px',
@@ -242,10 +262,10 @@ function Hero() {
         alignItems: 'center',
         gap: '8px',
       }} aria-hidden="true">
-        <span style={{ fontSize: '10px', textTransform: 'uppercase', letterSpacing: '0.14em', color: '#555' }}>Scroll</span>
+        <span style={{ fontSize: '10px', textTransform: 'uppercase', letterSpacing: '0.14em', color: '#64748B' }}>Scroll</span>
         <div style={{
           width: '1px', height: '40px',
-          background: 'linear-gradient(180deg, #C8A45C, transparent)',
+          background: 'linear-gradient(180deg, #04AF44, transparent)',
           animation: 'scrollIndicator 1.5s ease-in-out infinite',
         }} />
       </div>
@@ -277,13 +297,13 @@ function StatsStrip() {
   }, []);
 
   const years = useCountUp(12, 1600, started);
-  const brands = useCountUp(5, 1200, started);
+  const reduction = useCountUp(40, 1500, started);
 
   return (
     <section ref={ref} style={{
       position: 'relative',
       zIndex: 3,
-      background: 'linear-gradient(135deg, #C8A45C 0%, #D4B76A 50%, #C8A45C 100%)',
+      background: 'linear-gradient(135deg, #0057A8 0%, #04AF44 50%, #0057A8 100%)',
       padding: '0 48px',
     }} aria-label="Key statistics">
       <div style={{
@@ -291,24 +311,24 @@ function StatsStrip() {
         margin: '0 auto',
         display: 'grid',
         gridTemplateColumns: 'repeat(4, 1fr)',
-        borderLeft: '1px solid rgba(10,10,10,0.12)',
+        borderLeft: '1px solid rgba(255,255,255,0.15)',
       }} className="stats-strip-grid">
         {[
-          { value: `${years}+`, suffix: '', label: 'Years in Business', icon: '🏆' },
-          { value: `${brands}`, suffix: '', label: 'Major Brands Supported', icon: '🖨️' },
-          { value: '100', suffix: '%', label: 'Quality Guarantee', icon: '✅' },
-          { value: '24', suffix: 'hr', label: 'Response Time', icon: '⚡' },
+          { value: `${years}+`, suffix: '', label: 'Years of Engineering', icon: '🏆' },
+          { value: `${reduction}`, suffix: '%', label: 'Average Cost Reduction', icon: '💰' },
+          { value: '4.4', suffix: 'x', label: 'Lower Carbon Footprint', icon: '🌱' },
+          { value: '100', suffix: '%', label: 'Quality Guarantee', icon: '🛡️' },
         ].map((stat) => (
           <div key={stat.label} style={{
             padding: '36px 32px',
-            borderRight: '1px solid rgba(10,10,10,0.12)',
+            borderRight: '1px solid rgba(255,255,255,0.15)',
             textAlign: 'center',
           }}>
             <div style={{ fontSize: '28px', marginBottom: '6px' }} aria-hidden="true">{stat.icon}</div>
-            <div style={{ fontSize: 'clamp(28px, 3vw, 44px)', fontWeight: 700, color: '#0A0A0A', lineHeight: 1, letterSpacing: '-0.02em' }}>
+            <div style={{ fontSize: 'clamp(28px, 3vw, 44px)', fontWeight: 700, color: '#FFFFFF', lineHeight: 1, letterSpacing: '-0.02em' }}>
               {stat.value}<span style={{ fontSize: '60%' }}>{stat.suffix}</span>
             </div>
-            <div style={{ fontSize: '12px', fontWeight: 500, textTransform: 'uppercase', letterSpacing: '0.08em', color: 'rgba(10,10,10,0.6)', marginTop: '8px' }}>
+            <div style={{ fontSize: '12px', fontWeight: 500, textTransform: 'uppercase', letterSpacing: '0.08em', color: 'rgba(255,255,255,0.85)', marginTop: '8px' }}>
               {stat.label}
             </div>
           </div>
@@ -332,7 +352,7 @@ function AboutPreview() {
     <section id="about" aria-label="About Us" style={{
       position: 'relative',
       zIndex: 3,
-      backgroundColor: '#F5F3EE',
+      backgroundColor: '#FFFFFF',
       padding: '140px 48px',
     }}>
       <div style={{
@@ -346,31 +366,31 @@ function AboutPreview() {
 
         {/* Left */}
         <div ref={leftRef}>
-          <div className="section-label" style={{ color: '#C8A45C', marginBottom: '24px' }}>
-            About Us
+          <div className="section-label" style={{ color: '#04AF44', marginBottom: '24px' }}>
+            Local Remanufacturer
           </div>
-          <div className="gold-line" style={{ marginBottom: '28px' }} aria-hidden="true" />
+          <div className="gold-line" style={{ marginBottom: '28px', background: '#0057A8' }} aria-hidden="true" />
 
           <h2 style={{
             fontSize: 'clamp(28px, 3vw, 48px)',
             fontWeight: 600,
-            color: '#0A0A0A',
+            color: '#191919',
             lineHeight: 1.1,
             letterSpacing: '-0.02em',
             marginBottom: '28px',
           }}>
-            Kuwait's leading remanufactured cartridge supplier since 2012
+            Pioneering circular economy printing in Kuwait
           </h2>
 
-          <p style={{ fontSize: '16px', color: '#555', lineHeight: 1.75, marginBottom: '20px' }}>
-            We are the name in remanufactured cartridge supplies distribution across the region. Leading remanufacturer of HP, Epson, Canon, Samsung and Xerox supplies — committed to quality above all else.
+          <p style={{ fontSize: '16px', color: '#64748B', lineHeight: 1.75, marginBottom: '20px' }}>
+            Genuine Toner Cartridges is the regional name in high-performance remanufactured cartridge distribution. We remanufacture mono, color, extended yield, and banking MICR supplies under strict quality control standards.
           </p>
-          <p style={{ fontSize: '16px', color: '#555', lineHeight: 1.75, marginBottom: '40px' }}>
-            Our valued clients speak for what we have delivered. Emphasizing our commitment to distributing <strong style={{ color: '#0A0A0A' }}>only quality products</strong>, we stand by every cartridge we produce.
+          <p style={{ fontSize: '16px', color: '#64748B', lineHeight: 1.75, marginBottom: '40px' }}>
+            By employing circular manufacturing principles, we rebuild empty OEM cartridges with brand new drums and custom toner formulas. This guarantees print quality that matches or exceeds brand-new cartridges while preventing tons of plastic waste from entering Kuwait's environment.
           </p>
 
           <Link to="/about" className="btn-ghost-gold">
-            Our Story
+            Our Technology
             <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
               <path d="M5 12h14M12 5l7 7-7 7" />
             </svg>
@@ -379,14 +399,14 @@ function AboutPreview() {
 
         {/* Right — Image with accent */}
         <div ref={rightRef} style={{ position: 'relative' }}>
-          {/* Decorative gold square */}
+          {/* Decorative blue square */}
           <div style={{
             position: 'absolute',
             top: '-20px',
             right: '-20px',
             width: '120px',
             height: '120px',
-            border: '2px solid rgba(200,164,92,0.2)',
+            border: '2px solid rgba(0, 87, 168, 0.2)',
             borderRadius: '12px',
             zIndex: 0,
           }} aria-hidden="true" />
@@ -397,11 +417,11 @@ function AboutPreview() {
             borderRadius: '16px',
             overflow: 'hidden',
             aspectRatio: '4/5',
-            boxShadow: '0 24px 80px rgba(0,0,0,0.12)',
+            boxShadow: '0 24px 80px rgba(0,0,0,0.06)',
           }}>
             <img
               src="./images/img-office-interior.jpg"
-              alt="Genuine Toner Cartridges office and production facility in Kuwait"
+              alt="Genuine Toner Cartridges production facility in Kuwait"
               loading="lazy"
               style={{ width: '100%', height: '100%', objectFit: 'cover' }}
             />
@@ -410,15 +430,15 @@ function AboutPreview() {
               position: 'absolute',
               bottom: '24px',
               left: '24px',
-              background: 'rgba(10,10,10,0.88)',
+              background: 'rgba(255,255,255,0.92)',
               backdropFilter: 'blur(12px)',
               borderRadius: '12px',
               padding: '16px 20px',
-              border: '1px solid rgba(200,164,92,0.2)',
+              border: '1px solid rgba(0, 87, 168, 0.15)',
             }}>
-              <div style={{ fontSize: '11px', textTransform: 'uppercase', letterSpacing: '0.1em', color: '#C8A45C', marginBottom: '4px' }}>Established</div>
-              <div style={{ fontSize: '24px', fontWeight: 700, color: '#F5F3EE', lineHeight: 1 }}>2012</div>
-              <div style={{ fontSize: '12px', color: '#8A8A8A', marginTop: '4px' }}>Made in Kuwait</div>
+              <div style={{ fontSize: '11px', textTransform: 'uppercase', letterSpacing: '0.1em', color: '#04AF44', marginBottom: '4px', fontWeight: 600 }}>Established</div>
+              <div style={{ fontSize: '24px', fontWeight: 700, color: '#191919', lineHeight: 1 }}>2012</div>
+              <div style={{ fontSize: '12px', color: '#64748B', marginTop: '4px' }}>Made in Kuwait 🇰🇼</div>
             </div>
           </div>
         </div>
@@ -440,18 +460,18 @@ function Mission() {
     <section aria-label="Our Mission" style={{
       position: 'relative',
       zIndex: 3,
-      backgroundColor: '#0A0A0A',
+      backgroundColor: '#F8FAFC',
       padding: '140px 48px',
       overflow: 'hidden',
     }}>
-      {/* Large decorative quote mark */}
+      {/* Large decorative quote mark (blue tint) */}
       <div style={{
         position: 'absolute',
         top: '40px',
         left: '48px',
         fontSize: 'clamp(120px, 18vw, 240px)',
         fontWeight: 700,
-        color: 'rgba(200,164,92,0.04)',
+        color: 'rgba(0, 87, 168, 0.03)',
         lineHeight: 1,
         fontFamily: 'Georgia, serif',
         userSelect: 'none',
@@ -465,37 +485,37 @@ function Mission() {
         position: 'relative',
         zIndex: 1,
       }}>
-        <div className="section-label" style={{ justifyContent: 'center', marginBottom: '32px' }}>
-          Our Mission
+        <div className="section-label" style={{ justifyContent: 'center', marginBottom: '32px', color: '#04AF44' }}>
+          Sustainable Promise
         </div>
 
         <blockquote style={{
           fontSize: 'clamp(22px, 3.5vw, 44px)',
           fontWeight: 500,
-          color: '#F5F3EE',
+          color: '#191919',
           lineHeight: 1.25,
           letterSpacing: '-0.015em',
           margin: 0,
           fontStyle: 'normal',
         }}>
-          We are determined to provide the highest quality sales and service to every Genuine Toner Cartridges customer.
+          Delivering OEM-level print quality and performance while actively reducing environmental footprint.
         </blockquote>
 
         <div style={{
           width: '60px',
           height: '2px',
-          background: 'linear-gradient(90deg, transparent, #C8A45C, transparent)',
+          background: 'linear-gradient(90deg, transparent, #04AF44, transparent)',
           margin: '40px auto',
         }} aria-hidden="true" />
 
         <p style={{
           fontSize: '17px',
-          color: '#8A8A8A',
+          color: '#64748B',
           lineHeight: 1.75,
-          maxWidth: '640px',
+          maxWidth: '660px',
           margin: '0 auto 40px',
         }}>
-          Every Genuine Toner cartridge is 100% unconditionally guaranteed to perform, meeting or exceeding its comparable OEM cartridge. Properly remanufactured toner cartridges will not damage your copy machine or printer.
+          Every remanufactured cartridge is built with brand new critical components and matches standard OEM yields. We guarantee printer safety and output clarity under our 100% unconditional performance warranty.
         </p>
 
         <div style={{ display: 'flex', gap: '16px', justifyContent: 'center', flexWrap: 'wrap' }}>
@@ -524,40 +544,42 @@ function ProductsPreview() {
     {
       num: '01',
       icon: (
-        <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#C8A45C" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+        <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#0057A8" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+          <path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/>
+          <polyline points="3.27 6.96 12 12.01 20.73 6.96"/>
+          <line x1="12" y1="22.08" x2="12" y2="12"/>
+        </svg>
+      ),
+      title: 'Genuine Brand Compatible Toner',
+      body: "Premium fresh-built laser toner cartridges sold under our registered Genuine Brand. Specifically engineered with fresh components to provide flawless office prints.",
+      image: '/images/toner_cartridge_box.png',
+      features: ['100% brand new casing', 'Fresh chemical toner load', 'Guaranteed high-density prints'],
+    },
+    {
+      num: '02',
+      icon: (
+        <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#0057A8" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
           <rect x="2" y="6" width="20" height="12" rx="2"/>
           <path d="M6 12h.01M18 12h.01"/>
           <circle cx="12" cy="12" r="2"/>
         </svg>
       ),
-      title: 'Laser Toner Cartridges',
-      body: "Remanufactured to Genuine Toner Cartridges' exacting standards. Recycled laser toner cartridges equal or outperform new OEM cartridges. Supporting HP, Epson, Canon, Samsung and Xerox.",
-      features: ['OEM-level output quality', 'Extended drum life', '100% performance guarantee'],
-    },
-    {
-      num: '02',
-      icon: (
-        <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#C8A45C" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
-          <rect x="1" y="4" width="22" height="16" rx="2"/>
-          <path d="M1 10h22"/>
-          <path d="M7 15h3M14 15h3"/>
-        </svg>
-      ),
-      title: 'MICR Toner',
-      body: 'Magnetized for speed and security. Industry-leading financial institutions depend on quality MICR toner. Remanufactured for Source Tech, Lexmark, IBM and Troy printers.',
-      features: ['Bank-grade magnetization', 'ANSI standard compliant', 'Financial institution trusted'],
+      title: 'Remanufactured Ink & Toner',
+      body: "High-performance remanufactured cartridges matching standard OEM yields. Eco-friendly solution optimized for HP, Epson, Canon, Samsung, and Xerox fleets.",
+      image: '/images/remanufactured_toners.png',
+      features: ['Up to 40% cost reduction', 'Brand new drums & blades', '100% performance warranty'],
     },
     {
       num: '03',
       icon: (
-        <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#C8A45C" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
-          <path d="M11 20A7 7 0 0 1 9.8 6.9C15.5 5.8 17 4.5 19 2c1 2 2 4.5 2 8a7 7 0 0 1-12 10z"/>
-          <path d="M2 21c0-3 1.85-5.36 5.08-6C9.5 14.52 12 13 13 12"/>
+        <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#0057A8" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+          <path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/>
         </svg>
       ),
-      title: 'Recycling Program',
-      body: 'Return your used ink and toner cartridges for recycling credit. We prioritize quality and customer satisfaction with full warranty on all remanufactured cartridges.',
-      features: ['Eco-friendly disposal', 'Recycling credit system', 'Reduce office waste'],
+      title: 'Copier & Printer Sales & Service',
+      body: 'Acquisition, leasing, and preventative maintenance support for corporate photocopiers and laser printers. Local certified technicians on call in Hawally, Kuwait.',
+      image: '/images/office_photocopier.png',
+      features: ['New & refurbished copier sales', 'Equipment lease contracts', 'Fast 4-hour on-site diagnosis'],
     },
   ];
 
@@ -565,24 +587,24 @@ function ProductsPreview() {
     <section id="products" aria-label="Our Products" style={{
       position: 'relative',
       zIndex: 3,
-      backgroundColor: '#F5F3EE',
+      backgroundColor: '#FFFFFF',
       padding: '140px 48px',
     }}>
       <div style={{ maxWidth: '1400px', margin: '0 auto' }}>
         <div ref={headerRef} style={{ textAlign: 'center', marginBottom: '72px' }}>
-          <div className="section-label" style={{ justifyContent: 'center', color: '#C8A45C', marginBottom: '20px' }}>
-            What We Offer
+          <div className="section-label" style={{ justifyContent: 'center', color: '#04AF44', marginBottom: '20px' }}>
+            Product Portfolio
           </div>
           <h2 style={{
             fontSize: 'clamp(28px, 4vw, 52px)',
             fontWeight: 600,
-            color: '#0A0A0A',
+            color: '#191919',
             lineHeight: 1.05,
             letterSpacing: '-0.02em',
-            maxWidth: '600px',
+            maxWidth: '640px',
             margin: '0 auto',
           }}>
-            Premium Remanufactured Toner Cartridges
+            Sustainable supplies for your printer fleets
           </h2>
         </div>
 
@@ -597,41 +619,61 @@ function ProductsPreview() {
               className="card-gold-hover"
               style={{
                 backgroundColor: '#FFFFFF',
-                border: '1px solid #E0DDD6',
+                border: '1px solid #E2E8F0',
                 borderRadius: '16px',
                 padding: '48px 36px',
                 position: 'relative',
                 overflow: 'hidden',
               }}
             >
-              {/* Gold left accent bar */}
+              {/* Blue/Green top line accent */}
               <div style={{
                 position: 'absolute',
                 top: 0,
                 left: 0,
-                bottom: 0,
-                width: '3px',
-                background: 'linear-gradient(180deg, #C8A45C, #E8D5A3, #C8A45C)',
-                borderRadius: '3px 0 0 3px',
+                right: 0,
+                height: '3px',
+                background: 'linear-gradient(90deg, #0057A8, #04AF44, #0057A8)',
+                borderRadius: '3px 3px 0 0',
               }} aria-hidden="true" />
+
+              {p.image && (
+                <div style={{
+                  width: 'calc(100% + 72px)',
+                  height: '200px',
+                  margin: '-48px -36px 28px -36px',
+                  overflow: 'hidden',
+                  borderBottom: '1px solid #E2E8F0',
+                }}>
+                  <img
+                    src={p.image}
+                    alt={p.title}
+                    style={{
+                      width: '100%',
+                      height: '100%',
+                      objectFit: 'cover',
+                    }}
+                  />
+                </div>
+              )}
 
               {/* Number */}
               <div style={{
                 fontSize: '56px',
                 fontWeight: 200,
-                color: 'rgba(200,164,92,0.15)',
+                color: 'rgba(4,175,68,0.12)',
                 lineHeight: 1,
                 letterSpacing: '-0.02em',
                 marginBottom: '20px',
                 fontFamily: 'var(--font-sans)',
               }}>{p.num}</div>
 
-              {/* Icon */}
+              {/* Icon wrapper */}
               <div style={{
                 width: '56px',
                 height: '56px',
                 borderRadius: '12px',
-                background: 'rgba(200,164,92,0.07)',
+                background: 'rgba(0, 87, 168, 0.05)',
                 display: 'flex',
                 alignItems: 'center',
                 justifyContent: 'center',
@@ -643,14 +685,14 @@ function ProductsPreview() {
               <h3 style={{
                 fontSize: '20px',
                 fontWeight: 600,
-                color: '#0A0A0A',
+                color: '#191919',
                 marginBottom: '14px',
                 letterSpacing: '-0.01em',
               }}>{p.title}</h3>
 
               <p style={{
                 fontSize: '14px',
-                color: '#777',
+                color: '#64748B',
                 lineHeight: 1.7,
                 marginBottom: '24px',
               }}>{p.body}</p>
@@ -660,9 +702,9 @@ function ProductsPreview() {
                 {p.features.map((f) => (
                   <li key={f} style={{
                     fontSize: '13px',
-                    color: '#555',
+                    color: '#64748B',
                     padding: '8px 0',
-                    borderTop: '1px solid #F0EDE6',
+                    borderTop: '1px solid #E2E8F0',
                     display: 'flex',
                     alignItems: 'center',
                     gap: '8px',
@@ -670,7 +712,7 @@ function ProductsPreview() {
                     <span style={{
                       width: '6px', height: '6px',
                       borderRadius: '50%',
-                      background: '#C8A45C',
+                      background: '#04AF44',
                       flexShrink: 0,
                     }} aria-hidden="true" />
                     {f}
@@ -701,17 +743,17 @@ function ProductsPreview() {
 /* ─── Brands Section ───────────────────────────────────── */
 function Brands() {
   const titleRef = useFadeInLeft(0);
-  const brands = ['HP', 'EPSON', 'CANON', 'SAMSUNG', 'XEROX'];
+  const brands = ['HP', 'EPSON', 'CANON', 'SAMSUNG', 'XEROX', 'BROTHER', 'LEXMARK'];
 
   return (
     <section aria-label="Supported Brands" style={{
       position: 'relative',
       zIndex: 3,
-      backgroundColor: '#0A0A0A',
+      backgroundColor: '#F8FAFC',
       padding: '120px 48px',
       overflow: 'hidden',
     }}>
-      {/* Background text */}
+      {/* Background text (Blue tint) */}
       <div style={{
         position: 'absolute',
         top: '50%',
@@ -719,7 +761,7 @@ function Brands() {
         transform: 'translate(-50%,-50%)',
         fontSize: 'clamp(100px, 20vw, 280px)',
         fontWeight: 700,
-        color: 'rgba(255,255,255,0.02)',
+        color: 'rgba(0, 87, 168, 0.02)',
         whiteSpace: 'nowrap',
         letterSpacing: '0.1em',
         userSelect: 'none',
@@ -728,16 +770,16 @@ function Brands() {
 
       <div style={{ maxWidth: '1400px', margin: '0 auto' }}>
         <div ref={titleRef} style={{ marginBottom: '80px' }}>
-          <div className="section-label" style={{ marginBottom: '24px' }}>Trusted Brands</div>
+          <div className="section-label" style={{ marginBottom: '24px', color: '#04AF44' }}>Trusted Brands</div>
           <h2 style={{
             fontSize: 'clamp(28px, 4vw, 52px)',
             fontWeight: 600,
-            color: '#F5F3EE',
+            color: '#191919',
             lineHeight: 1.05,
             maxWidth: '700px',
             letterSpacing: '-0.02em',
           }}>
-            We remanufacture cartridges for the world's leading printer manufacturers
+            Fully compatible supplies supporting major printer fleets
           </h2>
         </div>
 
@@ -746,12 +788,12 @@ function Brands() {
           {/* Fade edges */}
           <div style={{
             position: 'absolute', inset: '0 0 0 auto', width: '120px',
-            background: 'linear-gradient(90deg, transparent, #0A0A0A)',
+            background: 'gradient',
             zIndex: 2, pointerEvents: 'none',
           }} aria-hidden="true" />
           <div style={{
             position: 'absolute', inset: '0 auto 0 0', width: '120px',
-            background: 'linear-gradient(90deg, #0A0A0A, transparent)',
+            background: 'gradient',
             zIndex: 2, pointerEvents: 'none',
           }} aria-hidden="true" />
 
@@ -762,7 +804,6 @@ function Brands() {
             animation: 'marquee 20s linear infinite',
             width: 'max-content',
           }}>
-            {/* Double the brands for seamless loop */}
             {[...brands, ...brands].map((brand, i) => (
               <span
                 key={`${brand}-${i}`}
@@ -770,13 +811,13 @@ function Brands() {
                   fontSize: 'clamp(32px, 5vw, 72px)',
                   fontWeight: 700,
                   letterSpacing: '0.08em',
-                  color: 'rgba(245,243,238,0.08)',
+                  color: 'rgba(0, 87, 168, 0.08)',
                   transition: 'color 0.4s ease',
                   cursor: 'default',
                   whiteSpace: 'nowrap',
                 }}
-                onMouseEnter={(e) => { e.currentTarget.style.color = '#C8A45C'; }}
-                onMouseLeave={(e) => { e.currentTarget.style.color = 'rgba(245,243,238,0.08)'; }}
+                onMouseEnter={(e) => { e.currentTarget.style.color = '#0057A8'; }}
+                onMouseLeave={(e) => { e.currentTarget.style.color = 'rgba(0, 87, 168, 0.08)'; }}
                 aria-label={brand}
               >
                 {brand}
@@ -785,14 +826,13 @@ function Brands() {
           </div>
         </div>
 
-        {/* Support note */}
         <p style={{
           marginTop: '60px',
           fontSize: '14px',
-          color: '#555',
+          color: '#64748B',
           textAlign: 'center',
         }}>
-          All cartridges remanufactured in-house by certified technicians in Kuwait
+          All trademarks and brand names are properties of their respective owners and used for compatibility explanation only.
         </p>
       </div>
 
@@ -809,37 +849,37 @@ function Industries() {
   const cardsRef = useStaggerChildren(0.08);
 
   const industries = [
-    { icon: '🏦', title: 'Banking & Finance', desc: 'MICR toner for secure check processing' },
-    { icon: '🏥', title: 'Healthcare', desc: 'Reliable printing for medical records' },
-    { icon: '🏛️', title: 'Government', desc: 'Certified, compliant printing solutions' },
-    { icon: '🎓', title: 'Education', desc: 'Cost-effective printing for campuses' },
-    { icon: '🏢', title: 'Corporate', desc: 'High-volume office printing solutions' },
-    { icon: '🛒', title: 'Retail & Commerce', desc: 'Receipt and label printing supplies' },
+    { icon: '🏦', title: 'Banking & Finance', desc: 'Secure check printing supplies and compliance testing.' },
+    { icon: '🏥', title: 'Healthcare', desc: 'Patient records, charts, and administrative documentation.' },
+    { icon: '🏛️', title: 'Government', desc: 'Patent-safe, compliant printing for official archives.' },
+    { icon: '🎓', title: 'Education & Schools', desc: 'Low-cost, high-volume educational materials distribution.' },
+    { icon: '🏢', title: 'Corporate Offices', desc: 'Multi-brand printer fleet support and MPS integration.' },
+    { icon: '🛒', title: 'Retail & Logistics', desc: 'Zero-waste mailing labels and receipt solutions.' },
   ];
 
   return (
     <section aria-label="Industries We Serve" style={{
       position: 'relative',
       zIndex: 3,
-      backgroundColor: '#F5F3EE',
+      backgroundColor: '#FFFFFF',
       padding: '140px 48px',
     }}>
       <div style={{ maxWidth: '1400px', margin: '0 auto' }}>
         <div ref={headerRef} style={{ textAlign: 'center', marginBottom: '72px' }}>
-          <div className="section-label" style={{ justifyContent: 'center', color: '#C8A45C', marginBottom: '20px' }}>Industries</div>
+          <div className="section-label" style={{ justifyContent: 'center', color: '#04AF44', marginBottom: '20px' }}>Industries</div>
           <h2 style={{
             fontSize: 'clamp(28px, 4vw, 52px)',
             fontWeight: 600,
-            color: '#0A0A0A',
+            color: '#191919',
             lineHeight: 1.05,
             letterSpacing: '-0.02em',
             maxWidth: '600px',
             margin: '0 auto 16px',
           }}>
-            Serving businesses across all sectors
+            Serving business needs across all sectors
           </h2>
-          <p style={{ fontSize: '16px', color: '#777', maxWidth: '500px', margin: '0 auto' }}>
-            From banking to education, we deliver reliable printing supplies to Kuwait's most demanding industries.
+          <p style={{ fontSize: '16px', color: '#64748B', maxWidth: '500px', margin: '0 auto' }}>
+            We support fleet operations for Kuwait's leading banking, medical, corporate, and retail groups.
           </p>
         </div>
 
@@ -850,8 +890,8 @@ function Industries() {
         }} className="industries-grid">
           {industries.map((ind) => (
             <div key={ind.title} className="industry-card" style={{
-              background: '#FFFFFF',
-              border: '1px solid #E0DDD6',
+              background: '#F8FAFC',
+              border: '1px solid #E2E8F0',
               borderRadius: '16px',
               padding: '36px 28px',
               textAlign: 'center',
@@ -859,19 +899,19 @@ function Industries() {
               cursor: 'default',
             }}
               onMouseEnter={(e) => {
-                e.currentTarget.style.borderColor = 'rgba(200,164,92,0.3)';
+                e.currentTarget.style.borderColor = 'rgba(0, 87, 168, 0.25)';
                 e.currentTarget.style.transform = 'translateY(-4px)';
-                e.currentTarget.style.boxShadow = '0 16px 48px rgba(0,0,0,0.08)';
+                e.currentTarget.style.boxShadow = '0 16px 48px rgba(0,0,0,0.04)';
               }}
               onMouseLeave={(e) => {
-                e.currentTarget.style.borderColor = '#E0DDD6';
+                e.currentTarget.style.borderColor = '#E2E8F0';
                 e.currentTarget.style.transform = 'translateY(0)';
                 e.currentTarget.style.boxShadow = 'none';
               }}
             >
               <div style={{ fontSize: '40px', marginBottom: '16px' }} aria-hidden="true">{ind.icon}</div>
-              <h3 style={{ fontSize: '16px', fontWeight: 600, color: '#0A0A0A', marginBottom: '8px' }}>{ind.title}</h3>
-              <p style={{ fontSize: '13px', color: '#8A8A8A', lineHeight: 1.6 }}>{ind.desc}</p>
+              <h3 style={{ fontSize: '16px', fontWeight: 600, color: '#191919', marginBottom: '8px' }}>{ind.title}</h3>
+              <p style={{ fontSize: '13px', color: '#64748B', lineHeight: 1.65 }}>{ind.desc}</p>
             </div>
           ))}
         </div>
@@ -894,43 +934,43 @@ function ValuesPreview() {
   const values = [
     {
       icon: (
-        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#C8A45C" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#0057A8" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
           <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
           <path d="M9 12l2 2 4-4"/>
         </svg>
       ),
-      title: 'Quality First',
-      desc: 'Every cartridge remanufactured in Kuwait by in-house technical experts to achieve optimum output.',
+      title: 'Quality Assured',
+      desc: 'Tested to match OEM density and page yields. Guaranteed safety for all printer models.',
     },
     {
       icon: (
-        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#C8A45C" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#0057A8" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
           <path d="M11 20A7 7 0 0 1 9.8 6.9C15.5 5.8 17 4.5 19 2c1 2 2 4.5 2 8a7 7 0 0 1-12 10z"/>
         </svg>
       ),
-      title: 'Eco-Friendly',
-      desc: 'Return used ink and toner cartridges for recycling credit. Smart, responsible choices for your office.',
+      title: 'Eco-Commitment',
+      desc: 'GreenCircle certified manufacturing processes and circular economy recovery programs.',
     },
     {
       icon: (
-        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#C8A45C" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#0057A8" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
           <rect x="2" y="6" width="20" height="12" rx="2"/>
           <circle cx="12" cy="12" r="2"/>
           <path d="M6 12h.01M18 12h.01"/>
         </svg>
       ),
-      title: 'Cost Reduction',
-      desc: 'Best products at fair prices. Significant cost reduction opportunities without compromising quality.',
+      title: 'Cost Savings',
+      desc: 'Save up to 40% compared to OEM cartridges. Premium quality at competitive pricing.',
     },
     {
       icon: (
-        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#C8A45C" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#0057A8" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
           <circle cx="12" cy="8" r="6"/>
           <path d="M15.477 12.89L17 22l-5-3-5 3 1.523-9.11"/>
         </svg>
       ),
-      title: 'Full Compliance',
-      desc: 'Cartridges built without violating technical and trademark patents. Reliable and fully compliant.',
+      title: 'Patent-Safe Compliance',
+      desc: 'Built using safe trademark processes to eliminate patent infringements for corporate buyers.',
     },
   ];
 
@@ -938,7 +978,7 @@ function ValuesPreview() {
     <section id="values" aria-label="Core Values" style={{
       position: 'relative',
       zIndex: 3,
-      backgroundColor: '#0A0A0A',
+      backgroundColor: '#F8FAFC',
       padding: '140px 48px',
     }}>
       <div style={{
@@ -956,51 +996,51 @@ function ValuesPreview() {
             borderRadius: '16px',
             overflow: 'hidden',
             aspectRatio: '3/4',
-            boxShadow: '0 32px 80px rgba(0,0,0,0.4)',
+            boxShadow: '0 24px 64px rgba(0,0,0,0.1)',
           }}>
             <img
               src="./images/img-quality-check.jpg"
-              alt="Quality inspection process at Genuine Toner Cartridges"
+              alt="Quality check inspection at Genuine Toner Cartridges"
               loading="lazy"
               style={{ width: '100%', height: '100%', objectFit: 'cover' }}
             />
           </div>
-          {/* Floating warranty badge */}
+          {/* Floating warranty badge (Clover Green) */}
           <div style={{
             position: 'absolute',
             bottom: '-20px',
             right: '-20px',
-            background: '#C8A45C',
+            background: '#04AF44',
             borderRadius: '16px',
             padding: '20px 24px',
-            boxShadow: '0 16px 48px rgba(200,164,92,0.3)',
+            boxShadow: '0 16px 48px rgba(4,175,68,0.3)',
           }}>
-            <div style={{ fontSize: '11px', fontWeight: 600, textTransform: 'uppercase', letterSpacing: '0.1em', color: '#0A0A0A', opacity: 0.6, marginBottom: '4px' }}>Warranty</div>
-            <div style={{ fontSize: '18px', fontWeight: 700, color: '#0A0A0A', lineHeight: 1 }}>100%</div>
-            <div style={{ fontSize: '12px', color: '#0A0A0A', opacity: 0.7, marginTop: '2px' }}>Guaranteed</div>
+            <div style={{ fontSize: '11px', fontWeight: 600, textTransform: 'uppercase', letterSpacing: '0.1em', color: '#FFFFFF', opacity: 0.8, marginBottom: '4px' }}>Warranty</div>
+            <div style={{ fontSize: '18px', fontWeight: 700, color: '#FFFFFF', lineHeight: 1 }}>100%</div>
+            <div style={{ fontSize: '12px', color: '#FFFFFF', opacity: 0.9, marginTop: '2px' }}>Guaranteed</div>
           </div>
         </div>
 
         {/* Right — Values list */}
         <div ref={textRef}>
-          <div className="section-label" style={{ marginBottom: '24px' }}>Core Values</div>
-          <div className="gold-line" style={{ marginBottom: '28px', background: '#C8A45C' }} aria-hidden="true" />
+          <div className="section-label" style={{ marginBottom: '24px', color: '#04AF44' }}>Core Values</div>
+          <div className="gold-line" style={{ marginBottom: '28px', background: '#0057A8' }} aria-hidden="true" />
 
           <h2 style={{
             fontSize: 'clamp(24px, 2.5vw, 40px)',
             fontWeight: 600,
-            color: '#F5F3EE',
+            color: '#191919',
             lineHeight: 1.1,
             marginBottom: '40px',
             letterSpacing: '-0.01em',
           }}>
-            Relentless commitment to quality
+            Relentless commitment to quality & sustainability
           </h2>
 
           <div>
             {values.map((v, i) => (
               <div key={i} style={{
-                borderTop: '1px solid rgba(245,243,238,0.07)',
+                borderTop: '1px solid #E2E8F0',
                 padding: '24px 0',
                 display: 'flex',
                 gap: '16px',
@@ -1015,7 +1055,7 @@ function ValuesPreview() {
                   width: '44px',
                   height: '44px',
                   borderRadius: '10px',
-                  background: 'rgba(200,164,92,0.08)',
+                  background: 'rgba(0, 87, 168, 0.06)',
                   display: 'flex',
                   alignItems: 'center',
                   justifyContent: 'center',
@@ -1024,8 +1064,8 @@ function ValuesPreview() {
                   {v.icon}
                 </div>
                 <div>
-                  <h4 style={{ fontSize: '16px', fontWeight: 600, color: '#F5F3EE', marginBottom: '6px' }}>{v.title}</h4>
-                  <p style={{ fontSize: '14px', color: '#8A8A8A', lineHeight: 1.65 }}>{v.desc}</p>
+                  <h4 style={{ fontSize: '16px', fontWeight: 600, color: '#191919', marginBottom: '6px' }}>{v.title}</h4>
+                  <p style={{ fontSize: '14px', color: '#64748B', lineHeight: 1.65 }}>{v.desc}</p>
                 </div>
               </div>
             ))}
@@ -1048,26 +1088,26 @@ function Testimonials() {
 
   const testimonials = [
     {
-      quote: "Genuine Toner Cartridges has been our trusted supplier for over 5 years. The quality consistently matches our OEM cartridges at a fraction of the cost. Exceptional service.",
+      quote: "Genuine Toner Cartridges has been our supplier for over 5 years. Their remanufactured cartridges deliver OEM-level crispness and yields at a fraction of the cost.",
       name: "Ahmad Al-Rashidi",
       role: "IT Manager",
-      company: "Kuwait Finance House",
+      company: "Kuwait Corporate Group",
       avatar: "A",
       stars: 5,
     },
     {
-      quote: "The MICR toner quality is outstanding. Our check processing machines run flawlessly with their remanufactured cartridges. Highly recommended for banking operations.",
+      quote: "The bank-grade MICR toner cartridges pass routing sorting perfectly. We rely on their high-security magnetized supplies for check run operations across our branches.",
       name: "Sara Al-Mutairi",
       role: "Operations Director",
-      company: "National Bank of Kuwait",
+      company: "Kuwait Finance Group",
       avatar: "S",
       stars: 5,
     },
     {
-      quote: "Switching to Genuine Toner reduced our printing costs by 40%. The recycling program is a bonus — great for our sustainability goals. Will never go back to OEM.",
+      quote: "Switching to their remanufactured cartridges cut printing costs by 40%. The collection recycling credits fit our environmental and corporate sustainability guidelines.",
       name: "Khalid Al-Sabah",
-      role: "Procurement Manager",
-      company: "Kuwait University",
+      role: "Procurement Lead",
+      company: "Al-Sabah Ventures",
       avatar: "K",
       stars: 5,
     },
@@ -1077,18 +1117,18 @@ function Testimonials() {
     <section aria-label="Customer Testimonials" style={{
       position: 'relative',
       zIndex: 3,
-      backgroundColor: '#F5F3EE',
+      backgroundColor: '#FFFFFF',
       padding: '140px 48px',
     }}>
       <div style={{ maxWidth: '1400px', margin: '0 auto' }}>
         <div ref={headerRef} style={{ textAlign: 'center', marginBottom: '72px' }}>
-          <div className="section-label" style={{ justifyContent: 'center', color: '#C8A45C', marginBottom: '20px' }}>
+          <div className="section-label" style={{ justifyContent: 'center', color: '#04AF44', marginBottom: '20px' }}>
             Testimonials
           </div>
           <h2 style={{
             fontSize: 'clamp(28px, 4vw, 52px)',
             fontWeight: 600,
-            color: '#0A0A0A',
+            color: '#191919',
             lineHeight: 1.05,
             letterSpacing: '-0.02em',
           }}>
@@ -1104,7 +1144,7 @@ function Testimonials() {
           {testimonials.map((t) => (
             <article key={t.name} style={{
               background: '#FFFFFF',
-              border: '1px solid #E0DDD6',
+              border: '1px solid #E2E8F0',
               borderRadius: '20px',
               padding: '40px',
               transition: 'all 0.35s ease',
@@ -1113,38 +1153,38 @@ function Testimonials() {
               cursor: 'default',
             }}
               onMouseEnter={(e) => {
-                e.currentTarget.style.boxShadow = '0 24px 64px rgba(0,0,0,0.10)';
-                e.currentTarget.style.borderColor = 'rgba(200,164,92,0.25)';
+                e.currentTarget.style.boxShadow = '0 24px 64px rgba(0,0,0,0.06)';
+                e.currentTarget.style.borderColor = 'rgba(4,175,68,0.25)';
                 e.currentTarget.style.transform = 'translateY(-4px)';
               }}
               onMouseLeave={(e) => {
                 e.currentTarget.style.boxShadow = 'none';
-                e.currentTarget.style.borderColor = '#E0DDD6';
+                e.currentTarget.style.borderColor = '#E2E8F0';
                 e.currentTarget.style.transform = 'translateY(0)';
               }}
             >
-              {/* Large quote mark */}
+              {/* Large quote mark (green tint) */}
               <div style={{
                 position: 'absolute',
                 top: '20px',
                 right: '24px',
                 fontSize: '72px',
-                color: 'rgba(200,164,92,0.1)',
+                color: 'rgba(4,175,68,0.08)',
                 lineHeight: 1,
                 fontFamily: 'Georgia, serif',
                 userSelect: 'none',
               }} aria-hidden="true">"</div>
 
-              {/* Stars */}
+              {/* Stars (Yellow/Orange) */}
               <div style={{ display: 'flex', gap: '3px', marginBottom: '20px' }} aria-label={`${t.stars} out of 5 stars`}>
                 {[...Array(t.stars)].map((_, i) => (
-                  <span key={i} style={{ color: '#C8A45C', fontSize: '16px' }} aria-hidden="true">★</span>
+                  <span key={i} style={{ color: '#F59E0B', fontSize: '16px' }} aria-hidden="true">★</span>
                 ))}
               </div>
 
               <blockquote style={{
                 fontSize: '15px',
-                color: '#555',
+                color: '#64748B',
                 lineHeight: 1.75,
                 margin: '0 0 28px',
                 fontStyle: 'normal',
@@ -1157,20 +1197,20 @@ function Testimonials() {
                   width: '44px',
                   height: '44px',
                   borderRadius: '50%',
-                  background: 'linear-gradient(135deg, #C8A45C, #E8D5A3)',
+                  background: 'linear-gradient(135deg, #0057A8, #04AF44)',
                   display: 'flex',
                   alignItems: 'center',
                   justifyContent: 'center',
                   fontSize: '18px',
                   fontWeight: 600,
-                  color: '#0A0A0A',
+                  color: '#FFFFFF',
                   flexShrink: 0,
                 }} aria-hidden="true">
                   {t.avatar}
                 </div>
                 <div>
-                  <div style={{ fontSize: '14px', fontWeight: 600, color: '#0A0A0A' }}>{t.name}</div>
-                  <div style={{ fontSize: '12px', color: '#8A8A8A' }}>{t.role} · {t.company}</div>
+                  <div style={{ fontSize: '14px', fontWeight: 600, color: '#191919' }}>{t.name}</div>
+                  <div style={{ fontSize: '12px', color: '#64748B' }}>{t.role} · {t.company}</div>
                 </div>
               </div>
             </article>
@@ -1194,27 +1234,23 @@ function FAQ() {
   const faqs = [
     {
       q: "Are remanufactured cartridges as good as OEM cartridges?",
-      a: "Yes. When remanufactured to our high quality standards, recycled laser toner cartridges will equal or outperform new OEM cartridges. Every cartridge is 100% unconditionally guaranteed to perform, meeting or exceeding its comparable OEM equivalent.",
+      a: "Yes. Our remanufactured cartridges are built under strict quality guidelines to match or exceed OEM print density and page yields. Every cartridge goes through testing and is backed by our 100% performance warranty.",
     },
     {
-      q: "Will remanufactured cartridges damage my printer?",
-      a: "No. Properly remanufactured toner cartridges will not damage your copy machine or printer. Our cartridges are built without violating technical and trademark patents from registered owners, ensuring full compatibility and reliability.",
+      q: "Will using remanufactured cartridges void my printer warranty?",
+      a: "No. Consumer protection laws prevent printer manufacturers from voiding your warranty for using remanufactured cartridges. Our cartridges are built using patent-safe processes, making them completely safe for print fleets.",
     },
     {
-      q: "What brands do you support?",
-      a: "We remanufacture cartridges for HP, Epson, Canon, Samsung, and Xerox printers. For MICR applications, we support Source Tech, Lexmark, IBM, and Troy (HP-based) printers used by financial institutions.",
+      q: "How do remanufactured cartridges support circular sustainability?",
+      a: "A Life Cycle Assessment (LCA) demonstrates that remanufactured cartridges reduce carbon footprint by up to 4.4x compared to new plastic cartridges. Our collection programs recover empty cartridges to completely avoid landfill waste.",
     },
     {
-      q: "What is the recycling program?",
-      a: "Our recycling program allows you to return your used ink and toner cartridges in exchange for recycling credit. This helps reduce office waste, supports environmental sustainability, and provides you with additional savings.",
+      q: "What products and brands do you support?",
+      a: "We remanufacture mono/color laser toner, extended yield toner, ink, wide format supplies, and banking MICR supplies. We support HP, Canon, Brother, Epson, Xerox, Samsung, Lexmark, and Source Tech.",
     },
     {
-      q: "How do I place an order?",
-      a: "You can place an order through our Order page, by phone at +965 2547 1616, by email at info@genuinecartridges.net, or via WhatsApp. Our representative will follow up with you within 24 hours to confirm your order details.",
-    },
-    {
-      q: "Do you offer a warranty on cartridges?",
-      a: "Yes. We provide warranty on all our remanufactured ink and toner cartridges. We stand by our products — if any cartridge fails to perform, we will replace it. Customer satisfaction is our top priority.",
+      q: "How do I return empty cartridges or place a bulk order?",
+      a: "You can submit an order request on our Order page, call us at +965 9094 2454, or email us at info@genuinecartridges.net. We will confirm your items and explain recycling credit earnings within 24 hours.",
     },
   ];
 
@@ -1222,7 +1258,7 @@ function FAQ() {
     <section aria-label="Frequently Asked Questions" style={{
       position: 'relative',
       zIndex: 3,
-      backgroundColor: '#0A0A0A',
+      backgroundColor: '#F8FAFC',
       padding: '140px 48px',
     }}>
       <div style={{
@@ -1230,11 +1266,11 @@ function FAQ() {
         margin: '0 auto',
       }}>
         <div ref={headerRef} style={{ textAlign: 'center', marginBottom: '72px' }}>
-          <div className="section-label" style={{ justifyContent: 'center', marginBottom: '20px' }}>FAQ</div>
+          <div className="section-label" style={{ justifyContent: 'center', marginBottom: '20px', color: '#04AF44' }}>FAQ</div>
           <h2 style={{
             fontSize: 'clamp(28px, 4vw, 52px)',
             fontWeight: 600,
-            color: '#F5F3EE',
+            color: '#191919',
             lineHeight: 1.05,
             letterSpacing: '-0.02em',
           }}>
@@ -1248,7 +1284,7 @@ function FAQ() {
               key={i}
               role="listitem"
               className="faq-item"
-              style={{ borderBottom: '1px solid rgba(245,243,238,0.07)' }}
+              style={{ borderBottom: '1px solid #E2E8F0' }}
             >
               <button
                 onClick={() => setOpenIndex(openIndex === i ? null : i)}
@@ -1269,7 +1305,7 @@ function FAQ() {
                 <span style={{
                   fontSize: '16px',
                   fontWeight: 500,
-                  color: openIndex === i ? '#C8A45C' : '#F5F3EE',
+                  color: openIndex === i ? '#0057A8' : '#191919',
                   lineHeight: 1.4,
                   transition: 'color 0.25s ease',
                 }}>
@@ -1280,18 +1316,18 @@ function FAQ() {
                   width: '28px',
                   height: '28px',
                   borderRadius: '50%',
-                  border: `1px solid ${openIndex === i ? '#C8A45C' : 'rgba(245,243,238,0.15)'}`,
+                  border: `1px solid ${openIndex === i ? '#0057A8' : 'rgba(0,0,0,0.15)'}`,
                   display: 'flex',
                   alignItems: 'center',
                   justifyContent: 'center',
                   transition: 'all 0.25s ease',
-                  background: openIndex === i ? 'rgba(200,164,92,0.1)' : 'transparent',
+                  background: openIndex === i ? 'rgba(0,87,168,0.05)' : 'transparent',
                 }} aria-hidden="true">
                   <svg
                     width="12" height="12"
                     viewBox="0 0 24 24"
                     fill="none"
-                    stroke={openIndex === i ? '#C8A45C' : '#8A8A8A'}
+                    stroke={openIndex === i ? '#0057A8' : '#64748B'}
                     strokeWidth="2.5"
                     strokeLinecap="round"
                     strokeLinejoin="round"
@@ -1309,7 +1345,7 @@ function FAQ() {
               }}>
                 <p style={{
                   fontSize: '15px',
-                  color: '#8A8A8A',
+                  color: '#64748B',
                   lineHeight: 1.75,
                   paddingBottom: '24px',
                   paddingRight: '52px',
@@ -1337,15 +1373,15 @@ function ContactCTA() {
     <section aria-label="Contact CTA" style={{
       position: 'relative',
       zIndex: 3,
-      backgroundColor: '#F5F3EE',
+      backgroundColor: '#FFFFFF',
       padding: '140px 48px',
       overflow: 'hidden',
     }}>
-      {/* Background pattern */}
+      {/* Background pattern (soft green and blue curves) */}
       <div style={{
         position: 'absolute',
         inset: 0,
-        backgroundImage: 'radial-gradient(circle at 20% 50%, rgba(200,164,92,0.06) 0%, transparent 50%), radial-gradient(circle at 80% 50%, rgba(200,164,92,0.04) 0%, transparent 50%)',
+        backgroundImage: 'radial-gradient(circle at 20% 50%, rgba(4,175,68,0.06) 0%, transparent 50%), radial-gradient(circle at 80% 50%, rgba(0,87,168,0.04) 0%, transparent 50%)',
         pointerEvents: 'none',
       }} aria-hidden="true" />
 
@@ -1356,30 +1392,30 @@ function ContactCTA() {
         position: 'relative',
         zIndex: 1,
       }}>
-        <div className="section-label" style={{ justifyContent: 'center', color: '#C8A45C', marginBottom: '24px' }}>
+        <div className="section-label" style={{ justifyContent: 'center', color: '#04AF44', marginBottom: '24px' }}>
           Get In Touch
         </div>
 
         <h2 style={{
           fontSize: 'clamp(32px, 5vw, 64px)',
           fontWeight: 700,
-          color: '#0A0A0A',
+          color: '#191919',
           lineHeight: 1.0,
           marginBottom: '24px',
           letterSpacing: '-0.03em',
         }}>
-          Ready to reduce your printing costs?
+          Ready to reduce your printing carbon footprint?
         </h2>
 
         <p style={{
           fontSize: '17px',
-          color: '#777',
+          color: '#64748B',
           lineHeight: 1.7,
           marginBottom: '48px',
           maxWidth: '560px',
           margin: '0 auto 48px',
         }}>
-          Contact us today for a quote on remanufactured toner cartridges. Our team responds within 24 hours.
+          Contact us today for a quote on remanufactured cartridges. Our Kuwait team handles delivery, technical support, and recycling empty cores.
         </p>
 
         <div style={{ display: 'flex', gap: '16px', justifyContent: 'center', flexWrap: 'wrap' }}>
@@ -1390,39 +1426,39 @@ function ContactCTA() {
             </svg>
           </Link>
           <a
-            href="tel:+96525471616"
+            href="tel:0096590942454"
             style={{
               display: 'inline-flex',
               alignItems: 'center',
               gap: '8px',
               padding: '16px 36px',
               borderRadius: '100px',
-              border: '1px solid rgba(10,10,10,0.15)',
-              color: '#0A0A0A',
+              border: '1px solid rgba(0,0,0,0.15)',
+              color: '#191919',
               fontSize: '14px',
               fontWeight: 500,
               textDecoration: 'none',
               transition: 'all 0.3s ease',
             }}
             onMouseEnter={(e) => {
-              e.currentTarget.style.background = 'rgba(10,10,10,0.05)';
-              e.currentTarget.style.borderColor = 'rgba(10,10,10,0.3)';
+              e.currentTarget.style.background = 'rgba(0,0,0,0.04)';
+              e.currentTarget.style.borderColor = 'rgba(0,0,0,0.25)';
             }}
             onMouseLeave={(e) => {
               e.currentTarget.style.background = 'transparent';
-              e.currentTarget.style.borderColor = 'rgba(10,10,10,0.15)';
+              e.currentTarget.style.borderColor = 'rgba(0,0,0,0.15)';
             }}
           >
             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
               <path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.9 9.81 19.79 19.79 0 01.87 1.23 2 2 0 012.86 0H5.9a2 2 0 012 1.72c.12.96.36 1.9.7 2.81a2 2 0 01-.45 2.11L6.91 7.91a16 16 0 006.18 6.18l1.27-1.27a2 2 0 012.11-.45c.91.34 1.85.58 2.81.7A2 2 0 0122 16.92z"/>
             </svg>
-            +965 2547 1616
+            +965 9094 2454
           </a>
         </div>
 
         {/* WhatsApp link */}
         <a
-          href="https://wa.me/96525471616?text=Hello%2C%20I%20would%20like%20to%20get%20a%20quote."
+          href="https://wa.me/96590942454?text=Hello%2C%20I%20would%20like%20to%20get%20a%20quote."
           target="_blank"
           rel="noopener noreferrer"
           style={{

@@ -8,38 +8,38 @@
   /* ─── Design Tokens ─────────────────────────────────── */
   :root {
     /* Brand Colors */
-    --color-ink:        #0A0A0A;
-    --color-cream:      #F5F3EE;
-    --color-gold:       #C8A45C;
-    --color-gold-light: #D4B76A;
-    --color-gold-pale:  #E8D5A3;
-    --color-muted:      #8A8A8A;
-    --color-divider:    #E0DDD6;
+    --color-ink:        #FFFFFF;
+    --color-cream:      #191919;
+    --color-gold:       #04AF44;
+    --color-gold-light: #0057A8;
+    --color-gold-pale:  #E6F5EC;
+    --color-muted:      #64748B;
+    --color-divider:    #E2E8F0;
     --color-card:       #FFFFFF;
-    --color-glass:      rgba(245, 243, 238, 0.04);
-    --color-glass-border: rgba(245, 243, 238, 0.08);
-    --color-glass-border-light: rgba(10, 10, 10, 0.08);
+    --color-glass:      rgba(0, 87, 168, 0.04);
+    --color-glass-border: rgba(0, 87, 168, 0.08);
+    --color-glass-border-light: rgba(25, 25, 25, 0.08);
 
     /* ShadCN tokens */
-    --background: 0 0% 4%;
-    --foreground: 40 14% 96%;
-    --card: 0 0% 4%;
-    --card-foreground: 40 14% 96%;
-    --popover: 0 0% 4%;
-    --popover-foreground: 40 14% 96%;
-    --primary: 38 48% 58%;
-    --primary-foreground: 0 0% 4%;
-    --secondary: 40 14% 96%;
-    --secondary-foreground: 0 0% 4%;
-    --muted: 0 0% 12%;
-    --muted-foreground: 0 0% 54%;
-    --accent: 38 48% 58%;
-    --accent-foreground: 0 0% 4%;
+    --background: 0 0% 100%;
+    --foreground: 210 40% 10%;
+    --card: 0 0% 100%;
+    --card-foreground: 210 40% 10%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 210 40% 10%;
+    --primary: 209 100% 33%;
+    --primary-foreground: 0 0% 100%;
+    --secondary: 143 96% 35%;
+    --secondary-foreground: 0 0% 100%;
+    --muted: 210 40% 96.1%;
+    --muted-foreground: 215.4 16.3% 46.9%;
+    --accent: 143 96% 35%;
+    --accent-foreground: 0 0% 100%;
     --destructive: 0 84.2% 60.2%;
     --destructive-foreground: 0 0% 98%;
-    --border: 0 0% 14%;
-    --input: 0 0% 14%;
-    --ring: 38 48% 58%;
+    --border: 214.3 31.8% 91.4%;
+    --input: 214.3 31.8% 91.4%;
+    --ring: 209 100% 33%;
     --radius: 0.625rem;
 
     /* Typography */
@@ -122,16 +122,16 @@
   ::-webkit-scrollbar { width: 6px; }
   ::-webkit-scrollbar-track { background: var(--color-ink); }
   ::-webkit-scrollbar-thumb {
-    background: rgba(200,164,92,0.3);
+    background: rgba(0,87,168,0.2);
     border-radius: 3px;
   }
   ::-webkit-scrollbar-thumb:hover {
-    background: rgba(200,164,92,0.5);
+    background: rgba(0,87,168,0.4);
   }
 
   /* ─── Selection ──────────────────────────────────────── */
   ::selection {
-    background: rgba(200,164,92,0.25);
+    background: rgba(4,175,68,0.15);
     color: var(--color-cream);
   }
 
@@ -317,7 +317,7 @@
     padding: 14px 36px;
     background: transparent;
     color: var(--color-cream);
-    border: 1px solid rgba(245,243,238,0.25);
+    border: 1px solid rgba(25,25,25,0.15);
     border-radius: var(--radius-pill);
     font-size: 13px;
     font-weight: 500;
@@ -328,8 +328,8 @@
     text-decoration: none;
   }
   .btn-outline:hover {
-    background: rgba(245,243,238,0.08);
-    border-color: rgba(245,243,238,0.5);
+    background: rgba(0,87,168,0.04);
+    border-color: rgba(0,87,168,0.3);
     transform: translateY(-1px);
   }
 
@@ -355,8 +355,8 @@
   .form-input {
     width: 100%;
     padding: 14px 16px;
-    background: rgba(245,243,238,0.05);
-    border: 1px solid rgba(245,243,238,0.1);
+    background: #FFFFFF;
+    border: 1px solid var(--color-divider);
     border-radius: var(--radius-sm);
     color: var(--color-cream);
     font-size: 14px;
@@ -365,8 +365,9 @@
     transition: border-color var(--transition-fast), background var(--transition-fast);
   }
   .form-input:focus {
-    border-color: var(--color-gold);
-    background: rgba(245,243,238,0.08);
+    border-color: var(--color-gold-light);
+    background: #FFFFFF;
+    box-shadow: 0 0 0 3px rgba(0,87,168,0.1);
   }
   .form-input::placeholder { color: rgba(245,243,238,0.3); }
 
